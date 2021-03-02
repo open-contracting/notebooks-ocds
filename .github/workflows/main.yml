@@ -1,0 +1,18 @@
+name: Store notebook in Drive
+on:
+  push: { branches: [main] }
+jobs:
+  buildAndTestForSomePlatforms:
+    name: Upload notebook to drive
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      # Upload to Drive
+      - name: Upload setup notebook to Google Drive
+        uses: Jodebu/upload-to-drive@master
+        with:
+          target: setup_notebook.ipynb
+          credentials: secrets.GSA_CREDENTIALS
+          folder: secrets.FOLDER_ID
