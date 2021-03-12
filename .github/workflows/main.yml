@@ -15,5 +15,5 @@ jobs:
         uses: team-tumbleweed/gdrive-upload-action@main
         with:
           filename: setup_notebook.ipynb
-          folderId: secrets.FOLDER_ID
-          credentials: secrets.GSA_CREDENTIALS
+          folderId: ${{ secrets.FOLDER_ID }}
+          credentials: ${{ secrets.GSA_CREDENTIALS }}
