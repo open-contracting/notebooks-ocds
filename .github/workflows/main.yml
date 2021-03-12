@@ -10,10 +10,18 @@ jobs:
       # Checkout
       - name: Checkout repository
         uses: actions/checkout@v2
-      # Upload to Drive
+      # Install requirements
+      - name: Install requirements
+        run: pip install -r requirements.txt
+        shell: bash
+      # Merge analysis template
+      - name: Merge analysis template
+        run: nbmerge setup_notebook.ipynb data_collection_and_processing_errors.ipynb > kingfisher_analysis_template.ipynb
+        shell: bash
+      # Upload analysis template to Google Drive
       - name: Upload to gdrive
         uses: team-tumbleweed/gdrive-upload-action@main
         with:
-          filename: setup_notebook.ipynb
+          filename: kingfisher_analysis_template.ipynb
           folderId: ${{ secrets.FOLDER_ID }}
           credentials: ${{ secrets.GSA_CREDENTIALS }}
