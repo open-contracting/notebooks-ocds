@@ -2,17 +2,17 @@ name: Store notebook in Drive
 on:
   push: { branches: [main] }
 jobs:
-  buildAndTestForSomePlatforms:
-    name: Upload notebook to drive
+  merge_and_upload:
+    name: Merge notebooks and upload notebook to drive
     runs-on: ubuntu-latest
     steps:
       # Checkout
       - name: Checkout repository
         uses: actions/checkout@v2
       # Upload to Drive
-      - name: Upload setup notebook to Google Drive
-        uses: Jodebu/upload-to-drive@master
+      - name: Upload to gdrive
+        uses: team-tumbleweed/gdrive-upload-action@master
         with:
-          target: setup_notebook.ipynb
+          filename: setup_notebook.ipynb
+          folderId: secrets.FOLDER_ID
           credentials: secrets.GSA_CREDENTIALS
-          folder: secrets.FOLDER_ID
