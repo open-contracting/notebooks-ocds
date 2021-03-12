@@ -1,6 +1,7 @@
 name: Merge notebooks and upload to Google Drive
 on:
   push: { branches: [main] }
+  workflow_dispatch:
 jobs:
   merge_and_upload:
     name: Merge notebooks and upload to Google Drive
