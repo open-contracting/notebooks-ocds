@@ -10,9 +10,16 @@ jobs:
       # Checkout
       - name: Checkout repository
         uses: actions/checkout@v2
+      # Set up Python
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+        python-version: 3.9
       # Install requirements
       - name: Install requirements
-        run: pip install -r requirements.txt
+        run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
         shell: bash
       # Merge analysis template
       - name: Merge analysis template
