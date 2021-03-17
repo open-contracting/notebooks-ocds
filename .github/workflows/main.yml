@@ -25,10 +25,6 @@ jobs:
       - name: Merge analysis template
         run: nbmerge setup_notebook.ipynb data_collection_and_processing_errors.ipynb > kingfisher_analysis_template.ipynb
         shell: bash
-      # Upload analysis template to Google Drive
+      # Upload compiled notebooks to Google Drive
       - name: Upload to gdrive
-        uses: team-tumbleweed/gdrive-upload-action@main
-        with:
-          filename: kingfisher_analysis_template.ipynb
-          folderId: ${{ secrets.FOLDER_ID }}
-          credentials: ${{ secrets.GSA_CREDENTIALS }}
+        run: python upload_to_drive.py
