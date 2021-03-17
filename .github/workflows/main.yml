@@ -23,9 +23,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
         shell: bash
-      # Merge analysis template
-      - name: Merge analysis template
-        run: nbmerge setup_notebook.ipynb data_collection_and_processing_errors.ipynb > kingfisher_analysis_template.ipynb
+      # Merge notebooks
+      - name: Merge publisher analysis template
+        run: nbmerge setup_environment.ipynb choose_data.ipynb check_for_errors.ipynb > publisher_analysis_template.ipynb
         shell: bash
       # Upload compiled notebooks to Google Drive
       - name: Upload to gdrive

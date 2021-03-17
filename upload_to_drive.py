@@ -28,4 +28,6 @@ def update_file(file_id, path, name):
         body=file,
         media_body=media_body).execute()
 
-update_file('1R-VBYA-SC9CoMIdvYp_SI9V2UFWlTqx0', 'kingfisher_analysis_template.ipynb', 'Kingfisher Analysis Template')
+update_file('1R-VBYA-SC9CoMIdvYp_SI9V2UFWlTqx0', 'publisher_analysis_template.ipynb', 'Publisher Analysis Template')
+
+update_file('1NXYvi3eHOWlFHXzcg7Vhw3xNJpNXcqx1', 'setup_environment.ipynb', 'Meta Analysis Template')
