@@ -24,10 +24,10 @@ The following table describes the relationship between the templates and compone
 
 Template | Description | Setup environment | Choose data | Check for errors
 -- | -- | -- | -- | --
-[Publisher analysis template](https://drive.google.com/file/d/1R-VBYA-SC9CoMIdvYp_SI9V2UFWlTqx0/view?usp=sharing)[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1R-VBYA-SC9CoMIdvYp_SI9V2UFWlTqx0) | Use to analyse data from a specific publisher | - [x] | - [x] | - [x]
-[Meta analysis template]() | Use to analyse data from multiple publishers | - [x] | - [] | - []
-[Data feedback template]() | Use to provide feedback on data quality | - [] | - [] | - []
-[Usability checks template]() | Use to provide feedback on data usability | - [] | - [] | - []
+[Publisher analysis template](https://drive.google.com/file/d/1R-VBYA-SC9CoMIdvYp_SI9V2UFWlTqx0/view?usp=sharing)[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1R-VBYA-SC9CoMIdvYp_SI9V2UFWlTqx0) | Use to analyse data from a specific publisher | <ul><li>- [x]</li></ul> | <ul><li>- [x]</li></ul> | <ul><li>- [x]</li></ul>
+[Meta analysis template]() | Use to analyse data from multiple publishers | <ul><li>- [x]</li></ul> | <ul><li>- []</li></ul> | <ul><li>- []</li></ul>
+[Data feedback template]() | Use to provide feedback on data quality | <ul><li>- []</li></ul> | <ul><li>- []</li></ul> | <ul><li>- []</li></ul>
+[Usability checks template]() | Use to provide feedback on data usability | <ul><li>- []</li></ul> | <ul><li>- []</li></ul> | <ul><li>- []</li></ul>
 
 ## Contributing
 
