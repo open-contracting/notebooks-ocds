@@ -11,8 +11,8 @@ Component | Tasks
 [Setup environment](https://github.com/duncandewhurst/kingfisher_notebook_components/blob/main/setup_environment.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/duncandewhurst/kingfisher_notebook_components/blob/main/setup_environment.ipynb) | Install requirements, import functions, load extensions and set config. Connect to the Kingfisher database.
 [Choose data](https://github.com/duncandewhurst/kingfisher_notebook_components/blob/main/choose_data.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/duncandewhurst/kingfisher_notebook_components/blob/main/choose_data.ipynb) | Choose a data source, collection and schema to work with.
 [Check for errors](https://github.com/duncandewhurst/kingfisher_notebook_components/blob/main/check_for_errors.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/duncandewhurst/kingfisher_notebook_components/blob/main/check_for_errors.ipynb) | Check for data collection and processing errors.
-Check structure and format | Check for structure and format errors reported by the Data Review Tool
-Check quality | Check for conformance and coherence errors
+Check structure and format | Check for structure and format errors reported by the Data Review Tool.
+Check quality | Check for conformance and coherence errors.
 
 To open a component from a different branch, use Colab's [Github browser](https://colab.research.google.com/github/duncandewhurst/kingfisher_notebook_components/) to choose the component and branch you want to open.
 
@@ -27,8 +27,9 @@ The following table describes the relationship between the templates and compone
 Template | Description | Setup environment | Choose data | Check for errors
 -- | -- | -- | -- | --
 [Publisher analysis template](https://drive.google.com/file/d/1R-VBYA-SC9CoMIdvYp_SI9V2UFWlTqx0/view?usp=sharing)[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1R-VBYA-SC9CoMIdvYp_SI9V2UFWlTqx0) | Use to analyse data from a specific publisher | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
-[Meta analysis template](https://drive.google.com/file/d/1NXYvi3eHOWlFHXzcg7Vhw3xNJpNXcqx1)[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1NXYvi3eHOWlFHXzcg7Vhw3xNJpNXcqx1) | Use to analyse data from multiple publishers | :heavy_check_mark: |  |
-Data feedback template | Use to provide feedback on data quality |  |  |
+[Meta analysis template](https://drive.google.com/file/d/1NXYvi3eHOWlFHXzcg7Vhw3xNJpNXcqx1)[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1NXYvi3eHOWlFHXzcg7Vhw3xNJpNXcqx1) | Use to analyse data from multiple publishers, or to perform other types of analysis on the Kingfisher database | :heavy_check_mark: |  |
+Structure and format feedback template | Use to provide feedback on data quality |  |  |
+Data quality feedback template | | |
 Usability checks template | Use to provide feedback on data usability |  |  |
 
 ## Contributing
