@@ -10,7 +10,9 @@ Component | Tasks
 -- | --
 [Setup environment](https://github.com/duncandewhurst/kingfisher_notebook_components/blob/main/setup_environment.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/duncandewhurst/kingfisher_notebook_components/blob/main/setup_environment.ipynb) | Install requirements, import functions, load extensions and set config. Connect to the Kingfisher database.
 [Choose data](https://github.com/duncandewhurst/kingfisher_notebook_components/blob/main/choose_data.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/duncandewhurst/kingfisher_notebook_components/blob/main/choose_data.ipynb) | Choose a data source, collection and schema to work with.
-[Check for errors](https://github.com/duncandewhurst/kingfisher_notebook_components/blob/main/data_collection_and_processing_errors.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/duncandewhurst/kingfisher_notebook_components/blob/main/data_collection_and_processing_errors.ipynb) | Check for data collection and processing errors.
+[Check for errors](https://github.com/duncandewhurst/kingfisher_notebook_components/blob/main/check_for_errors.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/duncandewhurst/kingfisher_notebook_components/blob/main/check_for_errors.ipynb) | Check for data collection and processing errors.
+Check structure and format | Check for structure and format errors reported by the Data Review Tool
+Check quality | Check for conformance and coherence errors
 
 To open a component from a different branch, use Colab's [Github browser](https://colab.research.google.com/github/duncandewhurst/kingfisher_notebook_components/) to choose the component and branch you want to open.
 
