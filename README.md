@@ -34,11 +34,11 @@ Usability checks template | Use to provide feedback on data usability |  |  |
 
 ## Contributing
 
-### Edit a component
+### Add or edit a component
 
-1. Open the component in Colab.
+1. [Create a new notebook](https://colab.research.google.com/#create=true), or open an existing component in Colab.
 
-2. Make your changes in Colab, following the [style guide for SQL statements](https://ocp-software-handbook.readthedocs.io/en/latest/python/code.html#sql-statements).
+2. Add or edit cells, following the [style guide for SQL statements](https://ocp-software-handbook.readthedocs.io/en/latest/python/code.html#sql-statements). For new components, set a title using H2 formatting.
 
 3. Format any SQL code you add or edit using [pgFormatter](http://sqlformat.darold.net/).
 
@@ -56,6 +56,20 @@ In Colab:
 
 5. Select your branch, enter a commit message and click OK.
 
+### Update templates
+
+1. Add any new components to the `nbmerge` commands in the 'Merge notebooks' section of [`main.yml`](https://github.com/duncandewhurst/kingfisher_notebook_components/blob/main/.github/workflows/main.yml) as required.
+
+### Add a new template
+
+1. Add a new step to the 'Merge notebooks' section of [`main.yml`](https://github.com/duncandewhurst/kingfisher_notebook_components/blob/main/.github/workflows/main.yml) with the `nbmerge` command to generate the template, e.g. `nbmerge component_1.ipynb component_2.ipynb > new_template.ipynb`.
+
+2. Upload an empty file to the [Kingfisher Notebooks Google Drive folder](https://drive.google.com/drive/u/0/folders/1eb3pSQ55HylMsmwKqu7MrkvH12ROD4-9) and get its Google Drive file ID from the 'Get link' menu option.
+
+![Google Drive file ID](google_drive_file_id.png)
+
+3. Add a new `update_file` command to [`upload_to_drive.py`](https://github.com/duncandewhurst/kingfisher_notebook_components/blob/main/upload_to_drive.py), e.g. `update_file`('file_id', 'new_template.ipynb', 'New Template Title')
+
 ### Request a review
 
 1. [Create a pull request](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
@@ -66,7 +80,7 @@ In Colab:
 
 ### Merge your changes
 
-Once approved, you can merge your changes yourself.
+Once approved, you can merge your own changes.
 
 ## Reviewing
 
