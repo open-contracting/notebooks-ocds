@@ -25,10 +25,10 @@ jobs:
         shell: bash
       # Merge notebooks
       - name: Merge publisher analysis template
-        run: nbmerge setup_environment.ipynb choose_data.ipynb check_for_errors.ipynb > publisher_analysis_template.ipynb
+        run: nbmerge setup_environment.ipynb choose_data.ipynb check_for_errors.ipynb check_scope.ipynb > publisher_analysis_template.ipynb
         shell: bash
       - name: Merge structure and format feedback template
-        run: nbmerge setup_environment.ipynb choose_data.ipynb check_for_errors.ipynb check_structure_and_format.ipynb > structure_and_format_feedback_template.ipynb
+        run: nbmerge setup_environment.ipynb choose_data.ipynb check_for_errors.ipynb check_structure_and_format.ipynb check_scope.ipynb > structure_and_format_feedback_template.ipynb
         shell: bash
       # Upload compiled notebooks to Google Drive
       - name: Upload to gdrive
