@@ -27,9 +27,9 @@ The following table describes the relationship between the templates and compone
 
 Template | Description | Setup environment | Choose data | Check for errors | Check scope | Check structure and format
 -- | -- | -- | -- | -- | -- | --
-[Publisher analysis template](https://drive.google.com/file/d/1R-VBYA-SC9CoMIdvYp_SI9V2UFWlTqx0/view?usp=sharing)[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1R-VBYA-SC9CoMIdvYp_SI9V2UFWlTqx0) | Use to analyse data from a specific publisher | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-[Meta analysis template](https://drive.google.com/file/d/1NXYvi3eHOWlFHXzcg7Vhw3xNJpNXcqx1)[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1NXYvi3eHOWlFHXzcg7Vhw3xNJpNXcqx1) | Use to analyse data from multiple publishers, or to perform other types of analysis on the Kingfisher database | :heavy_check_mark: | | | |
-[Structure and format feedback template](https://drive.google.com/file/d/1GmkA3kFL9k9MdTUln4pcRmc-KZneL5VB)[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1GmkA3kFL9k9MdTUln4pcRmc-KZneL5VB) | Use to provide feedback on structure and format issues reported by the Data Review Tool | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
+[Publisher analysis template](https://colab.research.google.com/drive/11Z3RAhI97Dan2usiuN5CUWwfJ23WLNob) | Use to analyse data from a specific publisher | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+[Meta analysis template](https://colab.research.google.com/drive/1NXYvi3eHOWlFHXzcg7Vhw3xNJpNXcqx1) | Use to analyse data from multiple publishers, or to perform other types of analysis on the Kingfisher database | :heavy_check_mark: | | | |
+[Structure and format feedback template](https://colab.research.google.com/drive/1GmkA3kFL9k9MdTUln4pcRmc-KZneL5VB) | Use to provide feedback on structure and format issues reported by the Data Review Tool | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
 Data quality feedback template | Use to provide detailed feedback on structure and format, conformance and coherence issues | | | |
 Usability checks template | Use to provide feedback on data usability | | | | |
 
