@@ -33,3 +33,5 @@ update_file('11Z3RAhI97Dan2usiuN5CUWwfJ23WLNob', 'publisher_analysis_template.ip
 update_file('1NXYvi3eHOWlFHXzcg7Vhw3xNJpNXcqx1', 'setup_environment.ipynb', 'Meta Analysis Template')
 
 update_file('1GmkA3kFL9k9MdTUln4pcRmc-KZneL5VB', 'structure_and_format_feedback_template.ipynb', 'Structure and Format Feedback Template')
+
+update_file('1Lj96xTde5GpFQ5hnvB2GYZ7gY4wuvUYt', 'data_quality_feedback_template.ipynb', 'Data Quality Feedback Template')
