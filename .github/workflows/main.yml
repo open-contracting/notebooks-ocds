@@ -30,6 +30,9 @@ jobs:
       - name: Merge structure and format feedback template
         run: nbmerge setup_environment.ipynb choose_data.ipynb check_for_errors.ipynb check_scope.ipynb check_structure_and_format.ipynb > structure_and_format_feedback_template.ipynb
         shell: bash
+      - name: Merge data quality feedback template
+        run: nbmerge setup_environment.ipynb choose_data.ipynb check_for_errors.ipynb check_scope.ipynb check_structure_and_format.ipynb check_data_quality.ipynb > data_quality_feedback_template.ipynb
+        shell: bash
       # Upload compiled notebooks to Google Drive
       - name: Upload to gdrive
         run: python upload_to_drive.py
