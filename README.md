@@ -41,7 +41,7 @@ Usability checks template | Use to provide feedback on data usability | | | | | 
 
 2. Add or edit cells, following the [style guide for SQL statements](https://ocp-software-handbook.readthedocs.io/en/latest/python/code.html#sql-statements). For new components, set a title using H2 formatting.
 
-3. Format any SQL code you add or edit using [pgFormatter](http://sqlformat.darold.net/).
+3. Format any SQL code you add or edit, using [pg_format](https://github.com/darold/pgFormatter) with the following options: `pg_format -f 1`. Alternatively, you can use the [online version](https://sqlformat.darold.net/) and set the **Functions** option to 'lowercase'.
 
 ### Commit your changes
 
