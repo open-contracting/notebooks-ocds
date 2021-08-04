@@ -1,3 +1,4 @@
+click
 nbmerge
 nbformat
 google-api-python-client

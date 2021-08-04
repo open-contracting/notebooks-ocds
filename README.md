@@ -98,3 +98,11 @@ Once approved, you can merge your own changes.
 For small changes, you can review the raw diff in the Github review interface.
 
 For larger changes, you can review and comment on a visual diff by clicking the <img align="absmiddle"  alt="ReviewNB" height="28" class="BotMessageButtonImage" src="https://raw.githubusercontent.com/ReviewNB/support/master/images/button_reviewnb.png"/> button. You need to authorize the app the first time you open it.
+
+# Maintenance
+
+## Format SQL cells in all notebooks:
+
+1. Install [pg_format](https://github.com/darold/pgFormatter).
+
+2. Run `./manage.py format-sql-cells`.
