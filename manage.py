@@ -4,6 +4,7 @@ import json
 import logging
 import os
 import subprocess
+import sys
 from pathlib import Path
 
 directory = Path(__file__).resolve().parent
@@ -51,7 +52,9 @@ def check_sql_cells():
     """
     Check that SQL cells are formatted using pg_format
     """
-
+    
+    warnings = False
+    
     for file in os.listdir(directory):
         filename = os.fsdecode(file)
 
@@ -74,8 +77,14 @@ def check_sql_cells():
                         sql_formatted = pg_format.stdout
 
                         if sql.strip() != sql_formatted.strip():
+                            warnings = True
                             cell_id = cell['metadata']['id']
                             logging.warning(f'{filename}: Incorrectly formatted SQL in cell {cell_id}. To correct the formatting, run ./manage.py format_sql_cells. Alternatively, locate the cell in Google Colaboratory by adding #scrollTo={cell_id} to the notebook URL and replace the cell contents with:\n\n{source[0]}\n{sql_formatted}')
+
+    if warnings:
+        sys.exit(-1)
+    else:
+        sys.exit(0)
 
 if __name__ == '__main__':
     cli()
