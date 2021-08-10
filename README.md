@@ -105,4 +105,4 @@ For larger changes, you can review and comment on a visual diff by clicking the 
 
 1. Install [pg_format](https://github.com/darold/pgFormatter).
 
-2. Run `./manage.py format-sql-cells`.
+2. Run `./manage.py pre-commit`.
