@@ -71,7 +71,7 @@ def check():
                 cell_id = cell['metadata']['id']
                 logging.warning(
                     f'{filename}: Incorrectly formatted SQL in cell {cell_id}. To correct the formatting, run '
-                    './manage.py format-sql-cells. Alternatively, locate the cell in Google Colaboratory by adding '
+                    './manage.py pre-commit. Alternatively, locate the cell in Google Colaboratory by adding '
                     f'#scrollTo={cell_id} to the notebook URL and replace the cell contents with:\n\n'
                     f'{source[0]}\n{sql_formatted}')
 
