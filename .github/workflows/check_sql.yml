@@ -1,29 +1,13 @@
 name: Check SQL
 on: [push, pull_request, workflow_dispatch]
 jobs:
-  check_format:
-    name: Check SQL
+  build:
     runs-on: ubuntu-latest
     steps:
-      # Checkout
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      # Set up Python
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
         with:
           python-version: 3.9
-      # Install requirements
-      - name: Install requirements
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-        shell: bash
-      # Install pgFormatter
-      - name: Install pgFormatter
-        run: sudo apt-get install pgformatter
-        shell: bash
-      # Check that SQL cells are formatted using pg_format
-      - name: Check format
-        run: ./manage.py check-sql-cells
-        shell: bash
+      - run: pip install -r requirements.txt
+      - run: sudo apt-get install pgformatter
+      - run: ./manage.py check
