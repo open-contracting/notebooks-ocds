@@ -66,7 +66,7 @@ For new components:
 
     ![Google Drive file ID](google_drive_file_id.png)
 
-3. Add a new `update_file` command to [`upload_to_drive.py`](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/upload_to_drive.py), e.g. `update_file('file_id', 'new_template.ipynb', 'New Template Title')`
+3. Add a new entry to the `files` list in the [`upload`](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/manage.py) function in `manage.py`, e.g. `('file_id', 'new_template.ipynb', 'New Template Title')`
 4. Update the 'Templates' section of `README.md`.
 
 ### Request a review
