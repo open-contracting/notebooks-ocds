@@ -1,45 +1,51 @@
 # Kingfisher Notebooks
 
-A collection of components and templates for working with data in OCDS Kingfisher using Jupyter notebooks.
+A collection of Jupyter notebooks for working with data in [OCDS Kingfisher Process](https://kingfisher-process.readthedocs.io/en/latest/).
 
-## Components
+## Notebooks
 
-The notebook components in this repository are the single source of truth for common tasks performed by OCDS Helpdesk analysts. Use the buttons below to open the components from the `main` branch for editing in Google Colaboratory (Colab):
-
-Component | Tasks
+Notebook | Description
 -- | --
-[Setup environment](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/setup_environment.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/setup_environment.ipynb) | Install requirements, import functions, load extensions and set config. Connect to the Kingfisher database.
-[Choose data](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/choose_data.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/choose_data.ipynb) | Choose a data source, collection and schema to work with.
-[Check for errors](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/check_for_errors.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/check_for_errors.ipynb) | Check for data collection and processing errors.
-[Check scope](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/check_scope.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/check_scope.ipynb) | Check how many releases and records your data contains. Check the date range and stages of the contracting process covered by your data.
-[Check structure and format](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/check_structure_and_format.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/check_structure_and_format.ipynb) | Check for structure and format errors reported by the Data Review Tool.
-[Check quality](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/check_data_quality.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/check_data_quality.ipynb) | Check for conformance and coherence errors.
-
-To open a component from a different branch, use Colab's [GitHub browser](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/) to choose the component and branch you want to open.
-
-Alternatively, you can use the Open in Colab browser extension ([Chrome](https://chrome.google.com/webstore/detail/open-in-colab/), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/open-in-colab/)) to add a button that, when clicked when viewing a Jupyter notebook on GitHub, will open that notebook in Colab.
-
-## Templates
-
-Each time a component is updated, GitHub Actions builds template notebooks from the components and writes them to a [Google Drive folder](https://drive.google.com/drive/u/0/folders/1eb3pSQ55HylMsmwKqu7MrkvH12ROD4-9).
-
-The following table describes the relationship between the templates and components. Use the links to open the templates in [Google Colaboratory](https://colab.research.google.com/) and then save a copy to use in your analysis.
-
-Template | Description | Setup environment | Choose data | Check for errors | Check scope | Check structure and format | Check data quality
--- | -- | -- | -- | -- | -- | -- | --
-[Publisher analysis template](https://colab.research.google.com/drive/11Z3RAhI97Dan2usiuN5CUWwfJ23WLNob) | Use to analyse data from a specific publisher | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | |
-[Meta analysis template](https://colab.research.google.com/drive/1NXYvi3eHOWlFHXzcg7Vhw3xNJpNXcqx1) | Use to analyse data from multiple publishers, or to perform other types of analysis on the Kingfisher database | :heavy_check_mark: | | | | |
-[Structure and format feedback template](https://colab.research.google.com/drive/1GmkA3kFL9k9MdTUln4pcRmc-KZneL5VB) | Use to provide feedback on structure and format issues reported by the Data Review Tool | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-[Data quality feedback template](https://colab.research.google.com/drive/1Lj96xTde5GpFQ5hnvB2GYZ7gY4wuvUYt) | Use to provide detailed feedback on structure and format, conformance and coherence issues | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
-Usability checks template | Use to provide feedback on data usability | | | | | |
+[Publisher analysis template](https://github.com/open-contracting/notebooks-ocds/blob/main/publisher_analysis_template.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/publisher_analysis_template.ipynb) | Use this notebook to analyse data from a specific publisher 
+[Meta analysis template](https://github.com/open-contracting/notebooks-ocds/blob/main/meta_analysis_template.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/meta_analysis_template.ipynb) | Use this notebook to analyse data from multiple publishers, or to perform other types of analysis on the Kingfisher database
+[Structure and format feedback template](https://github.com/open-contracting/notebooks-ocds/blob/main/structure_and_format_feedback_template.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/structure_and_format_feedback_template.ipynb) | Use this notebook to provide feedback on structure and format issues reported by the Data Review Tool
+[Data quality feedback template](https://github.com/open-contracting/notebooks-ocds/blob/main/data_quality_feedback_template.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/data_quality_feedback_template.ipynb) | Use this notebook to provide detailed feedback on structure and format, conformance and coherence issues 
+Usability checks template | Use this notebook to provide feedback on data usability
 
 ## Contributing
 
-### Add or edit a component
+### Components
 
-1. [Create a new notebook](https://colab.research.google.com/#create=true), or open an existing component in Colab.
-2. Add or edit cells, following the [style guide for SQL statements](https://ocp-software-handbook.readthedocs.io/en/latest/python/code.html#sql-statements). For new components, set a title using H2 formatting.
-3. Format any SQL code you add or edit, using [pg_format](https://github.com/darold/pgFormatter) with the following options: `pg_format -f 1`. Alternatively, you can use the [online version](https://sqlformat.darold.net/) and set the **Functions** option to 'lowercase'.
+To ease maintenance, the notebooks are made up of reusable components. The following table describes the relationship between the components and the notebooks.
+
+Component | Tasks | Used in
+-- | -- | --
+[Setup environment](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/setup_environment.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/setup_environment.ipynb) | Install requirements, import functions, load extensions and set config. Connect to the Kingfisher database. | All notebooks
+[Choose data](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/choose_data.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/choose_data.ipynb) | Choose a data source, collection and schema to work with. | Publisher analysis template, structure and format feedback template, data quality feedback template
+[Check for errors](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/check_for_errors.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/check_for_errors.ipynb) | Check for data collection and processing errors. | Publisher analysis template, structure and format feedback template, data quality feedback template
+[Check scope](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/check_scope.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/check_scope.ipynb) | Check how many releases and records your data contains. Check the date range and stages of the contracting process covered by your data. | Publisher analysis template, structure and format feedback template, data quality feedback template
+[Check structure and format](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/check_structure_and_format.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/check_structure_and_format.ipynb) | Check for structure and format errors reported by the Data Review Tool. | Structure and format feedback template, data quality feedback template
+[Check quality](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/check_data_quality.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/check_data_quality.ipynb) | Check for conformance and coherence errors. | Data quality feedback template
+
+Use the buttons above to open the components from the `main` branch for editing in Google Colaboratory (Colab).
+
+To open a component from a different branch, use Colab's [GitHub browser](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/).
+
+Alternatively, you can use the Open in Colab browser extension ([Chrome](https://chrome.google.com/webstore/detail/open-in-colab/), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/open-in-colab/)) to add a button that, when clicked when viewing a Jupyter notebook on GitHub, will open that notebook in Colab.
+
+### Add a component
+
+1. [Create a new notebook](https://colab.research.google.com/#create=true)
+2. Set a title using H2 formatting and add your cells, following the [style guide for SQL statements](https://ocp-software-handbook.readthedocs.io/en/latest/python/code.html#sql-statements).
+
+### Edit a component
+
+1. Open the component in Colab.
+2. Add or edit cells, following the [style guide for SQL statements](https://ocp-software-handbook.readthedocs.io/en/latest/python/code.html#sql-statements).
+
+### Format your code
+
+1. Format any SQL code you add or edit, using [pg_format](https://github.com/darold/pgFormatter) with the following options: `pg_format -f 1`. Alternatively, you can use the [online version](https://sqlformat.darold.net/) and set the **Functions** option to 'lowercase'.
 
 ### Commit your changes
 
@@ -52,21 +58,16 @@ In Colab:
 1. Uncheck 'Include a link to Colaboratory'
 1. Select your branch, enter a commit message and click OK.
 
-### Update templates with new components
+### Add new components to a notebook
 
 For new components:
 
-1. Add the component to the `nbmerge` commands in the 'Merge notebooks' section of [`main.yml`](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/.github/workflows/main.yml) as required.
-2. Update the 'Components' and 'Templates' sections of `README.md`.
+1. Add the component to the entry for the notebook in the `NOTEBOOKS` variable in `manage.py`.
+2. Update the 'Components' table in `README.md`.
 
-### Add a new template
+### Add a new notebook
 
-1. Add a new step to the 'Merge notebooks' section of [`main.yml`](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/.github/workflows/main.yml) with the `nbmerge` command to generate the template, e.g. `nbmerge component_1.ipynb component_2.ipynb > new_template.ipynb`.
-2. Upload an empty file to the [Kingfisher Notebooks Google Drive folder](https://drive.google.com/drive/u/0/folders/1eb3pSQ55HylMsmwKqu7MrkvH12ROD4-9) and get its Google Drive file ID from the 'Get link' menu option.
-
-    ![Google Drive file ID](google_drive_file_id.png)
-
-3. Add a new entry to the `files` list in the [`upload`](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/manage.py) function in `manage.py`, e.g. `('file_id', 'new_template.ipynb', 'New Template Title')`
+1. Add an entry for the the notebook and its components to the `NOTEBOOKS` variable in `manage.py`.
 4. Update the 'Templates' section of `README.md`.
 
 ### Request a review
@@ -91,7 +92,7 @@ For larger changes, you can review and comment on a visual diff by clicking the 
 
 # Maintenance
 
-## Format SQL cells in all notebooks:
+## Format SQL cells and merge components to build notebooks:
 
 1. Install [pg_format](https://github.com/darold/pgFormatter).
 2. Run `./manage.py pre-commit`.
