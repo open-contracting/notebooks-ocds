@@ -33,15 +33,15 @@ NOTEBOOKS = {
         'check_structure_and_format',
         'check_data_quality']}
 
+BASEDIR = Path(__file__).resolve().parent
+
 
 def yield_notebooks():
-    directory = Path(__file__).resolve().parent
-
-    for filename in os.listdir(directory):
+    for filename in os.listdir(BASEDIR):
         if not filename.endswith('.ipynb'):
             continue
 
-        filepath = os.path.join(directory, filename)
+        filepath = os.path.join(BASEDIR, filename)
         with open(filepath, 'r') as f:
             notebook = json.load(f)
 
@@ -64,6 +64,10 @@ def yield_cells(notebook):
         yield source, cell, sql, pg_format.stdout
 
 
+def build_notebook(slug):
+    return merge_notebooks(BASEDIR, [f'{c}.ipynb' for c in NOTEBOOKS[slug]], False, None)
+
+
 @click.group()
 def cli():
     pass
@@ -75,7 +79,6 @@ def pre_commit():
     Format SQL cells in Jupyter Notebooks using pg_format and merge components to build notebooks.
     """
 
-    # Format SQL cells
     for filename, filepath, notebook in yield_notebooks():
         for source, cell, sql, sql_formatted in yield_cells(notebook):
             cell['source'] = [source[0], "\n"] + sql_formatted.splitlines(keepends=True)
@@ -84,42 +87,28 @@ def pre_commit():
             json.dump(notebook, f, ensure_ascii=False, indent=2)
             f.write('\n')
 
-    # Merge notebooks
-    for slug, components in NOTEBOOKS.items():
-
-        notebook = merge_notebooks(
-                    Path(__file__).resolve().parent,
-                    [f'{component}.ipynb' for component in components],
-                    False,
-                    None)
-
+    for slug in NOTEBOOKS:
         with open(f'{slug}.ipynb', 'w', encoding='utf8') as f:
-            write_notebook(notebook, f)
+            write_notebook(build_notebook(slug), f)
 
 
 @cli.command()
 def check():
     """
-    Check that notebooks and components are in sync.
-    Check that SQL cells in Jupyter Notebooks are formatted using pg_format.
+    Check that notebooks and components are in sync, and SQL cells in Jupyter Notebooks are formatted using pg_format.
     """
     warnings = False
-    cwd = Path(__file__).resolve().parent
 
     for filename, filepath, notebook in yield_notebooks():
         slug = filename.split('.')[0]
         if slug in NOTEBOOKS:
-            merged_notebook = merge_notebooks(
-                                cwd,
-                                [f'{component}.ipynb' for component in NOTEBOOKS[slug]],
-                                False,
-                                None)
-            if reads(json.dumps(notebook), as_version=4) != merged_notebook:
+            built_notebook = build_notebook(slug)
+            if reads(json.dumps(notebook), as_version=4) != built_notebook:
                 warnings = True
                 logging.warning(
-                    f'Mismatch between notebook {filename} and its components. If you edited a component, run '
-                    './manage.py pre-commit to update the notebook. If you edited the notebook, '
-                    'copy your changes to the relevant components.')
+                    f'{filename}: Mismatch between the notebook and its components. If you edited a component, run '
+                    './manage.py pre-commit to update the notebook. If you edited the notebook, replicate your '
+                    ' changes in the relevant components.')
 
         for source, cell, sql, sql_formatted in yield_cells(notebook):
             if sql.strip() != sql_formatted.strip():
