@@ -9,7 +9,7 @@ Notebook | Description
 [Publisher analysis template](https://github.com/open-contracting/notebooks-ocds/blob/main/publisher_analysis_template.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/publisher_analysis_template.ipynb) | Use this notebook to analyse data from a specific publisher 
 [Meta analysis template](https://github.com/open-contracting/notebooks-ocds/blob/main/meta_analysis_template.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/meta_analysis_template.ipynb) | Use this notebook to analyse data from multiple publishers, or to perform other types of analysis on the Kingfisher database
 [Structure and format feedback template](https://github.com/open-contracting/notebooks-ocds/blob/main/structure_and_format_feedback_template.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/structure_and_format_feedback_template.ipynb) | Use this notebook to provide feedback on structure and format issues reported by the Data Review Tool
-[Data quality feedback template](https://github.com/open-contracting/notebooks-ocds/blob/main/data_quality_feedback_template.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/data_quality_feedback_template.ipynb) | Use this notebook to provide detailed feedback on structure and format, conformance and coherence issues 
+[Data quality feedback template](https://github.com/open-contracting/notebooks-ocds/blob/main/data_quality_feedback_template.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/data_quality_feedback_template.ipynb) | Use this notebook to provide detailed feedback on structure, format, conformance and coherence issues 
 Usability checks template | Use this notebook to provide feedback on data usability
 
 ## Contributing
@@ -60,15 +60,12 @@ In Colab:
 
 ### Add new components to a notebook
 
-For new components:
-
 1. Add the component to the entry for the notebook in the `NOTEBOOKS` variable in `manage.py`.
-2. Update the 'Components' table in `README.md`.
 
 ### Add a new notebook
 
 1. Add an entry for the the notebook and its components to the `NOTEBOOKS` variable in `manage.py`.
-4. Update the 'Templates' section of `README.md`.
+4. Update the 'Notebooks' section of `README.md`.
 
 ### Request a review
 

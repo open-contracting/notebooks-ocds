@@ -13,25 +13,30 @@ from nbmerge import merge_notebooks
 
 # A dict of notebooks and their components, identified by filename, excluding '.ipynb'
 NOTEBOOKS = {
+    'meta_analysis_template': [
+        'setup_environment',
+    ],
     'publisher_analysis_template': [
         'setup_environment',
         'choose_data',
         'check_for_errors',
-        'check_scope'],
-    'meta_analysis_template': ['setup_environment'],
+        'check_scope',
+    ],
     'structure_and_format_feedback_template': [
         'setup_environment',
         'choose_data',
         'check_for_errors',
         'check_scope',
-        'check_structure_and_format'],
+        'check_structure_and_format',
+    ],
     'data_quality_feedback_template': [
         'setup_environment',
         'choose_data',
         'check_for_errors',
         'check_scope',
         'check_structure_and_format',
-        'check_data_quality']}
+        'check_data_quality',
+    ]}
 
 BASEDIR = Path(__file__).resolve().parent
 
