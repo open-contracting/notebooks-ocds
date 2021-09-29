@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import base64
 import json
 import logging
 import os
@@ -8,18 +7,46 @@ import sys
 from pathlib import Path
 
 import click
-from googleapiclient.discovery import MediaFileUpload, build
-from oauth2client.service_account import ServiceAccountCredentials
+from nbformat import reads
+from nbformat import write as write_notebook
+from nbmerge import merge_notebooks
+
+# A dict of notebooks and their components, identified by filename, excluding '.ipynb'
+NOTEBOOKS = {
+    'meta_analysis_template': [
+        'setup_environment',
+    ],
+    'publisher_analysis_template': [
+        'setup_environment',
+        'choose_data',
+        'check_for_errors',
+        'check_scope',
+    ],
+    'structure_and_format_feedback_template': [
+        'setup_environment',
+        'choose_data',
+        'check_for_errors',
+        'check_scope',
+        'check_structure_and_format',
+    ],
+    'data_quality_feedback_template': [
+        'setup_environment',
+        'choose_data',
+        'check_for_errors',
+        'check_scope',
+        'check_structure_and_format',
+        'check_data_quality',
+    ]}
+
+BASEDIR = Path(__file__).resolve().parent
 
 
 def yield_notebooks():
-    directory = Path(__file__).resolve().parent
-
-    for filename in os.listdir(directory):
+    for filename in os.listdir(BASEDIR):
         if not filename.endswith('.ipynb'):
             continue
 
-        filepath = os.path.join(directory, filename)
+        filepath = os.path.join(BASEDIR, filename)
         with open(filepath, 'r') as f:
             notebook = json.load(f)
 
@@ -42,6 +69,10 @@ def yield_cells(notebook):
         yield source, cell, sql, pg_format.stdout
 
 
+def build_notebook(slug):
+    return merge_notebooks(BASEDIR, [f'{c}.ipynb' for c in NOTEBOOKS[slug]], False, None)
+
+
 @click.group()
 def cli():
     pass
@@ -50,8 +81,9 @@ def cli():
 @cli.command()
 def pre_commit():
     """
-    Format SQL cells in Jupyter Notebooks using pg_format.
+    Format SQL cells in Jupyter Notebooks using pg_format and merge components to build notebooks.
     """
+
     for filename, filepath, notebook in yield_notebooks():
         for source, cell, sql, sql_formatted in yield_cells(notebook):
             cell['source'] = [source[0], "\n"] + sql_formatted.splitlines(keepends=True)
@@ -60,15 +92,29 @@ def pre_commit():
             json.dump(notebook, f, ensure_ascii=False, indent=2)
             f.write('\n')
 
+    for slug in NOTEBOOKS:
+        with open(f'{slug}.ipynb', 'w', encoding='utf8') as f:
+            write_notebook(build_notebook(slug), f)
+
 
 @cli.command()
 def check():
     """
-    Check that SQL cells in Jupyter Notebooks are formatted using pg_format.
+    Check that notebooks and components are in sync, and SQL cells in Jupyter Notebooks are formatted using pg_format.
     """
     warnings = False
 
     for filename, filepath, notebook in yield_notebooks():
+        slug = filename.split('.')[0]
+        if slug in NOTEBOOKS:
+            built_notebook = build_notebook(slug)
+            if reads(json.dumps(notebook), as_version=4) != built_notebook:
+                warnings = True
+                logging.warning(
+                    f'{filename}: Mismatch between the notebook and its components. If you edited a component, run '
+                    './manage.py pre-commit to update the notebook. If you edited the notebook, replicate your '
+                    ' changes in the relevant components.')
+
         for source, cell, sql, sql_formatted in yield_cells(notebook):
             if sql.strip() != sql_formatted.strip():
                 warnings = True
@@ -81,55 +127,6 @@ def check():
 
     if warnings:
         sys.exit(1)
-
-
-@cli.command()
-def upload():
-    """
-    Upload Jupyter Notebooks to Google Drive.
-
-    The GOOGLE_SERVICE_ACCOUNT environment variable must be set.
-    """
-    GOOGLE_SERVICE_ACCOUNT = base64.b64decode(os.environ['GOOGLE_SERVICE_ACCOUNT']).decode('UTF-8')
-
-    credentials = ServiceAccountCredentials.from_json_keyfile_dict(
-        json.loads(GOOGLE_SERVICE_ACCOUNT),
-        scopes=['https://www.googleapis.com/auth/drive']
-    )
-
-    service = build('drive', 'v3', credentials=credentials)
-
-    files = [
-        (
-            '11Z3RAhI97Dan2usiuN5CUWwfJ23WLNob',
-            'publisher_analysis_template.ipynb',
-            'Publisher Analysis Template',
-        ),
-        (
-            '1NXYvi3eHOWlFHXzcg7Vhw3xNJpNXcqx1',
-            'setup_environment.ipynb',
-            'Meta Analysis Template',
-        ),
-        (
-            '1GmkA3kFL9k9MdTUln4pcRmc-KZneL5VB',
-            'structure_and_format_feedback_template.ipynb',
-            'Structure and Format Feedback Template',
-        ),
-        (
-            '1Lj96xTde5GpFQ5hnvB2GYZ7gY4wuvUYt',
-            'data_quality_feedback_template.ipynb',
-            'Data Quality Feedback Template',
-        ),
-    ]
-
-    for file_id, path, name in files:
-        file = service.files().get(fileId=file_id).execute()
-
-        del file['id']
-        file['name'] = name
-
-        media_body = MediaFileUpload(path, resumable=True)
-        service.files().update(fileId=file_id, body=file, media_body=media_body).execute()
 
 
 if __name__ == '__main__':
