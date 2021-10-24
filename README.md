@@ -36,12 +36,12 @@ Alternatively, you can use the Open in Colab browser extension ([Chrome](https:/
 ### Add a component
 
 1. [Create a new notebook](https://colab.research.google.com/#create=true)
-2. Set a title using H2 formatting and add your cells, following the [style guide for SQL statements](https://ocp-software-handbook.readthedocs.io/en/latest/python/services.html#sql-statements).
+2. Set a title using H2 formatting and add your cells, following the [style guide for SQL statements](https://ocp-software-handbook.readthedocs.io/en/latest/services/postgresql.html#sql-statements).
 
 ### Edit a component
 
 1. Open the component in Colab.
-2. Add or edit cells, following the [style guide for SQL statements](https://ocp-software-handbook.readthedocs.io/en/latest/python/services.html#sql-statements).
+2. Add or edit cells, following the [style guide for SQL statements](https://ocp-software-handbook.readthedocs.io/en/latest/services/postgresql.html#sql-statements).
 
 ### Commit your changes
 
