@@ -20,5 +20,7 @@ jobs:
       - run: curl -s -S --retry 3 $BASEDIR/tests/install.sh | bash -
       - run: curl -s -S --retry 3 $BASEDIR/tests/script.sh | bash -
       - run: pip install -r requirements.txt
-      - run: sudo apt-get install pgformatter
+      run: |
+          sudo apt update
+          sudo apt install pgformatter
       - run: ./manage.py check
