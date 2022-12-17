@@ -66,7 +66,7 @@ In Colab:
 ### Request a review
 
 1. [Create a pull request](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
-2. Request a review from a helpdesk analyst.
+2. Request a review from a data support manager.
 3. If the reviewer requests changes, make the changes then repeat this step.
 
 ### Merge your changes
