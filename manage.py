@@ -89,7 +89,7 @@ def pre_commit():
             cell['source'] = [source[0], "\n"] + sql_formatted.splitlines(keepends=True)
 
         with open(filepath, 'w') as f:
-            json.dump(notebook, f, ensure_ascii=False, indent=2)
+            json.dump(notebook, f, ensure_ascii=False, indent=1)
             f.write('\n')
 
     for slug in NOTEBOOKS:
