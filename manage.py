@@ -19,17 +19,20 @@ NOTEBOOKS = {
     'publisher_analysis_template': [
         'setup_environment',
         'choose_data',
+        'check_for_errors',
         'check_scope',
     ],
     'structure_and_format_feedback_template': [
         'setup_environment',
         'choose_data',
+        'check_for_errors',
         'check_scope',
         'check_structure_and_format',
     ],
     'data_quality_feedback_template': [
         'setup_environment',
         'choose_data',
+        'check_for_errors',
         'check_scope',
         'check_structure_and_format',
         'check_data_quality',
