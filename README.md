@@ -2,6 +2,16 @@
 
 A collection of Jupyter notebooks for working with data in [Kingfisher Process](https://kingfisher-process.readthedocs.io/en/latest/).
 
+To use a notebook:
+
+* Click the *Open In Colab* button
+* Click the *File > Save a copy in Drive* menu item
+* Make your changes (e.g. `collection_ids`, `schema_name`, etc.)
+
+If you make any improvements or fixes, please follow the *Contributing* guide below to merge your changes back into this repository.
+
+You can also use a notebook without creating a copy. However, if you re-open the notebook, any changes and outputs will be lost.
+
 ## Notebooks
 
 Notebook | Description
@@ -13,6 +23,8 @@ Notebook | Description
 Usability checks template | Use this notebook to provide feedback on data usability
 
 ## Contributing
+
+**Reminder:** If you edit the *Check structure and format* or *Check quality* components and either change the headings or add new sections, please check whether the related *Document template* in this [process note](https://docs.google.com/document/d/1_k7eA2rI-k5EH8VESkVAB73wa_qrpplL-7dKgMLTGZc/edit) needs an update.
 
 ### Components
 
