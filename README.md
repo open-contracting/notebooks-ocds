@@ -45,7 +45,7 @@ Alternatively, you can use the Open in Colab browser extension ([Chrome](https:/
 
 ### Commit your changes
 
-1. [Create a branch](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-and-deleting-branches-within-your-repository#creating-a-branch).
+1. [Create a branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository#creating-a-branch).
 
 In Colab:
 
@@ -65,7 +65,7 @@ In Colab:
 
 ### Request a review
 
-1. [Create a pull request](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+1. [Create a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 2. Request a review from a data support manager.
 3. If the reviewer requests changes, make the changes then repeat this step.
 
@@ -77,7 +77,7 @@ Once approved, you can merge your own changes.
 
 ### Review changes
 
-[Review the changes](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/reviewing-proposed-changes-in-a-pull-request).
+[Review the changes](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request).
 
 For small changes, you can review the raw diff in the GitHub review interface.
 
