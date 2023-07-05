@@ -2,6 +2,8 @@
 
 A collection of Jupyter notebooks for working with data in [Kingfisher Process](https://kingfisher-process.readthedocs.io/en/latest/).
 
+## Notebooks
+
 To use a notebook:
 
 * Click the *Open In Colab* button
@@ -11,8 +13,6 @@ To use a notebook:
 If you make any improvements or fixes, please follow the *Contributing* guide below to merge your changes back into this repository.
 
 You can also use a notebook without creating a copy. However, if you re-open the notebook, any changes and outputs will be lost.
-
-## Notebooks
 
 Notebook | Description
 -- | --
@@ -24,11 +24,11 @@ Usability checks template | Use this notebook to provide feedback on data usabil
 
 ## Contributing
 
-**Reminder:** If you edit the *Check structure and format* or *Check quality* components and either change the headings or add new sections, please check whether the related *Document template* in this [process note](https://docs.google.com/document/d/1_k7eA2rI-k5EH8VESkVAB73wa_qrpplL-7dKgMLTGZc/edit) needs an update.
-
 ### Components
 
 To ease maintenance, the notebooks are made up of reusable components. To see which components are used in each notebook, refer to the `NOTEBOOKS` variable in `manage.py`.
+
+**Reminder:** If you edit the *Check structure and format* or *Check quality* components and change the headings or add new sections, check whether the related *Document template* in this [process note](https://docs.google.com/document/d/1_k7eA2rI-k5EH8VESkVAB73wa_qrpplL-7dKgMLTGZc/edit) needs an update.
 
 Component | Tasks
 -- | --
