@@ -75,7 +75,9 @@ def yield_cells(notebook):
 
 def build_notebook(slug):
     try:
-        return merge_notebooks(BASEDIR, [f'{c}.ipynb' for c in NOTEBOOKS[slug]], False, None)
+        notebook = merge_notebooks(BASEDIR, [f'{c}.ipynb' for c in NOTEBOOKS[slug]], False, None)
+        notebook['metadata']['colab']['name'] = slug
+        return notebook
     except jsonschema.exceptions.ValidationError as e:
         raise Exception(f"{slug}.ipynb is invalid") from e
 
