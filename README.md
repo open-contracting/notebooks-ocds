@@ -1,6 +1,6 @@
 # Kingfisher Notebooks
 
-A collection of Jupyter notebooks for working with data in [OCDS Kingfisher Process](https://kingfisher-process.readthedocs.io/en/latest/).
+A collection of Jupyter notebooks for working with data in [Kingfisher Process](https://kingfisher-process.readthedocs.io/en/latest/).
 
 ## Notebooks
 
