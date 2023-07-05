@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 
 import click
+import jsonschema
 from nbformat import reads
 from nbformat import write as write_notebook
 from nbmerge import merge_notebooks
@@ -48,7 +49,10 @@ def yield_notebooks():
 
         filepath = os.path.join(BASEDIR, filename)
         with open(filepath) as f:
-            notebook = json.load(f)
+            try:
+                notebook = json.load(f)
+            except json.decoder.JSONDecodeError as e:
+                raise Exception(f"{filepath} is invalid") from e
 
         yield filename, filepath, notebook
 
@@ -70,7 +74,10 @@ def yield_cells(notebook):
 
 
 def build_notebook(slug):
-    return merge_notebooks(BASEDIR, [f'{c}.ipynb' for c in NOTEBOOKS[slug]], False, None)
+    try:
+        return merge_notebooks(BASEDIR, [f'{c}.ipynb' for c in NOTEBOOKS[slug]], False, None)
+    except jsonschema.exceptions.ValidationError as e:
+        raise Exception(f"{slug}.ipynb is invalid") from e
 
 
 def json_dump(path, notebook):
