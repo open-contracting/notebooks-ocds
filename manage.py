@@ -47,7 +47,7 @@ def yield_notebooks():
             continue
 
         filepath = os.path.join(BASEDIR, filename)
-        with open(filepath, 'r') as f:
+        with open(filepath) as f:
             notebook = json.load(f)
 
         yield filename, filepath, notebook
@@ -73,6 +73,13 @@ def build_notebook(slug):
     return merge_notebooks(BASEDIR, [f'{c}.ipynb' for c in NOTEBOOKS[slug]], False, None)
 
 
+def json_dump(path, notebook):
+    with open(path, 'w') as f:
+        # Use indent=2 like Google Colab for small diffs.
+        json.dump(notebook, f, ensure_ascii=False, indent=2)
+        f.write('\n')
+
+
 @click.group()
 def cli():
     pass
@@ -88,13 +95,17 @@ def pre_commit():
         for source, cell, sql, sql_formatted in yield_cells(notebook):
             cell['source'] = [source[0], "\n"] + sql_formatted.splitlines(keepends=True)
 
-        with open(filepath, 'w') as f:
-            json.dump(notebook, f, ensure_ascii=False, indent=1)
-            f.write('\n')
+        json_dump(filepath, notebook)
 
     for slug in NOTEBOOKS:
         with open(f'{slug}.ipynb', 'w', encoding='utf8') as f:
             write_notebook(build_notebook(slug), f)
+
+        # nbformat uses indent=1.
+        with open(f'{slug}.ipynb') as f:
+            notebook = json.load(f)
+
+        json_dump(f'{slug}.ipynb', notebook)
 
 
 @cli.command()
