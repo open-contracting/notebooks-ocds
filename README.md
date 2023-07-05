@@ -14,7 +14,7 @@ If you make any improvements or fixes, please follow the *Contributing* guide be
 
 You can also use a notebook without creating a copy. However, if you re-open the notebook, any changes and outputs will be lost.
 
-Notebook | Open in Colab | Description
+Notebook | Open in Colab | Description
 -- | -- | --
 [Publisher analysis template](https://github.com/open-contracting/notebooks-ocds/blob/main/publisher_analysis_template.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/publisher_analysis_template.ipynb) | Use this notebook to analyse data from a specific publisher 
 [Meta analysis template](https://github.com/open-contracting/notebooks-ocds/blob/main/meta_analysis_template.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/meta_analysis_template.ipynb) | Use this notebook to analyse data from multiple publishers, or to perform other types of analysis on the Kingfisher database
@@ -30,7 +30,7 @@ To ease maintenance, the notebooks are made up of reusable components. To see wh
 
 **Reminder:** If you edit the *Check structure and format* or *Check quality* components and change the headings or add new sections, check whether the related *Document template* in this [process note](https://docs.google.com/document/d/1_k7eA2rI-k5EH8VESkVAB73wa_qrpplL-7dKgMLTGZc/edit) needs an update.
 
-Component | Open in Colab | Tasks
+Component | Open in Colab | Tasks
 -- | -- | --
 [Setup environment](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/setup_environment.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/setup_environment.ipynb) | Install requirements, import functions, load extensions and set config. Connect to the Kingfisher database.
 [Choose data](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/choose_data.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/choose_data.ipynb) | Choose a data source, collection and schema to work with.
