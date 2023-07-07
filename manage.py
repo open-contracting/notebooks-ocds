@@ -37,6 +37,22 @@ NOTEBOOKS = {
         'check_scope',
         'check_structure_and_format',
         'check_data_quality',
+    ],
+    'usability_checks_template': [
+        'setup_environment',
+        'choose_data',
+        'calculate_general_statistics',
+        'usability_analysis',
+    ],
+
+    'usability_checks_template_mapping': [
+        'usability_mapping_setup',
+        'usability_analysis',
+    ],
+
+    'usability_checks_template_data_registry': [
+        'data_registry_usability_set_up',
+              'usability_analysis',
     ]}
 
 BASEDIR = Path(__file__).resolve().parent
