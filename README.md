@@ -1,4 +1,4 @@
-# Kingfisher Notebooks
+# OCDS Notebooks
 
 A collection of Jupyter notebooks for working with data from:
 
@@ -45,16 +45,16 @@ To ease maintenance, the notebooks are made up of reusable components. To see wh
 
 Component | Open in Colab | Tasks
 -- | -- | --
-[Setup environment](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/setup_environment.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/setup_environment.ipynb) | Install requirements, import packages, load extensions and configure the notebook. Connect to the Kingfisher Process database.
-[Choose data](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/choose_data.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/choose_data.ipynb) | Choose a data source, collection and schema to work with.
-[Check for errors](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/check_for_errors.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/check_for_errors.ipynb) | Check for data collection and processing errors.
-[Check scope](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/check_scope.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/check_scope.ipynb) | Check how many releases and records your data contains. Check the date range and stages of the contracting process covered by your data.
-[Check structure and format](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/check_structure_and_format.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/check_structure_and_format.ipynb) | Check for structure and format errors reported by [lib-cove-ocds](https://github.com/open-contracting/lib-cove-ocds).
-[Check quality](https://github.com/open-contracting/kingfisher_notebook_components/blob/main/check_data_quality.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/blob/main/check_data_quality.ipynb) | Check for conformance and quality issues that require manual review.
+[Setup environment](https://github.com/open-contracting/notebooks-ocds/blob/main/setup_environment.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/setup_environment.ipynb) | Install requirements, import packages, load extensions and configure the notebook. Connect to the Kingfisher Process database.
+[Choose data](https://github.com/open-contracting/notebooks-ocds/blob/main/choose_data.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/choose_data.ipynb) | Choose a data source, collection and schema to work with.
+[Check for errors](https://github.com/open-contracting/notebooks-ocds/blob/main/check_for_errors.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/check_for_errors.ipynb) | Check for data collection and processing errors.
+[Check scope](https://github.com/open-contracting/notebooks-ocds/blob/main/check_scope.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/check_scope.ipynb) | Check how many releases and records your data contains. Check the date range and stages of the contracting process covered by your data.
+[Check structure and format](https://github.com/open-contracting/notebooks-ocds/blob/main/check_structure_and_format.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/check_structure_and_format.ipynb) | Check for structure and format errors reported by [lib-cove-ocds](https://github.com/open-contracting/lib-cove-ocds).
+[Check quality](https://github.com/open-contracting/notebooks-ocds/blob/main/check_data_quality.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/check_data_quality.ipynb) | Check for conformance and quality issues that require manual review.
 
 Use the buttons above to open the components from the `main` branch for editing in Google Colaboratory (Colab).
 
-To open a component from a different branch, use Colab's [GitHub browser](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/).
+To open a component from a different branch, use Colab's [GitHub browser](https://colab.research.google.com/github/open-contracting/notebooks-ocds).
 
 ### Add a component
 
