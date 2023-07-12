@@ -14,46 +14,46 @@ from nbmerge import merge_notebooks
 
 # A dict of notebooks and their components, identified by filename, excluding '.ipynb'
 NOTEBOOKS = {
-    'template_meta_analysis': [
-        'component_environment',
-        'component_setup_kingfisher',
+    "template_meta_analysis": [
+        "component_environment",
+        "component_setup_kingfisher",
     ],
-    'template_publisher_analysis': [
-        'component_environment',
-        'component_setup_kingfisher',
-        'component_errors_kingfisher',
-        'component_scope_kingfisher',
+    "template_publisher_analysis": [
+        "component_environment",
+        "component_setup_kingfisher",
+        "component_errors_kingfisher",
+        "component_scope_kingfisher",
     ],
-    'template_structure_and_format_feedback': [
-        'component_environment',
-        'component_setup_kingfisher',
-        'component_errors_kingfisher',
-        'component_scope_kingfisher',
-        'component_check_structure',
+    "template_structure_and_format_feedback": [
+        "component_environment",
+        "component_setup_kingfisher",
+        "component_errors_kingfisher",
+        "component_scope_kingfisher",
+        "component_check_structure",
     ],
-    'template_data_quality_feedback': [
-        'component_environment',
-        'component_setup_kingfisher',
-        'component_errors_kingfisher',
-        'component_scope_kingfisher',
-        'component_check_structure',
-        'component_check_quality',
+    "template_data_quality_feedback": [
+        "component_environment",
+        "component_setup_kingfisher",
+        "component_errors_kingfisher",
+        "component_scope_kingfisher",
+        "component_check_structure",
+        "component_check_quality",
     ],
-    'template_usability_checks': [
-        'component_environment',
-        'component_setup_kingfisher',
-        'component_scope_usability',
-        'component_check_usability',
+    "template_usability_checks": [
+        "component_environment",
+        "component_setup_kingfisher",
+        "component_scope_usability",
+        "component_check_usability",
     ],
-    'template_usability_checks_fieldlist': [
-        'component_environment',
-        'component_setup_fieldlist',
-        'component_check_usability',
+    "template_usability_checks_fieldlist": [
+        "component_environment",
+        "component_setup_fieldlist",
+        "component_check_usability",
     ],
-    'template_usability_checks_registry': [
-        'component_environment',
-        'component_setup_registry',
-        'component_check_usability',
+    "template_usability_checks_registry": [
+        "component_environment",
+        "component_setup_registry",
+        "component_check_usability",
     ],
 }
 
@@ -62,7 +62,7 @@ BASEDIR = Path(__file__).resolve().parent
 
 def yield_notebooks():
     for filename in os.listdir(BASEDIR):
-        if not filename.endswith('.ipynb'):
+        if not filename.endswith(".ipynb"):
             continue
 
         filepath = os.path.join(BASEDIR, filename)
@@ -76,35 +76,36 @@ def yield_notebooks():
 
 
 def yield_cells(notebook):
-    for cell in notebook['cells']:
-        if cell['cell_type'] != 'code':
+    for cell in notebook["cells"]:
+        if cell["cell_type"] != "code":
             continue
 
-        source = cell['source']
-        if '%%sql' not in source[0]:
+        source = cell["source"]
+        if "%%sql" not in source[0]:
             continue
 
-        sql = ''.join(source[1:])
-        pg_format = subprocess.run(['pg_format', '-f', '1'], input=sql, stdout=subprocess.PIPE, check=True,
-                                   universal_newlines=True)
+        sql = "".join(source[1:])
+        pg_format = subprocess.run(
+            ["pg_format", "-f", "1"], input=sql, stdout=subprocess.PIPE, check=True, universal_newlines=True
+        )
 
         yield source, cell, sql, pg_format.stdout
 
 
 def build_notebook(slug):
     try:
-        notebook = merge_notebooks(BASEDIR, [f'{c}.ipynb' for c in NOTEBOOKS[slug]], False, None)
-        notebook['metadata']['colab']['name'] = slug
+        notebook = merge_notebooks(BASEDIR, [f"{c}.ipynb" for c in NOTEBOOKS[slug]], False, None)
+        notebook["metadata"]["colab"]["name"] = slug
         return notebook
     except jsonschema.exceptions.ValidationError as e:
         raise Exception(f"{slug}.ipynb is invalid") from e
 
 
 def json_dump(path, notebook):
-    with open(path, 'w') as f:
+    with open(path, "w") as f:
         # Use indent=2 like Google Colab for small diffs.
         json.dump(notebook, f, ensure_ascii=False, indent=2)
-        f.write('\n')
+        f.write("\n")
 
 
 @click.group()
@@ -120,19 +121,19 @@ def pre_commit():
 
     for filename, filepath, notebook in yield_notebooks():
         for source, cell, sql, sql_formatted in yield_cells(notebook):
-            cell['source'] = [source[0], "\n"] + sql_formatted.splitlines(keepends=True)
+            cell["source"] = [source[0], "\n"] + sql_formatted.splitlines(keepends=True)
 
         json_dump(filepath, notebook)
 
     for slug in NOTEBOOKS:
-        with open(f'{slug}.ipynb', 'w', encoding='utf8') as f:
+        with open(f"{slug}.ipynb", "w", encoding="utf8") as f:
             write_notebook(build_notebook(slug), f)
 
         # nbformat uses indent=1.
-        with open(f'{slug}.ipynb') as f:
+        with open(f"{slug}.ipynb") as f:
             notebook = json.load(f)
 
-        json_dump(f'{slug}.ipynb', notebook)
+        json_dump(f"{slug}.ipynb", notebook)
 
 
 @cli.command()
@@ -143,29 +144,31 @@ def check():
     warnings = False
 
     for filename, filepath, notebook in yield_notebooks():
-        slug = filename.split('.')[0]
+        slug = filename.split(".")[0]
         if slug in NOTEBOOKS:
             built_notebook = build_notebook(slug)
             if reads(json.dumps(notebook), as_version=4) != built_notebook:
                 warnings = True
                 logging.warning(
-                    f'{filename}: Mismatch between the notebook and its components. If you edited a component, run '
-                    './manage.py pre-commit to update the notebook. If you edited the notebook, replicate your '
-                    ' changes in the relevant components.')
+                    f"{filename}: Mismatch between the notebook and its components. If you edited a component, run "
+                    "./manage.py pre-commit to update the notebook. If you edited the notebook, replicate your "
+                    " changes in the relevant components."
+                )
 
         for source, cell, sql, sql_formatted in yield_cells(notebook):
             if sql.strip() != sql_formatted.strip():
                 warnings = True
-                cell_id = cell['metadata']['id']
+                cell_id = cell["metadata"]["id"]
                 logging.warning(
-                    f'{filename}: Incorrectly formatted SQL in cell {cell_id}. To correct the formatting, run '
-                    './manage.py pre-commit. Alternatively, locate the cell in Google Colaboratory by adding '
-                    f'#scrollTo={cell_id} to the notebook URL and replace the cell contents with:\n\n'
-                    f'{source[0]}\n{sql_formatted}')
+                    f"{filename}: Incorrectly formatted SQL in cell {cell_id}. To correct the formatting, run "
+                    "./manage.py pre-commit. Alternatively, locate the cell in Google Colaboratory by adding "
+                    f"#scrollTo={cell_id} to the notebook URL and replace the cell contents with:\n\n"
+                    f"{source[0]}\n{sql_formatted}"
+                )
 
     if warnings:
         sys.exit(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cli()
