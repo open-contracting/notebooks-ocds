@@ -14,23 +14,23 @@ from nbmerge import merge_notebooks
 
 # A dict of notebooks and their components, identified by filename, excluding '.ipynb'
 NOTEBOOKS = {
-    'meta_analysis_template': [
+    'template_meta_analysis': [
         'setup_environment',
     ],
-    'publisher_analysis_template': [
+    'template_publisher_analysis': [
         'setup_environment',
         'choose_data',
         'check_for_errors',
         'check_scope',
     ],
-    'structure_and_format_feedback_template': [
+    'template_structure_and_format_feedback': [
         'setup_environment',
         'choose_data',
         'check_for_errors',
         'check_scope',
         'check_structure_and_format',
     ],
-    'data_quality_feedback_template': [
+    'template_data_quality_feedback': [
         'setup_environment',
         'choose_data',
         'check_for_errors',
@@ -38,22 +38,21 @@ NOTEBOOKS = {
         'check_structure_and_format',
         'check_data_quality',
     ],
-    'usability_checks_template': [
+    'template_usability_checks': [
         'setup_environment',
         'choose_data',
         'calculate_general_statistics',
         'usability_analysis',
     ],
-
-    'usability_checks_template_mapping': [
+    'template_usability_checks_mapping': [
         'usability_mapping_setup',
         'usability_analysis',
     ],
-
-    'usability_checks_template_data_registry': [
+    'template_usability_checks_data_registry': [
         'data_registry_usability_set_up',
         'usability_analysis',
-    ]}
+    ],
+}
 
 BASEDIR = Path(__file__).resolve().parent
 
