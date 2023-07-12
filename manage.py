@@ -48,7 +48,7 @@ NOTEBOOKS = {
         'usability_mapping_setup',
         'usability_analysis',
     ],
-    'template_usability_checks_data_registry': [
+    'template_usability_checks_registry': [
         'data_registry_usability_set_up',
         'usability_analysis',
     ],

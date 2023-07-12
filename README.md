@@ -33,7 +33,7 @@ Notebook | Open in Colab | Description
 Notebook | Open in Colab | Description
 -- | -- | --
 [Usability checks using a field-level mapping](https://github.com/open-contracting/notebooks-ocds/blob/main/template_usability_checks_mapping.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/template_usability_checks_mapping.ipynb) | Provide feedback on data usability for prospective OCDS publishers.
-[Usability checks using the Data Registry](https://github.com/open-contracting/notebooks-ocds/blob/main/template_usability_checks_data_registry.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/template_usability_checks_data_registry.ipynb) | Provide feedback on data usability using data from the [Data Registry](https://data.open-contracting.org/).
+[Usability checks using the Data Registry](https://github.com/open-contracting/notebooks-ocds/blob/main/template_usability_checks_registry.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/template_usability_checks_registry.ipynb) | Provide feedback on data usability using data from the [Data Registry](https://data.open-contracting.org/).
 
 ## Contributing
 
