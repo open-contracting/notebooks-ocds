@@ -46,12 +46,12 @@ To ease maintenance, the notebooks are made up of reusable components. To see wh
 Component | Open in Colab | Tasks
 -- | -- | --
 [Environment](https://github.com/open-contracting/notebooks-ocds/blob/main/component_environment.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_environment.ipynb) | Install requirements, import packages, load extensions and configure the notebook.
-[Kingfisher Process setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_kingfisher.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_kingfisher.ipynb) | Connect to the Kingfisher Process database. Choose a data source, collection and schema to work with.
-[Field list setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_fieldlist.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_fieldlist.ipynb) | Load field list.
-[Data Registry setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_registry.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_registry.ipynb) | Install Cardinal, download data, and calculate field coverage.
+[Kingfisher Process setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_kingfisher.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_kingfisher.ipynb) | Connect to the database. Choose the collection(s) and schema to work with.
+[Field list setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_fieldlist.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_fieldlist.ipynb) | Load the field list.
+[Data Registry setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_registry.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_registry.ipynb) | Install Cardinal, download the data, and calculate the field list.
 [Kingfisher Process errors](https://github.com/open-contracting/notebooks-ocds/blob/main/component_errors_kingfisher.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_errors_kingfisher.ipynb) | Check for data collection and processing errors.
 [Structure scope](https://github.com/open-contracting/notebooks-ocds/blob/main/component_scope_kingfisher.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_scope_kingfisher.ipynb) | Check how many releases and records your data contains. Check the date range and stages of the contracting process covered by your data.
-[Usability scope](https://github.com/open-contracting/notebooks-ocds/blob/main/component_scope_usability.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_scope_usability.ipynb) | 
+[Usability scope](https://github.com/open-contracting/notebooks-ocds/blob/main/component_scope_usability.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_scope_usability.ipynb) | Calculate general statistics.
 [Structure checks](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_structure.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_structure.ipynb) | Check for structure and format errors reported by [lib-cove-ocds](https://github.com/open-contracting/lib-cove-ocds).
 [Quality checks](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_quality.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_quality.ipynb) | Check for conformance and quality issues that require manual review.
 [Usability checks](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_usability.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_usability.ipynb) | 
@@ -62,11 +62,11 @@ To open a component from a different branch, use Colab's [GitHub browser](https:
 
 To encourage reuse, limit the scope of a component. The current scopes are:
 
-- Environment: Setup Google Colaboratory in general.
-- Setup: Setup Google Colaboratory for a data source.
-- Errors: Review any issues in loading the data.
-- Scope: Understand the scope of the data.
-- Check: Perform a category of checks.
+- *Environment*: Setup Google Colaboratory in general.
+- *Setup*: Setup Google Colaboratory for a data source.
+- *Errors*: Review any issues in loading the data.
+- *Scope*: Understand the scope of the data.
+- *Check*: Perform a category of checks.
 
 ### Add a component
 
