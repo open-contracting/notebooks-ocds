@@ -43,8 +43,6 @@ Use the buttons above to open the components from the `main` branch for editing 
 
 To open a component from a different branch, use Colab's [GitHub browser](https://colab.research.google.com/github/open-contracting/kingfisher_notebook_components/).
 
-Alternatively, you can use the Open in Colab browser extension ([Chrome](https://chrome.google.com/webstore/detail/open-in-colab/), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/open-in-colab/)) to add a button that, when clicked when viewing a Jupyter notebook on GitHub, will open that notebook in Colab.
-
 ### Add a component
 
 1. [Create a new notebook](https://colab.research.google.com/#create=true)
