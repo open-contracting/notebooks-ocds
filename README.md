@@ -1,6 +1,10 @@
 # Kingfisher Notebooks
 
-A collection of Jupyter notebooks for working with data in [Kingfisher Process](https://kingfisher-process.readthedocs.io/en/latest/).
+A collection of Jupyter notebooks for working with data from:
+
+- [Kingfisher Process](https://kingfisher-process.readthedocs.io/en/latest/)
+- [Data Registry](https://data.open-contracting.org)
+- [Field-level mappings](https://www.open-contracting.org/resources/ocds-field-level-mapping-template/)
 
 ## Notebooks
 
@@ -14,13 +18,22 @@ If you make any improvements or fixes, please follow the *Contributing* guide be
 
 You can also use a notebook without creating a copy. However, if you re-open the notebook, any changes and outputs will be lost.
 
+### Kingfisher Process
+
 Notebook | Open in Colab | Description
 -- | -- | --
 [Publisher analysis template](https://github.com/open-contracting/notebooks-ocds/blob/main/publisher_analysis_template.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/publisher_analysis_template.ipynb) | Analyze data from a specific publisher.
 [Meta analysis template](https://github.com/open-contracting/notebooks-ocds/blob/main/meta_analysis_template.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/meta_analysis_template.ipynb) | Analyze data from multiple publishers, or to perform other types of analysis on the Kingfisher Process database.
 [Structure and format feedback template](https://github.com/open-contracting/notebooks-ocds/blob/main/structure_and_format_feedback_template.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/structure_and_format_feedback_template.ipynb) | Provide feedback on structure and format errors reported by [lib-cove-ocds](https://github.com/open-contracting/lib-cove-ocds).
 [Data quality feedback template](https://github.com/open-contracting/notebooks-ocds/blob/main/data_quality_feedback_template.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/data_quality_feedback_template.ipynb) | Provide detailed feedback on structure, format, conformance and quality issues.
-Usability checks template | | Provide feedback on data usability.
+[Usability checks template](https://github.com/open-contracting/notebooks-ocds/blob/main/usability_checks_template.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/usability_checks_template.ipynb) | Provide feedback on data usability for OCDS datasets.
+
+### Other data sources
+
+Notebook | Open in Colab | Description
+-- | -- | --
+[Usability checks using a field-level mapping](https://github.com/open-contracting/notebooks-ocds/blob/main/usability_checks_template_mapping.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/usability_checks_template_mapping.ipynb) | Provide feedback on data usability for prospective OCDS publishers. 
+[Usability checks using the Data Registry](https://github.com/open-contracting/notebooks-ocds/blob/main/usability_checks_template_data_registry.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/usability_checks_template_data_registry.ipynb) | Provide feedback on data usability using data from the [Data Registry](https://data.open-contracting.org/).
 
 ## Contributing
 
