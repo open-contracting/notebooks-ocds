@@ -52,7 +52,7 @@ NOTEBOOKS = {
 
     'usability_checks_template_data_registry': [
         'data_registry_usability_set_up',
-              'usability_analysis',
+        'usability_analysis',
     ]}
 
 BASEDIR = Path(__file__).resolve().parent
