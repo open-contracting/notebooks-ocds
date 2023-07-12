@@ -4,7 +4,7 @@ A collection of Jupyter notebooks for working with data from:
 
 - [Kingfisher Process](https://kingfisher-process.readthedocs.io/en/latest/)
 - [Data Registry](https://data.open-contracting.org)
-- [Field-level mappings](https://www.open-contracting.org/resources/ocds-field-level-mapping-template/)
+- Field lists, like from a [field-level mappings](https://www.open-contracting.org/resources/ocds-field-level-mapping-template/)
 
 ## Notebooks
 
@@ -32,7 +32,7 @@ Notebook | Open in Colab | Description
 
 Notebook | Open in Colab | Description
 -- | -- | --
-[Usability checks using a field-level mapping](https://github.com/open-contracting/notebooks-ocds/blob/main/template_usability_checks_mapping.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/template_usability_checks_mapping.ipynb) | Provide feedback on data usability for prospective OCDS publishers.
+[Usability checks using a field list](https://github.com/open-contracting/notebooks-ocds/blob/main/template_usability_checks_fieldlist.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/template_usability_checks_fieldlist.ipynb) | Provide feedback on data usability for prospective OCDS publishers, using a field list, like from a field-level mapping.
 [Usability checks using the Data Registry](https://github.com/open-contracting/notebooks-ocds/blob/main/template_usability_checks_registry.ipynb) | [![Open Iinn Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/template_usability_checks_registry.ipynb) | Provide feedback on data usability using data from the [Data Registry](https://data.open-contracting.org/).
 
 ## Contributing
@@ -47,8 +47,8 @@ Component | Open in Colab | Tasks
 -- | -- | --
 [Environment](https://github.com/open-contracting/notebooks-ocds/blob/main/component_environment.ipynb) | [![Open in Colab]((https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_environment.ipynb) | Install requirements, import packages, load extensions and configure the notebook.
 [Kingfisher Process setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_kingfisher.ipynb) | [![Open in Colab]((https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_kingfisher.ipynb) | Connect to the Kingfisher Process database. Choose a data source, collection and schema to work with.
-[Field-level mapping setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_mapping.ipynb) | [![Open in Colab]((https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_mapping.ipynb) | 
-[Data Registry setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_registry.ipynb) | [![Open in Colab]((https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_registry.ipynb) | 
+[Field list setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_fieldlist.ipynb) | [![Open in Colab]((https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_fieldlist.ipynb) | Load field list.
+[Data Registry setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_registry.ipynb) | [![Open in Colab]((https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_registry.ipynb) | Install Cardinal, download data, and calculate field coverage.
 [Kingfisher Process errors](https://github.com/open-contracting/notebooks-ocds/blob/main/component_errors_kingfisher.ipynb) | [![Open in Colab]((https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_errors_kingfisher.ipynb) | Check for data collection and processing errors.
 [Structure scope](https://github.com/open-contracting/notebooks-ocds/blob/main/component_scope_kingfisher.ipynb) | [![Open in Colab]((https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_scope_kingfisher.ipynb) | Check how many releases and records your data contains. Check the date range and stages of the contracting process covered by your data.
 [Usability scope](https://github.com/open-contracting/notebooks-ocds/blob/main/component_scope_usability.ipynb) | [![Open in Colab]((https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_scope_usability.ipynb) | 
