@@ -60,6 +60,11 @@ NOTEBOOKS = {
 BASEDIR = Path(__file__).resolve().parent
 
 
+class InvalidNotebookError(click.ClickException):
+    def __init__(self, filename):
+        super().__init__(f"{filename} is invalid")
+
+
 def yield_notebooks():
     for filename in os.listdir(BASEDIR):
         if not filename.endswith(".ipynb"):
@@ -70,7 +75,7 @@ def yield_notebooks():
             try:
                 notebook = json.load(f)
             except json.decoder.JSONDecodeError as e:
-                raise Exception(f"{filepath} is invalid") from e
+                raise InvalidNotebookError(filepath) from e
 
         yield filename, filepath, notebook
 
@@ -86,7 +91,7 @@ def yield_cells(notebook):
 
         sql = "".join(source[1:])
         pg_format = subprocess.run(
-            ["pg_format", "-f", "1"], input=sql, stdout=subprocess.PIPE, check=True, text=True
+            ["pg_format", "-f", "1"], input=sql, stdout=subprocess.PIPE, check=True, text=True  # noqa: S603 S607
         )
 
         yield source, cell, sql, pg_format.stdout
@@ -97,7 +102,7 @@ def build_notebook(slug):
         notebook = merge_notebooks(BASEDIR, [f"{c}.ipynb" for c in NOTEBOOKS[slug]], verbose=False)
         notebook["metadata"]["colab"]["name"] = slug
     except jsonschema.exceptions.ValidationError as e:
-        raise Exception(f"{slug}.ipynb is invalid") from e
+        raise InvalidNotebookError(f"{slug}.ipynb") from e
     else:
         return notebook
 
@@ -117,9 +122,9 @@ def pre_commit(filename):
     """
     resolved = [path.resolve() for path in filename]
 
-    for filename, filepath, notebook in yield_notebooks():
+    for _, filepath, notebook in yield_notebooks():
         if not resolved or filepath.resolve() in resolved:
-            for source, cell, sql, sql_formatted in yield_cells(notebook):
+            for source, cell, _, sql_formatted in yield_cells(notebook):
                 cell["source"] = [source[0], "\n", *sql_formatted.splitlines(keepends=True)]
 
         json_dump(filepath, notebook)
