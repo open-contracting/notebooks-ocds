@@ -1,14 +1,11 @@
 #!/usr/bin/env python
 import json
-import logging
 import os
 import subprocess
-import sys
 from pathlib import Path
 
 import click
 import jsonschema
-from nbformat import reads
 from nbformat import write as write_notebook
 from nbmerge import merge_notebooks
 
