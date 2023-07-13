@@ -65,8 +65,8 @@ def yield_notebooks():
         if not filename.endswith(".ipynb"):
             continue
 
-        filepath = os.path.join(BASEDIR, filename)
-        with open(filepath) as f:
+        filepath = BASEDIR / filename
+        with filepath.open() as f:
             try:
                 notebook = json.load(f)
             except json.decoder.JSONDecodeError as e:
@@ -86,7 +86,7 @@ def yield_cells(notebook):
 
         sql = "".join(source[1:])
         pg_format = subprocess.run(
-            ["pg_format", "-f", "1"], input=sql, stdout=subprocess.PIPE, check=True, universal_newlines=True
+            ["pg_format", "-f", "1"], input=sql, stdout=subprocess.PIPE, check=True, text=True
         )
 
         yield source, cell, sql, pg_format.stdout
@@ -94,81 +94,45 @@ def yield_cells(notebook):
 
 def build_notebook(slug):
     try:
-        notebook = merge_notebooks(BASEDIR, [f"{c}.ipynb" for c in NOTEBOOKS[slug]], False, None)
+        notebook = merge_notebooks(BASEDIR, [f"{c}.ipynb" for c in NOTEBOOKS[slug]], verbose=False)
         notebook["metadata"]["colab"]["name"] = slug
-        return notebook
     except jsonschema.exceptions.ValidationError as e:
         raise Exception(f"{slug}.ipynb is invalid") from e
+    else:
+        return notebook
 
 
 def json_dump(path, notebook):
-    with open(path, "w") as f:
+    with path.open("w") as f:
         # Use indent=2 like Google Colab for small diffs.
         json.dump(notebook, f, ensure_ascii=False, indent=2)
         f.write("\n")
 
 
-@click.group()
-def cli():
-    pass
-
-
-@cli.command()
-def pre_commit():
+@click.command()
+@click.argument("filename", nargs=-1, type=click.Path(exists=True, dir_okay=False, path_type=Path))
+def pre_commit(filename):
     """
     Format SQL cells in Jupyter Notebooks using pg_format and merge components to build notebooks.
     """
+    resolved = [path.resolve() for path in filename]
 
     for filename, filepath, notebook in yield_notebooks():
-        for source, cell, sql, sql_formatted in yield_cells(notebook):
-            cell["source"] = [source[0], "\n"] + sql_formatted.splitlines(keepends=True)
+        if not resolved or filepath.resolve() in resolved:
+            for source, cell, sql, sql_formatted in yield_cells(notebook):
+                cell["source"] = [source[0], "\n", *sql_formatted.splitlines(keepends=True)]
 
         json_dump(filepath, notebook)
 
     for slug in NOTEBOOKS:
-        with open(f"{slug}.ipynb", "w", encoding="utf8") as f:
+        filepath = Path(f"{slug}.ipynb")
+        with filepath.open("w", encoding="utf8") as f:
             write_notebook(build_notebook(slug), f)
-
         # nbformat uses indent=1.
-        with open(f"{slug}.ipynb") as f:
+        with filepath.open() as f:
             notebook = json.load(f)
-
-        json_dump(f"{slug}.ipynb", notebook)
-
-
-@cli.command()
-def check():
-    """
-    Check that notebooks and components are in sync, and SQL cells in Jupyter Notebooks are formatted using pg_format.
-    """
-    warnings = False
-
-    for filename, filepath, notebook in yield_notebooks():
-        slug = filename.split(".")[0]
-        if slug in NOTEBOOKS:
-            built_notebook = build_notebook(slug)
-            if reads(json.dumps(notebook), as_version=4) != built_notebook:
-                warnings = True
-                logging.warning(
-                    f"{filename}: Mismatch between the notebook and its components. If you edited a component, run "
-                    "./manage.py pre-commit to update the notebook. If you edited the notebook, replicate your "
-                    " changes in the relevant components."
-                )
-
-        for source, cell, sql, sql_formatted in yield_cells(notebook):
-            if sql.strip() != sql_formatted.strip():
-                warnings = True
-                cell_id = cell["metadata"]["id"]
-                logging.warning(
-                    f"{filename}: Incorrectly formatted SQL in cell {cell_id}. To correct the formatting, run "
-                    "./manage.py pre-commit. Alternatively, locate the cell in Google Colaboratory by adding "
-                    f"#scrollTo={cell_id} to the notebook URL and replace the cell contents with:\n\n"
-                    f"{source[0]}\n{sql_formatted}"
-                )
-
-    if warnings:
-        sys.exit(1)
+        json_dump(filepath, notebook)
 
 
 if __name__ == "__main__":
-    cli()
+    pre_commit()

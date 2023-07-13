@@ -1,0 +1,15 @@
+ci:
+  autoupdate_schedule: quarterly
+  skip: [nbqa-manage]
+repos:
+- repo: https://github.com/nbQA-dev/nbQA
+  rev: 1.7.0
+  hooks:
+    - id: nbqa-black
+    - id: nbqa-ruff
+    - id: nbqa
+      entry: nbqa manage
+      name: nbqa-manage
+      alias: nbqa-manage
+      additional_dependencies: [click, jsonschema, nbmerge, nbformat]
+

@@ -8,6 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - run: |
+          sudo apt update
+          sudo apt install pgformatter
+      - uses: chartboost/ruff-action@v1
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10'
@@ -17,8 +21,3 @@ jobs:
         run: curl -s -S --retry 3 $BASEDIR/tests/install.sh | bash -
       - shell: bash
         run: curl -s -S --retry 3 $BASEDIR/tests/script.sh | bash -
-      - run: pip install -r requirements.txt
-      - run: |
-          sudo apt update
-          sudo apt install pgformatter
-      - run: ./manage.py check

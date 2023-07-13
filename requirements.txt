@@ -2,3 +2,5 @@ click
 jsonschema
 nbmerge
 nbformat
+nbqa[toolchain]
+pre-commit

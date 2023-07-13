@@ -43,7 +43,7 @@ To ease maintenance, the notebooks are made up of reusable components. To see wh
 
 **Reminder:** If you edit the *Check structure and format* or *Check quality* components and change the headings or add new sections, check whether the related *Document template* in this [process note](https://docs.google.com/document/d/1_k7eA2rI-k5EH8VESkVAB73wa_qrpplL-7dKgMLTGZc/edit) needs an update.
 
-Component | Open in Colab | Tasks
+Component name | Open in Colab | Tasks
 -- | -- | --
 [Environment](https://github.com/open-contracting/notebooks-ocds/blob/main/component_environment.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_environment.ipynb) | Install requirements, import packages, load extensions and configure the notebook.
 [Kingfisher Process setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_kingfisher.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_kingfisher.ipynb) | Connect to the database. Choose the collection(s) and schema to work with.
@@ -123,4 +123,14 @@ For larger changes, you can review and comment on a visual diff by clicking the 
 ## Format SQL cells and merge components to build notebooks:
 
 1. Install [pg_format](https://github.com/darold/pgFormatter).
-2. Run `./manage.py pre-commit`.
+1. Install requirements:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+1. Install the pre-commit script:
+
+    ```bash
+    pre-commit install
+    ```
