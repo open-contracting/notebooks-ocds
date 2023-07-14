@@ -6,6 +6,7 @@ profile = 'black'
 
 [tool.ruff]
 line-length = 119
+target-version = "py310"
 select = ["ALL"]
 ignore = [
   "ANN", "COM", "CPY", "D", "EM",
@@ -14,13 +15,9 @@ ignore = [
   "F821",  # undefined name (e.g. %sql magic assignment)
   "ERA001",  # commented-out code
 ]
-target-version = "py310"
 
 [tool.ruff.flake8-builtins]
 builtins-ignorelist = ["copyright"]
 
 [tool.ruff.per-file-ignores]
 "template_*" = ["E402"]  # import not at top
-
-[tool.nbqa.process_cells]
-black = ["sql"]
