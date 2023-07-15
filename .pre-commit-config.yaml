@@ -1,6 +1,6 @@
 ci:
   autoupdate_schedule: quarterly
-  skip: [nbqa-manage]
+  skip: [nbqa]
 repos:
 - repo: https://github.com/nbQA-dev/nbQA
   rev: 1.7.0
