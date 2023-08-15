@@ -34,6 +34,7 @@ NOTEBOOKS = {
         "component_errors_kingfisher",
         "component_scope_kingfisher",
         "component_check_structure",
+        "component_check_conformance",
         "component_check_quality",
     ],
     "template_usability_checks": [
