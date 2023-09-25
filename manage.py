@@ -64,18 +64,18 @@ class InvalidNotebookError(click.ClickException):
 
 
 def yield_notebooks():
-    for filename in os.listdir(BASEDIR):
-        if not filename.endswith(".ipynb"):
+    for entry in os.scandir(BASEDIR):
+        if not entry.name.endswith(".ipynb"):
             continue
 
-        filepath = BASEDIR / filename
-        with filepath.open() as f:
+        path = Path(entry.path)
+        with path.open() as f:
             try:
                 notebook = json.load(f)
             except json.decoder.JSONDecodeError as e:
-                raise InvalidNotebookError(filepath) from e
+                raise InvalidNotebookError(path) from e
 
-        yield filename, filepath, notebook
+        yield entry.name, path, notebook
 
 
 def yield_cells(notebook):
