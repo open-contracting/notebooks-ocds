@@ -89,7 +89,11 @@ def yield_cells(notebook):
 
         sql = "".join(source[1:])
         pg_format = subprocess.run(
-            ["pg_format", "-f", "1"], input=sql, stdout=subprocess.PIPE, check=True, text=True  # noqa: S603 S607
+            ["pg_format", "-f", "1"],  # noqa: S603 S607
+            input=sql,
+            stdout=subprocess.PIPE,
+            check=True,
+            text=True,
         )
 
         yield source, cell, sql, pg_format.stdout

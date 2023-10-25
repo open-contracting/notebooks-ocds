@@ -1,15 +1,11 @@
-[tool.black]
-line-length = 119
-
-[tool.isort]
-profile = 'black'
-
 [tool.ruff]
 line-length = 119
-target-version = "py310"
 select = ["ALL"]
+target-version = "py310"
 ignore = [
   "ANN", "COM", "CPY", "D", "EM",
+  # https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
+  "W191", "E501", "D206", "Q000", "Q001", "Q002", "Q003", "ISC001",
   "B018",  # useless expression (e.g. variable to render)
   "F401",  # imported but unused
   "F821",  # undefined name (e.g. %sql magic assignment)
