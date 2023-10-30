@@ -2,14 +2,18 @@ ci:
   autoupdate_schedule: quarterly
   skip: [nbqa]
 repos:
-- repo: https://github.com/nbQA-dev/nbQA
-  rev: 1.7.0
-  hooks:
-    - id: nbqa-black
-    - id: nbqa-ruff
-    - id: nbqa
-      entry: nbqa manage
-      name: nbqa-manage
-      alias: nbqa-manage
-      additional_dependencies: [click, jsonschema, nbmerge, nbformat]
-
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.2
+    hooks:
+      - id: ruff
+        # args: [--fix, --exit-non-zero-on-fix]
+      # ruff-format is not used, as it makes changes to the ipynb structure, not only the Python code.
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.7.0
+    hooks:
+      - id: nbqa-black
+      - id: nbqa
+        entry: nbqa manage
+        name: nbqa-manage
+        alias: nbqa-manage
+        additional_dependencies: [click, jsonschema, nbmerge, nbformat]
