@@ -6,6 +6,8 @@ A collection of Jupyter notebooks for working with data from:
 - [Data Registry](https://data.open-contracting.org)
 - Field lists, like from a [field-level mappings](https://www.open-contracting.org/resources/ocds-field-level-mapping-template/)
 
+**Note:** If you encounter unfamiliar errors, try the *Runtime > Disconnect and delete runtime*  menu item. If the error still occurs, please [open an issue](https://github.com/open-contracting/kingfisher-colab/issues/new).
+
 ## Notebooks
 
 To use a notebook:
