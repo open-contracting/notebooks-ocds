@@ -6,8 +6,8 @@ repos:
     rev: v0.1.9
     hooks:
       - id: ruff
-        # args: [--fix, --exit-non-zero-on-fix]
       # ruff-format is not used, as it makes changes to the ipynb structure, not only the Python code.
+      # https://github.com/astral-sh/ruff/issues/8370
   - repo: https://github.com/nbQA-dev/nbQA
     rev: 1.7.1
     hooks:
