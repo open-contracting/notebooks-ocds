@@ -17,12 +17,14 @@ NOTEBOOKS = {
     ],
     "template_publisher_analysis": [
         "component_environment",
+        "component_charts",
         "component_setup_kingfisher",
         "component_errors_kingfisher",
         "component_scope_kingfisher",
     ],
     "template_structure_and_format_feedback": [
         "component_environment",
+        "component_charts",
         "component_setup_kingfisher",
         "component_errors_kingfisher",
         "component_scope_kingfisher",
@@ -30,6 +32,7 @@ NOTEBOOKS = {
     ],
     "template_data_quality_feedback": [
         "component_environment",
+        "component_charts",
         "component_setup_kingfisher",
         "component_errors_kingfisher",
         "component_scope_kingfisher",
@@ -39,17 +42,20 @@ NOTEBOOKS = {
     ],
     "template_usability_checks": [
         "component_environment",
+        "component_charts",
         "component_setup_kingfisher",
         "component_scope_usability",
         "component_check_usability",
     ],
     "template_usability_checks_fieldlist": [
         "component_environment",
+        "component_charts",
         "component_setup_fieldlist",
         "component_check_usability",
     ],
     "template_usability_checks_registry": [
         "component_environment",
+        "component_charts",
         "component_setup_registry",
         "component_check_usability",
     ],

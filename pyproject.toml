@@ -3,10 +3,10 @@ line-length = 119
 
 [tool.ruff]
 line-length = 119
-select = ["ALL"]
+lint.select = ["ALL"]
 target-version = "py310"
 extend-include = ["*.ipynb"]
-ignore = [
+lint.ignore = [
   "ANN", "COM", "CPY", "D", "EM",
   # https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
   "W191", "E501", "D206", "Q000", "Q001", "Q002", "Q003", "ISC001",
@@ -17,8 +17,8 @@ ignore = [
   "ERA001",  # commented-out code
 ]
 
-[tool.ruff.flake8-builtins]
+[tool.ruff.lint.flake8-builtins]
 builtins-ignorelist = ["copyright"]
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "template_*" = ["E402"]  # import not at top
