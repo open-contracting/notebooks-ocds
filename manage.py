@@ -54,7 +54,6 @@ NOTEBOOKS = {
         "component_check_usability",
     ],
     "template_usability_checks_registry": [
-        "component_environment",
         "component_charts",
         "component_download_data_from_registry",
         "component_setup_cardinal",
