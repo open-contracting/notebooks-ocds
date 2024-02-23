@@ -27,6 +27,7 @@ NOTEBOOKS = {
         "component_setup_charts",
         "component_setup_kingfisher",
         "component_errors_kingfisher",
+        "component_check_conformance",
         "component_scope_kingfisher",
         "component_check_structure",
     ],
@@ -35,9 +36,9 @@ NOTEBOOKS = {
         "component_setup_charts",
         "component_setup_kingfisher",
         "component_errors_kingfisher",
+        "component_check_conformance",
         "component_scope_kingfisher",
         "component_check_structure",
-        "component_check_conformance",
         "component_check_quality",
     ],
     "template_usability_checks": [
