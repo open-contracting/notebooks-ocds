@@ -51,7 +51,6 @@ NOTEBOOKS = {
     "template_usability_checks_fieldlist": [
         "component_environment",
         "component_setup_charts",
-        "component_setup_cardinal",
         "component_setup_fieldlist",
         "component_setup_usability",
         "component_check_usability_external",
@@ -59,9 +58,9 @@ NOTEBOOKS = {
     "template_usability_checks_registry": [
         "component_environment",
         "component_setup_charts",
-        "component_setup_cardinal",
         "component_setup_download_data_from_registry",
         "component_select_data_from_registry",
+        "component_setup_cardinal",
         "component_setup_usability",
         "component_check_usability_external",
     ],
