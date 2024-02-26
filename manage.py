@@ -73,7 +73,7 @@ NOTEBOOKS = {
         "component_setup_cardinal",
         "component_check_relevant_external",
     ],
-    "template_relevant_fieldlist": [
+    "template_relevant_checks_fieldlist": [
         "component_environment",
         "component_setup_fieldlist",
         "component_setup_usability",
