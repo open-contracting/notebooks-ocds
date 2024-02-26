@@ -65,6 +65,20 @@ NOTEBOOKS = {
         "component_setup_usability",
         "component_check_usability_external",
     ],
+    "template_relevant_checks_registry": [
+        "component_environment",
+        "component_setup_usability",
+        "component_setup_download_data_from_registry",
+        "component_select_data_from_registry",
+        "component_setup_cardinal",
+        "component_check_relevant_external",
+    ],
+    "template_relevant_fieldlist": [
+        "component_environment",
+        "component_setup_fieldlist",
+        "component_setup_usability",
+        "component_check_relevant_external",
+    ],
 }
 
 BASEDIR = Path(__file__).resolve().parent
