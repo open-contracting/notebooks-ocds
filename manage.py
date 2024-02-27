@@ -81,6 +81,7 @@ NOTEBOOKS = {
     ],
     "template_basic_criteria_checks": [
         "component_environment",
+        "component_setup_charts",
         "component_setup_usability",
         "component_setup_kingfisher",
         "component_errors_kingfisher",
