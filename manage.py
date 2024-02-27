@@ -79,6 +79,14 @@ NOTEBOOKS = {
         "component_setup_usability",
         "component_check_relevant_external",
     ],
+    "template_basic_criteria_checks": [
+        "component_environment",
+        "component_setup_usability",
+        "component_setup_kingfisher",
+        "component_errors_kingfisher",
+        "component_check_conformance",
+        "component_check_relevant_external",
+    ],
 }
 
 BASEDIR = Path(__file__).resolve().parent
