@@ -86,6 +86,7 @@ NOTEBOOKS = {
         "component_errors_kingfisher",
         "component_check_structure",
         "component_check_conformance",
+        "component_scope_usability",
         "component_check_relevant_external",
     ],
 }
