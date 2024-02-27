@@ -71,13 +71,13 @@ NOTEBOOKS = {
         "component_setup_download_data_from_registry",
         "component_select_data_from_registry",
         "component_setup_cardinal",
-        "component_check_relevant_external",
+        "component_check_relevant",
     ],
     "template_relevant_checks_fieldlist": [
         "component_environment",
         "component_setup_fieldlist",
         "component_setup_usability",
-        "component_check_relevant_external",
+        "component_check_relevant",
     ],
     "template_basic_criteria_checks": [
         "component_environment",
@@ -87,7 +87,7 @@ NOTEBOOKS = {
         "component_check_structure",
         "component_check_conformance",
         "component_scope_usability",
-        "component_check_relevant_external",
+        "component_check_relevant",
     ],
 }
 
