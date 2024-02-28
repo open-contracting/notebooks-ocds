@@ -41,7 +41,6 @@ Notebook | Open in Colab | Description
 [Relevant checks using the Data Registry](https://github.com/open-contracting/notebooks-ocds/blob/main/template_relevant_checks_registry.ipynb) | [![Open Iinn Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/template_relevant_checks_registry.ipynb) | Provide feedback on data relevance using data from the [Data Registry](https://data.open-contracting.org/).
 [Relevant checks for all the Data Registry publications](https://github.com/open-contracting/notebooks-ocds/blob/main/template_relevant_checks_registry_all.ipynb) | [![Open Iinn Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/template_relevant_checks_registry_all.ipynb) | Provide feedback on data relevance downloading all the publications from the [Data Registry](https://data.open-contracting.org/).
 
-
 ## Contributing
 
 ### Components
@@ -70,7 +69,6 @@ Component name | Open in Colab | Tasks
 [Usability checks using a field list without coverage](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_usability_external.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_usability_external.ipynb) | 
 [Relevant checks using a field list](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_relevant.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_relevant.ipynb) | Given a field list, check if the list pass the "relevant" criteria. 
 [Relevant checks against all the publications from the Data Registry](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_relevant_all_registry.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_relevant_all_registry.ipynb) | Downloads all the publications from the registry and performs the "relevant" checks against the active ones.
-
 
 Use the buttons above to open the components from the `main` branch for editing in Google Colaboratory (Colab).
 
