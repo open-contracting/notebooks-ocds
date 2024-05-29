@@ -13,15 +13,14 @@ ignore = [
   # https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
   "W191", "E501", "D206", "Q000", "Q001", "Q002", "Q003", "ISC001",
   "D",  # pydocstyle
+  "C901", "PLR0912",  # complexity preferences
   "ARG001",  # https://github.com/astral-sh/ruff/issues/8094
   "B018",  # useless expression (e.g. variable to render)
-  "C901",  # is too complex
   "E402",  # import not at top
   "F401",  # imported but unused
   "F841",  # https://github.com/astral-sh/ruff/issues/8094
   "F821",  # undefined name (e.g. %sql magic assignment)
   "ERA001",  # commented-out code
-  "PLR0912",  # too many branches
   "PLR0915",  # too many statements
 ]
 
