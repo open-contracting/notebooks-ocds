@@ -3,10 +3,12 @@ line-length = 119
 
 [tool.ruff]
 line-length = 119
-lint.select = ["ALL"]
 target-version = "py310"
 extend-include = ["*.ipynb"]
-lint.ignore = [
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
   "ANN", "COM", "CPY", "D", "EM",
   # https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
   "W191", "E501", "D206", "Q000", "Q001", "Q002", "Q003", "ISC001",
