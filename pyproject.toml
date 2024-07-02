@@ -22,6 +22,8 @@ ignore = [
   "F821",  # undefined name (e.g. %sql magic assignment)
   "ERA001",  # commented-out code
   "PLR0915",  # too many statements
+  "S603",  # subprocess "execution of untrusted input"
+  "S607", # subprocess "with a partial executable path"
 ]
 
 [tool.ruff.lint.flake8-builtins]
