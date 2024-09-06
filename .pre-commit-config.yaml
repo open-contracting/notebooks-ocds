@@ -8,6 +8,16 @@ repos:
       - id: ruff
       # ruff-format is not used, as it makes changes to the ipynb structure, not only the Python code.
       # https://github.com/astral-sh/ruff/issues/8370
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.4.4
+    hooks:
+      - id: pip-compile
+        name: pip-compile requirements.in
+        args: [requirements.in, -o, requirements.txt]
+      - id: pip-compile
+        name: pip-compile requirements_dev.in
+        args: [requirements_dev.in, -o, requirements_dev.txt]
+        files: ^requirements(_dev)?\.(in|txt)$
   - repo: https://github.com/nbQA-dev/nbQA
     rev: 1.8.5
     hooks:

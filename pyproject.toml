@@ -1,3 +1,7 @@
+[project]
+name = "notebooks-ocds"
+version = "0.0.0"
+
 [tool.black]
 line-length = 119
 
@@ -11,9 +15,9 @@ select = ["ALL"]
 ignore = [
   "ANN", "COM", "EM",
   # https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
-  "W191", "E501", "D206", "Q000", "Q001", "Q002", "Q003", "ISC001",
+  "W191", "D206", "Q000", "Q001", "Q002", "Q003", "ISC001",
   "D",  # pydocstyle
-  "C901", "PLR0912",  # complexity preferences
+  "C901", "PLR091",  # complexity preferences
   "ARG001",  # https://github.com/astral-sh/ruff/issues/8094
   "B018",  # useless expression (e.g. variable to render)
   "E402",  # import not at top
@@ -21,7 +25,6 @@ ignore = [
   "F841",  # https://github.com/astral-sh/ruff/issues/8094
   "F821",  # undefined name (e.g. %sql magic assignment)
   "ERA001",  # commented-out code
-  "PLR0915",  # too many statements
   "S603",  # subprocess "execution of untrusted input"
   "S607", # subprocess "with a partial executable path"
 ]
