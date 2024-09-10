@@ -21,16 +21,13 @@ ignore = [
   "ARG001",  # https://github.com/astral-sh/ruff/issues/8094
   "B018",  # useless expression (e.g. variable to render)
   "E402",  # import not at top
-  "F401",  # imported but unused
-  "F841",  # https://github.com/astral-sh/ruff/issues/8094
-  "F821",  # undefined name (e.g. %sql magic assignment)
   "ERA001",  # commented-out code
+  "F401",  # imported but unused
+  "F821",  # undefined name (e.g. %sql magic assignment)
+  "F841",  # https://github.com/astral-sh/ruff/issues/8094
   "S603",  # subprocess "execution of untrusted input"
   "S607", # subprocess "with a partial executable path"
 ]
 
 [tool.ruff.lint.flake8-builtins]
 builtins-ignorelist = ["copyright"]
-
-[tool.ruff.lint.per-file-ignores]
-"template_*" = ["E402"]  # import not at top
