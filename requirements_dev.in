@@ -1,3 +1,2 @@
 -r requirements.txt
 nbqa[toolchain]
-pre-commit

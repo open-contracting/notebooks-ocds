@@ -17,8 +17,6 @@ black==24.8.0
     #   nbqa
 blacken-docs==1.18.0
     # via nbqa
-cfgv==3.4.0
-    # via pre-commit
 click==8.1.7
     # via
     #   -r requirements.txt
@@ -27,20 +25,16 @@ decorator==5.1.1
     # via ipython
 dill==0.3.8
     # via pylint
-distlib==0.3.8
-    # via virtualenv
+exceptiongroup==1.2.2
+    # via ipython
 executing==2.1.0
     # via stack-data
 fastjsonschema==2.20.0
     # via
     #   -r requirements.txt
     #   nbformat
-filelock==3.15.4
-    # via virtualenv
 flake8==7.1.1
     # via nbqa
-identify==2.6.0
-    # via pre-commit
 ipython==8.27.0
     # via nbqa
 isort==5.13.2
@@ -91,8 +85,6 @@ nbmerge==0.0.4
     # via -r requirements.txt
 nbqa==1.9.0
     # via -r requirements_dev.in
-nodeenv==1.9.1
-    # via pre-commit
 packaging==24.1
     # via
     #   black
@@ -109,9 +101,6 @@ platformdirs==4.2.2
     #   black
     #   jupyter-core
     #   pylint
-    #   virtualenv
-pre-commit==3.8.0
-    # via -r requirements_dev.in
 prompt-toolkit==3.0.47
     # via ipython
 ptyprocess==0.7.0
@@ -131,9 +120,7 @@ pylint==3.2.7
 pyupgrade==3.17.0
     # via nbqa
 pyyaml==6.0.2
-    # via
-    #   jupytext
-    #   pre-commit
+    # via jupytext
 referencing==0.35.1
     # via
     #   -r requirements.txt
@@ -155,7 +142,13 @@ tokenize-rt==6.0.0
     #   nbqa
     #   pyupgrade
 tomli==2.0.1
-    # via nbqa
+    # via
+    #   autopep8
+    #   black
+    #   jupytext
+    #   mypy
+    #   nbqa
+    #   pylint
 tomlkit==0.13.2
     # via pylint
 traitlets==5.14.3
@@ -167,9 +160,9 @@ traitlets==5.14.3
     #   nbformat
 typing-extensions==4.12.2
     # via
+    #   astroid
+    #   black
     #   ipython
     #   mypy
-virtualenv==20.26.3
-    # via pre-commit
 wcwidth==0.2.13
     # via prompt-toolkit
