@@ -13,25 +13,15 @@ extend-include = ["*.ipynb"]
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
-  "ANN", "COM", "EM",
-  # https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
-  "W191", "D206", "Q000", "Q001", "Q002", "Q003", "ISC001",
-  "D",  # pydocstyle
-  "C901", "PLR091",  # complexity preferences
-  "ARG001",  # https://github.com/astral-sh/ruff/issues/8094
-  "B018",  # useless expression (e.g. variable to render)
-  "E402",  # import not at top
-  "ERA001",  # commented-out code
-  "F401",  # imported but unused
-  "F821",  # undefined name (e.g. %sql magic assignment)
-  "F841",  # https://github.com/astral-sh/ruff/issues/8094
-  "S603",  # subprocess "execution of untrusted input"
-  "S607", # subprocess "with a partial executable path"
+    "ANN", "C901", "COM812", "D203", "D212", "D415", "EM", "ISC001", "PERF203", "PLR091", "Q000",
+    "D1",
+    "ERA001",  # commented-out code
 ]
 
-[tool.ruff.lint.flake8-builtins]
-builtins-ignorelist = ["copyright"]
+[tool.ruff.lint.flake8-unused-arguments]
+ignore-variadic-names = true
 
 [tool.ruff.lint.per-file-ignores]
 "component_*" = ["F821"]
 "template_*" = ["E501", "F401"]
+"*.ipynb" = ["ARG001"]  # $file_name
