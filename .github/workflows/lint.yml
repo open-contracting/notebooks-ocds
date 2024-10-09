@@ -19,10 +19,6 @@ jobs:
           cache-dependency-path: '**/requirements*.txt'
       - id: changed-files
         uses: tj-actions/changed-files@v45
-      # nbqa hook runs pg_format.
-      - run: |
-          sudo apt update
-          sudo apt install pgformatter
       - uses: pre-commit/action@v3.0.1
         continue-on-error: true
         with:

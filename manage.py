@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 import json
 import os
-import subprocess
 from pathlib import Path
 
 import click
 import jsonschema
+import sqlfluff
 from nbformat import write as write_notebook
 from nbmerge import merge_notebooks
 
@@ -132,15 +132,8 @@ def yield_cells(notebook):
             continue
 
         sql = "".join(source[1:])
-        pg_format = subprocess.run(  # noqa: S603 # trusted input
-            ["pg_format", "-f", "1"],  # noqa: S607
-            input=sql,
-            stdout=subprocess.PIPE,
-            check=True,
-            text=True,
-        )
 
-        yield source, cell, sql, pg_format.stdout
+        yield source, cell, sql, sqlfluff.fix(sql, dialect="postgres", exclude_rules=["ST07"])
 
 
 def build_notebook(slug):
@@ -163,7 +156,7 @@ def json_dump(path, notebook):
 @click.command()
 @click.argument("filename", nargs=-1, type=click.Path(exists=True, dir_okay=False, path_type=Path))
 def pre_commit(filename):
-    """Format SQL cells in Jupyter Notebooks using pg_format and merge components to build notebooks."""
+    """Format SQL cells in Jupyter Notebooks and merge components to build notebooks."""
     resolved = [path.resolve() for path in filename]
 
     for _, filepath, notebook in yield_notebooks():

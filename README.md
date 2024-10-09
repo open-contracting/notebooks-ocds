@@ -136,7 +136,6 @@ For larger changes, you can review and comment on a visual diff by clicking the 
 
 ## Format SQL cells and merge components to build notebooks:
 
-1. Install [pg_format](https://github.com/darold/pgFormatter).
 1. Install requirements:
 
     ```bash

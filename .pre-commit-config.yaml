@@ -28,4 +28,4 @@ repos:
         entry: nbqa manage
         name: nbqa-manage
         alias: nbqa-manage
-        additional_dependencies: [click, jsonschema, nbmerge, nbformat]
+        additional_dependencies: [click, jsonschema, nbmerge, nbformat, sqlfluff]
