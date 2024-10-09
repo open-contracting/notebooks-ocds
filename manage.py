@@ -8,6 +8,7 @@ import jsonschema
 import sqlfluff
 from nbformat import write as write_notebook
 from nbmerge import merge_notebooks
+from sqlfluff.core import FluffConfig
 
 # A dict of notebooks and their components, identified by filename, excluding '.ipynb'
 NOTEBOOKS = {
@@ -100,6 +101,7 @@ NOTEBOOKS = {
 }
 
 BASEDIR = Path(__file__).resolve().parent
+FLUFF_CONFIG = FluffConfig.from_path(BASEDIR)
 
 
 class InvalidNotebookError(click.ClickException):
@@ -133,7 +135,14 @@ def yield_cells(notebook):
 
         sql = "".join(source[1:])
 
-        yield source, cell, sql, sqlfluff.fix(sql, dialect="postgres", exclude_rules=["ST07"])
+        fix = sqlfluff.fix(sql, config=FLUFF_CONFIG)
+        for warning in sqlfluff.lint(fix, config=FLUFF_CONFIG):
+            click.secho(f"{warning['code']}:{warning['name']} {warning['description']}", fg="yellow")
+            click.echo(fix[:warning['start_file_pos']], nl=False)
+            click.secho(fix[warning['start_file_pos']:warning['end_file_pos']], fg="red", nl=False)
+            click.echo(fix[warning['end_file_pos']:])
+
+        yield source, cell, sql, fix
 
 
 def build_notebook(slug):

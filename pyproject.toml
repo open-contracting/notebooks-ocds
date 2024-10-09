@@ -25,3 +25,48 @@ ignore-variadic-names = true
 "component_*" = ["F821"]
 "template_*" = ["E501", "F401"]
 "*.ipynb" = ["ARG001"]  # $file_name
+
+[tool.sqlfluff.core]
+dialect = "postgres"
+templater = "placeholder"
+exclude_rules = [
+    # Preferences
+    "ST07", # structure.using
+    # Preserve existing column order
+    "L034", # structure.column_order
+    # Easy fixes
+    "AL03", # aliasing.expression
+    "ST05", # structure.subquery
+    # Long fixes
+    "AM04", # ambiguous.column_count
+    "CV08", # convention.left_join
+    "RF02", # references.qualification
+    "RF04", # references.keywords
+    # https://github.com/sqlfluff/sqlfluff/issues/4623#issuecomment-2401209085
+    "AL05",
+]
+
+[tool.sqlfluff.templater.placeholder]
+param_style = "colon"
+collection_ids = "(1)"
+
+[tool.sqlfluff.rules.capitalisation.keywords]
+capitalisation_policy = "upper"
+
+[tool.sqlfluff.rules.capitalisation.literals]
+capitalisation_policy = "upper"
+
+[tool.sqlfluff.rules.capitalisation.functions]
+extended_capitalisation_policy = "lower"
+
+[tool.sqlfluff.rules.capitalisation.identifiers]
+extended_capitalisation_policy = "lower"
+
+[tool.sqlfluff.rules.capitalisation.types]
+extended_capitalisation_policy = "lower"
+
+[tool.sqlfluff.rules.convention.casting_style]
+preferred_type_casting_style = "shorthand"
+
+[tool.sqlfluff.rules.convention.not_equal]
+preferred_not_equal_style = "ansi"
