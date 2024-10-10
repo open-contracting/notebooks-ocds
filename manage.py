@@ -139,11 +139,13 @@ def pre_commit(filename):
                 continue
 
             source = cell["source"]
+
+            # In our notebooks, this is always on its own line: %%sql(?!( \w+ <<)?\\n",)
             if "%%sql" not in source[0]:
                 continue
 
             fix = sqlfluff.fix("".join(source[1:]), config=FLUFF_CONFIG)
-            cell["source"] = [source[0], "\n", *fix.splitlines(keepends=True)]
+            cell["source"] = [source[0], *fix.splitlines(keepends=True)]
 
             warnings = sqlfluff.lint(fix, config=FLUFF_CONFIG)
             nonzero |= bool(warnings)
@@ -159,6 +161,7 @@ def pre_commit(filename):
     for slug, components in NOTEBOOKS.items():
         if any(path.stem in components for path in filenames):
             template_path = Path(f"{slug}.ipynb")
+
             with template_path.open("w", encoding="utf8") as f:
                 try:
                     notebook = merge_notebooks(BASEDIR, [f"{c}.ipynb" for c in NOTEBOOKS[slug]], verbose=False)
@@ -173,7 +176,7 @@ def pre_commit(filename):
             json_dump(template_path, json_load(template_path))
 
     if nonzero:
-        raise click.Abort("error")
+        raise click.Abort
 
 
 if __name__ == "__main__":
