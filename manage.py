@@ -152,9 +152,10 @@ def pre_commit(filename):
 
             for warning in warnings:
                 click.secho(f"{warning['code']}:{warning['name']} {warning['description']}", fg="yellow")
-                click.echo(fix[:warning['start_file_pos']], nl=False)
-                click.secho(fix[warning['start_file_pos']:warning['end_file_pos']], fg="red", nl=False)
-                click.echo(fix[warning['end_file_pos']:])
+                if "start_file_pos" in warning:
+                    start = warning["start_file_pos"]
+                    end = warning["end_file_pos"]
+                    click.echo(f"{fix[:start]}{click.style(fix[start:end], fg='red')}{fix[end:]}")
 
         json_dump(path, notebook)
 

@@ -8,8 +8,9 @@ repos:
     rev: v0.6.9
     hooks:
       - id: ruff
-      # ruff-format is not used, as it makes changes to the ipynb structure, not only the Python code.
-      # https://github.com/astral-sh/ruff/issues/8370
+      - id: ruff-format
+        # https://github.com/astral-sh/ruff/issues/8370
+        args: [--exclude, "*.ipynb"]
   - repo: https://github.com/astral-sh/uv-pre-commit
     rev: 0.4.18
     hooks:
