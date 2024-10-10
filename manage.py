@@ -127,7 +127,7 @@ def json_load(path):
 @click.argument("filename", nargs=-1, type=click.Path(exists=True, dir_okay=False, path_type=Path))
 def pre_commit(filename):
     """Format SQL cells in Jupyter Notebooks and merge components to build notebooks."""
-    nonzero = False
+    has_warnings = False
 
     filenames = [path for path in filename if path.name.startswith("component_")]
 
@@ -148,7 +148,7 @@ def pre_commit(filename):
             cell["source"] = [source[0], *fix.splitlines(keepends=True)]
 
             warnings = sqlfluff.lint(fix, config=FLUFF_CONFIG)
-            nonzero |= bool(warnings)
+            has_warnings |= bool(warnings)
 
             for warning in warnings:
                 click.secho(f"{warning['code']}:{warning['name']} {warning['description']}", fg="yellow")
@@ -176,7 +176,7 @@ def pre_commit(filename):
             # https://github.com/jupyter/nbformat/blob/ba2c6f5/nbformat/v4/nbjson.py#L51
             json_dump(template_path, json_load(template_path))
 
-    if nonzero:
+    if has_warnings:
         raise click.Abort
 
 
