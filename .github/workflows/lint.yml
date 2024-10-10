@@ -23,6 +23,10 @@ jobs:
         continue-on-error: true
         with:
           extra_args: pip-compile --files ${{ steps.changed-files.outputs.all_changed_files }}
+      - uses: pre-commit/action@v3.0.1
+        continue-on-error: true
+        with:
+          extra_args: nbqa --files ${{ steps.changed-files.outputs.all_changed_files }}
       - if: ${{ env.PAT }}
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
