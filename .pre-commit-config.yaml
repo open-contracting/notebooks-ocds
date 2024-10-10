@@ -1,6 +1,6 @@
 ci:
   autoupdate_schedule: quarterly
-  skip: [pip-compile, nbqa]
+  skip: [pip-compile]
 default_language_version:
     python: python3.10
 repos:
