@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 import json
-import os
 from pathlib import Path
 
 import click
 import jsonschema
+import nbformat
 import sqlfluff
-from nbformat import write as write_notebook
 from nbmerge import merge_notebooks
 from sqlfluff.core import FluffConfig
 
@@ -109,52 +108,6 @@ class InvalidNotebookError(click.ClickException):
         super().__init__(f"{filename} is invalid")
 
 
-def yield_notebooks():
-    for entry in os.scandir(BASEDIR):
-        if not entry.name.endswith(".ipynb"):
-            continue
-
-        path = Path(entry.path)
-        with path.open() as f:
-            try:
-                notebook = json.load(f)
-            except json.decoder.JSONDecodeError as e:
-                raise InvalidNotebookError(path) from e
-
-        yield entry.name, path, notebook
-
-
-def yield_cells(notebook):
-    for cell in notebook["cells"]:
-        if cell["cell_type"] != "code":
-            continue
-
-        source = cell["source"]
-        if "%%sql" not in source[0]:
-            continue
-
-        sql = "".join(source[1:])
-
-        fix = sqlfluff.fix(sql, config=FLUFF_CONFIG)
-        for warning in sqlfluff.lint(fix, config=FLUFF_CONFIG):
-            click.secho(f"{warning['code']}:{warning['name']} {warning['description']}", fg="yellow")
-            click.echo(fix[:warning['start_file_pos']], nl=False)
-            click.secho(fix[warning['start_file_pos']:warning['end_file_pos']], fg="red", nl=False)
-            click.echo(fix[warning['end_file_pos']:])
-
-        yield source, cell, sql, fix
-
-
-def build_notebook(slug):
-    try:
-        notebook = merge_notebooks(BASEDIR, [f"{c}.ipynb" for c in NOTEBOOKS[slug]], verbose=False)
-        notebook["metadata"]["colab"]["name"] = slug
-    except jsonschema.exceptions.ValidationError as e:
-        raise InvalidNotebookError(f"{slug}.ipynb") from e
-    else:
-        return notebook
-
-
 def json_dump(path, notebook):
     with path.open("w") as f:
         # Use indent=2 like Google Colab for small diffs.
@@ -162,27 +115,65 @@ def json_dump(path, notebook):
         f.write("\n")
 
 
+def json_load(path):
+    with path.open() as f:
+        try:
+            return json.load(f)
+        except json.decoder.JSONDecodeError as e:
+            raise InvalidNotebookError(path) from e
+
+
 @click.command()
 @click.argument("filename", nargs=-1, type=click.Path(exists=True, dir_okay=False, path_type=Path))
 def pre_commit(filename):
     """Format SQL cells in Jupyter Notebooks and merge components to build notebooks."""
-    resolved = [path.resolve() for path in filename]
+    nonzero = False
 
-    for _, filepath, notebook in yield_notebooks():
-        if not resolved or filepath.resolve() in resolved:
-            for source, cell, _, sql_formatted in yield_cells(notebook):
-                cell["source"] = [source[0], "\n", *sql_formatted.splitlines(keepends=True)]
+    filenames = [path for path in filename if path.name.startswith("component_")]
 
-        json_dump(filepath, notebook)
+    for path in filenames:
+        notebook = json_load(path)
 
-    for slug in NOTEBOOKS:
-        filepath = Path(f"{slug}.ipynb")
-        with filepath.open("w", encoding="utf8") as f:
-            write_notebook(build_notebook(slug), f)
-        # nbformat uses indent=1.
-        with filepath.open() as f:
-            notebook = json.load(f)
-        json_dump(filepath, notebook)
+        for cell in notebook["cells"]:
+            if cell["cell_type"] != "code":
+                continue
+
+            source = cell["source"]
+            if "%%sql" not in source[0]:
+                continue
+
+            fix = sqlfluff.fix("".join(source[1:]), config=FLUFF_CONFIG)
+            cell["source"] = [source[0], "\n", *fix.splitlines(keepends=True)]
+
+            warnings = sqlfluff.lint(fix, config=FLUFF_CONFIG)
+            nonzero |= bool(warnings)
+
+            for warning in warnings:
+                click.secho(f"{warning['code']}:{warning['name']} {warning['description']}", fg="yellow")
+                click.echo(fix[:warning['start_file_pos']], nl=False)
+                click.secho(fix[warning['start_file_pos']:warning['end_file_pos']], fg="red", nl=False)
+                click.echo(fix[warning['end_file_pos']:])
+
+        json_dump(path, notebook)
+
+    for slug, components in NOTEBOOKS.items():
+        if any(path.stem in components for path in filenames):
+            template_path = Path(f"{slug}.ipynb")
+            with template_path.open("w", encoding="utf8") as f:
+                try:
+                    notebook = merge_notebooks(BASEDIR, [f"{c}.ipynb" for c in NOTEBOOKS[slug]], verbose=False)
+                    notebook["metadata"]["colab"]["name"] = slug
+                except jsonschema.exceptions.ValidationError as e:
+                    raise InvalidNotebookError(f"{slug}.ipynb") from e
+                else:
+                    nbformat.write(notebook, f)
+
+            # nbformat.write() uses indent=1. Rewrite with indent=2 like Google Colab.
+            # https://github.com/jupyter/nbformat/blob/ba2c6f5/nbformat/v4/nbjson.py#L51
+            json_dump(template_path, json_load(template_path))
+
+    if nonzero:
+        raise click.Abort("error")
 
 
 if __name__ == "__main__":

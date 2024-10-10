@@ -24,8 +24,10 @@ repos:
     rev: 1.8.7
     hooks:
       - id: nbqa-black
-      - id: nbqa
-        entry: nbqa manage
-        name: nbqa-manage
-        alias: nbqa-manage
+  - repo: local
+    hooks:
+      - id: local
+        name: local
+        language: python
+        entry: ./manage.py
         additional_dependencies: [click, jsonschema, nbmerge, nbformat, sqlfluff]
