@@ -42,7 +42,7 @@ exclude_rules = [
     "CV08", # convention.left_join
     "RF02", # references.qualification
     "RF04", # references.keywords
-    # https://github.com/sqlfluff/sqlfluff/issues/4623#issuecomment-2401209085
+    # https://github.com/sqlfluff/sqlfluff/issues/4623#issuecomment-2401209085 >3.2.4
     "AL05",
 ]
 
