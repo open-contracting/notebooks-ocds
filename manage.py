@@ -106,7 +106,7 @@ NOTEBOOKS = {
         "component_setup_usability",
         "component_check_red_flags_external",
     ],
-    "template_red_flags_checks_kingfisher": [
+    "template_red_flags_checks": [
         "component_environment",
         "component_setup_charts",
         "component_setup_cardinal",
