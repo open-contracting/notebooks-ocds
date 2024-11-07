@@ -97,6 +97,31 @@ NOTEBOOKS = {
         "component_setup_download_data_from_registry",
         "component_check_relevant_all_registry",
     ],
+    "template_red_flags_checks_registry": [
+        "component_environment",
+        "component_setup_charts",
+        "component_setup_cardinal",
+        "component_setup_download_data_from_registry",
+        "component_select_data_from_registry",
+        "component_setup_usability",
+        "component_check_red_flags_external",
+    ],
+    "template_red_flags_checks": [
+        "component_environment",
+        "component_setup_charts",
+        "component_setup_cardinal",
+        "component_setup_download_data_from_registry",
+        "component_select_data_from_registry",
+        "component_setup_usability",
+        "component_check_red_flags_kingfisher",
+    ],
+    "template_red_flags_checks_fieldlist": [
+        "component_environment",
+        "component_setup_charts",
+        "component_setup_fieldlist",
+        "component_setup_usability",
+        "component_check_red_flags_external",
+    ],
 }
 
 BASEDIR = Path(__file__).resolve().parent
