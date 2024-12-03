@@ -122,6 +122,12 @@ NOTEBOOKS = {
         "component_setup_usability",
         "component_check_red_flags_external",
     ],
+    "template_field_list_registry_all": [
+        "component_environment",
+        "component_setup_cardinal",
+        "component_setup_download_data_from_registry",
+        "component_get_field_list_all_registry",
+    ],
 }
 
 BASEDIR = Path(__file__).resolve().parent
