@@ -117,7 +117,7 @@ nbformat==5.10.4
     #   jupytext
 nbmerge==0.0.4
     # via -r requirements.txt
-nbqa[toolchain]==1.9.0
+nbqa==1.9.0
     # via -r requirements_dev.in
 packaging==24.1
     # via
