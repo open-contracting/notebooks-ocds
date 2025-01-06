@@ -5,14 +5,14 @@ default_language_version:
     python: python3.10
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.9
+    rev: v0.8.6
     hooks:
       - id: ruff
       - id: ruff-format
         # https://github.com/astral-sh/ruff/issues/8370
         args: [--exclude, "*.ipynb"]
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.4.18
+    rev: 0.5.14
     hooks:
       - id: pip-compile
         name: pip-compile requirements.in
@@ -22,7 +22,7 @@ repos:
         args: [requirements_dev.in, -o, requirements_dev.txt]
         files: ^requirements(_dev)?\.(in|txt)$
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.8.7
+    rev: 1.9.1
     hooks:
       - id: nbqa-black
   - repo: local
