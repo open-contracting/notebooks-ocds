@@ -145,7 +145,7 @@ def json_load(path):
     with path.open() as f:
         try:
             return json.load(f)
-        except json.decoder.JSONDecodeError as e:
+        except json.JSONDecodeError as e:
             raise InvalidNotebookError(path) from e
 
 
