@@ -191,7 +191,7 @@ def pre_commit(filename):
 
             with template_path.open("w", encoding="utf8") as f:
                 try:
-                    notebook = merge_notebooks(BASEDIR, [f"{c}.ipynb" for c in NOTEBOOKS[slug]], verbose=False)
+                    notebook = merge_notebooks(BASEDIR, [f"{c}.ipynb" for c in components], verbose=False)
                     notebook["metadata"]["colab"]["name"] = slug
                 except jsonschema.exceptions.ValidationError as e:
                     raise InvalidNotebookError(f"{slug}.ipynb") from e
