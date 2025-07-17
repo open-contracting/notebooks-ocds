@@ -119,7 +119,6 @@ NOTEBOOKS = {
     ],
     "template_field_list_registry_all": [
         "component_environment",
-        "component_setup_cardinal",
         "component_setup_download_data_from_registry",
         "component_get_field_list_all_registry",
     ],
