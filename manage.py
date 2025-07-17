@@ -59,7 +59,6 @@ NOTEBOOKS = {
     "template_usability_checks_registry": [
         "component_environment",
         "component_setup_charts",
-        "component_setup_cardinal",
         "component_setup_download_data_from_registry",
         "component_select_data_from_registry",
         "component_setup_usability",
@@ -67,7 +66,6 @@ NOTEBOOKS = {
     ],
     "template_relevant_checks_registry": [
         "component_environment",
-        "component_setup_cardinal",
         "component_setup_usability",
         "component_setup_download_data_from_registry",
         "component_select_data_from_registry",
@@ -92,14 +90,12 @@ NOTEBOOKS = {
     ],
     "template_relevant_checks_registry_all": [
         "component_environment",
-        "component_setup_cardinal",
         "component_setup_usability",
         "component_setup_download_data_from_registry",
         "component_check_relevant_all_registry",
     ],
     "template_red_flags_checks_registry": [
         "component_environment",
-        "component_setup_cardinal",
         "component_setup_download_data_from_registry",
         "component_select_data_from_registry",
         "component_setup_red_flags",
