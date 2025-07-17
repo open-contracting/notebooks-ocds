@@ -53,30 +53,7 @@ To ease maintenance, the notebooks are made up of reusable components. To see wh
 
 **Reminder:** If you edit the *Check structure and format* or *Check quality* components and change the headings or add new sections, check whether the related *Document template* in this [process note](https://docs.google.com/document/d/1_k7eA2rI-k5EH8VESkVAB73wa_qrpplL-7dKgMLTGZc/edit) needs an update.
 
-Component name | Open in Colab | Tasks
--- | -- | --
-[Environment](https://github.com/open-contracting/notebooks-ocds/blob/main/component_environment.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_environment.ipynb) | Install requirements, import packages, load extensions and configure the notebook.
-[Cardinal setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_cardinal.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_cardinal.ipynb) | Install Cardinal requirements, define coverage functions and calculate the field list for a given file.
-[Charts setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_charts.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_charts.ipynb) | Install charts requirements, import charts packages and define plot functions.
-[Kingfisher Process setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_kingfisher.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_kingfisher.ipynb) | Connect to the database. Choose the collection(s) and schema to work with.
-[Field list setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_fieldlist.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_fieldlist.ipynb) | Load the field list.
-[Data Registry download data setup](https://github.com/open-contracting/notebooks-ocds/blob/main/ccomponent_setup_download_data_from_registry.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_download_data_from_registry.ipynb) | Define the functions to list publications and download JSONL files from the registry.
-[Data Registry download data](https://github.com/open-contracting/notebooks-ocds/blob/main/component_select_data_from_registry.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_select_data_from_registry.ipynb) | Define the forms to select a publication and year and download the selected publication.
-[Kingfisher Process errors](https://github.com/open-contracting/notebooks-ocds/blob/main/component_errors_kingfisher.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_errors_kingfisher.ipynb) | Check for data collection and processing errors.
-[Structure scope](https://github.com/open-contracting/notebooks-ocds/blob/main/component_scope_kingfisher.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_scope_kingfisher.ipynb) | Check how many releases and records your data contains. Check the date range and stages of the contracting process covered by your data.
-[Usability setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_usability.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_usability.ipynb) | Define the usability functions.
-[Red flags setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_red_flags.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_red_flags.ipynb) | Define the red flags functions.
-[Usability scope](https://github.com/open-contracting/notebooks-ocds/blob/main/component_scope_usability.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_scope_usability.ipynb) | Calculate general statistics.
-[Structure checks](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_structure.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_structure.ipynb) | Check for structure and format errors reported by [lib-cove-ocds](https://github.com/open-contracting/lib-cove-ocds).
-[Conformance checks](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_conformance.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_conformance.ipynb) | Check against the [OCDS conformance criteria](https://standard.open-contracting.org/latest/en/schema/conformance_and_extensions/#publication-conformance).
-[Quality checks](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_quality.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_quality.ipynb) | Check for conformance and quality issues that require manual review.
-[Usability checks using Kingfisher with coverage](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_usability_kingfisher.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_usability_kingfisher.ipynb) |
-[Usability checks using a field list without coverage](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_usability_external.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_usability_external.ipynb) | 
-[Relevant checks using a field list](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_relevant.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_relevant.ipynb) | Given a field list, check if the list pass the "relevant" criteria. 
-[Relevant checks against all the publications from the Data Registry](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_relevant_all_registry.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_relevant_all_registry.ipynb) | Downloads all the publications from the registry and performs the "relevant" checks against the active ones.
-[Red flags checks using a field list without coverage](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_red_flags_external.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_red_flags_external.ipynb) | 
-
-Use the buttons above to open the components from the `main` branch for editing in Google Colaboratory (Colab).
+Use the buttons below to open the components from the `main` branch for editing in Google Colaboratory (Colab).
 
 To open a component from a different branch, use Colab's [GitHub browser](https://colab.research.google.com/github/open-contracting/notebooks-ocds).
 
@@ -87,6 +64,59 @@ To encourage reuse, limit the scope of a component. The current scopes are:
 - *Errors*: Review any issues in loading the data.
 - *Scope*: Understand the scope of the data.
 - *Check*: Perform a category of checks.
+
+### Scopes
+
+#### Environment
+
+Component name | Open in Colab | Tasks
+-- | -- | --
+[Environment](https://github.com/open-contracting/notebooks-ocds/blob/main/component_environment.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_environment.ipynb) | Install requirements, import packages, load extensions and configure the notebook.
+
+#### Setup
+
+Component name | Open in Colab | Tasks
+-- | -- | --
+[Cardinal setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_cardinal.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_cardinal.ipynb) | Install Cardinal requirements, define coverage functions and calculate the field list for a given file.
+[Charts setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_charts.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_charts.ipynb) | Install charts requirements, import charts packages and define plot functions.
+[Kingfisher Process setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_kingfisher.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_kingfisher.ipynb) | Connect to the database. Choose the collection(s) and schema to work with.
+[Field list setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_fieldlist.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_fieldlist.ipynb) | Load the field list.
+[Data Registry download data setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_download_data_from_registry.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_download_data_from_registry.ipynb) | Define the functions to list publications and download JSONL files from the registry.
+[Usability setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_usability.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_usability.ipynb) | Define the usability functions.
+[Red flags setup](https://github.com/open-contracting/notebooks-ocds/blob/main/component_setup_red_flags.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_setup_red_flags.ipynb) | Define the red flags functions.
+
+#### Errors
+
+Component name | Open in Colab | Tasks
+-- | -- | --
+[Kingfisher Process errors](https://github.com/open-contracting/notebooks-ocds/blob/main/component_errors_kingfisher.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_errors_kingfisher.ipynb) | Check for data collection and processing errors.
+
+#### Scope
+
+Component name | Open in Colab | Tasks
+-- | -- | --
+[Structure scope](https://github.com/open-contracting/notebooks-ocds/blob/main/component_scope_kingfisher.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_scope_kingfisher.ipynb) | Check how many releases and records your data contains. Check the date range and stages of the contracting process covered by your data.
+[Usability scope](https://github.com/open-contracting/notebooks-ocds/blob/main/component_scope_usability.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_scope_usability.ipynb) | Calculate general statistics.
+
+#### Check
+
+Component name | Open in Colab | Tasks
+-- | -- | --
+[Structure checks](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_structure.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_structure.ipynb) | Check for structure and format errors reported by [lib-cove-ocds](https://github.com/open-contracting/lib-cove-ocds).
+[Conformance checks](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_conformance.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_conformance.ipynb) | Check against the [OCDS conformance criteria](https://standard.open-contracting.org/latest/en/schema/conformance_and_extensions/#publication-conformance).
+[Quality checks](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_quality.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_quality.ipynb) | Check for conformance and quality issues that require manual review.
+[Usability checks using Kingfisher with coverage](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_usability_kingfisher.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_usability_kingfisher.ipynb) |
+[Usability checks using a field list without coverage](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_usability_external.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_usability_external.ipynb) | 
+[Relevant checks using a field list](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_relevant.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_relevant.ipynb) | Given a field list, check if the list pass the "relevant" criteria. 
+[Relevant checks against all the publications from the Data Registry](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_relevant_all_registry.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_relevant_all_registry.ipynb) | Downloads all the publications from the registry and performs the "relevant" checks against the active ones.
+[Red flags checks using a field list without coverage](https://github.com/open-contracting/notebooks-ocds/blob/main/component_check_red_flags_external.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_check_red_flags_external.ipynb) | 
+
+#### Other
+
+Component name | Open in Colab | Tasks
+-- | -- | --
+[Data Registry download data](https://github.com/open-contracting/notebooks-ocds/blob/main/component_select_data_from_registry.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_select_data_from_registry.ipynb) | Define the forms to select a publication and year and download the selected publication.
+[Get fields used by registered publications](https://github.com/open-contracting/notebooks-ocds/blob/main/component_get_field_list_all_registry.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/open-contracting/notebooks-ocds/blob/main/component_get_field_list_all_registry.ipynb) | Get the fields used by all OCDS publications in the Registry.
 
 ### Add a component
 
