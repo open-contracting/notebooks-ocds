@@ -135,9 +135,10 @@ Component name | Open in Colab | Tasks
 In Colab:
 
 1. Click Edit -> Clear all outputs.
-1. Click File -> Save a copy in GitHub.
-1. Uncheck 'Include a link to Colaboratory'
+1. Click File -> Save.
+1. Select the 'notebooks-ocds' repository.
 1. Select your branch, enter a commit message and click OK.
+1. Uncheck 'Include a link to Colab'
 
 ### Add new components to a notebook
 
