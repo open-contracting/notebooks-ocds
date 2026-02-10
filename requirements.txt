@@ -16,8 +16,6 @@ colorama==0.4.6
     # via sqlfluff
 diff-cover==9.2.0
     # via sqlfluff
-exceptiongroup==1.2.2
-    # via pytest
 fastjsonschema==2.20.0
     # via nbformat
 iniconfig==2.0.0
@@ -72,10 +70,6 @@ sqlfluff==3.3.0
     # via -r requirements.in
 tblib==3.0.0
     # via sqlfluff
-toml==0.10.2
-    # via sqlfluff
-tomli==2.0.2
-    # via pytest
 tqdm==4.66.5
     # via sqlfluff
 traitlets==5.14.3

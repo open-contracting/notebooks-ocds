@@ -39,11 +39,6 @@ diff-cover==9.2.0
     #   sqlfluff
 dill==0.3.8
     # via pylint
-exceptiongroup==1.2.2
-    # via
-    #   -r requirements.txt
-    #   ipython
-    #   pytest
 executing==2.1.0
     # via stack-data
 fastjsonschema==2.20.0
@@ -202,20 +197,8 @@ tokenize-rt==6.0.0
     # via
     #   nbqa
     #   pyupgrade
-toml==0.10.2
-    # via
-    #   -r requirements.txt
-    #   sqlfluff
 tomli==2.0.2
-    # via
-    #   -r requirements.txt
-    #   autopep8
-    #   black
-    #   jupytext
-    #   mypy
-    #   nbqa
-    #   pylint
-    #   pytest
+    # via nbqa
 tomlkit==0.13.2
     # via pylint
 tqdm==4.66.5
@@ -231,8 +214,6 @@ traitlets==5.14.3
     #   nbformat
 typing-extensions==4.12.2
     # via
-    #   astroid
-    #   black
     #   ipython
     #   mypy
 wcwidth==0.2.13
