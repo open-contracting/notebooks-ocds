@@ -25,21 +25,31 @@ jinja2==3.1.6
     #   diff-cover
     #   sqlfluff
 jsonschema==4.23.0
-    # via
-    #   -r requirements.in
-    #   nbformat
+    # via nbformat
 jsonschema-specifications==2023.12.1
     # via jsonschema
 jupyter-core==5.7.2
     # via nbformat
+jupytext==1.19.1
+    # via -r requirements.in
+markdown-it-py==4.0.0
+    # via
+    #   jupytext
+    #   mdit-py-plugins
 markupsafe==3.0.1
     # via jinja2
+mdit-py-plugins==0.5.0
+    # via jupytext
+mdurl==0.1.2
+    # via markdown-it-py
 nbformat==5.10.4
-    # via -r requirements.in
-nbmerge==0.0.4
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   jupytext
 packaging==24.1
-    # via pytest
+    # via
+    #   jupytext
+    #   pytest
 pathspec==0.12.1
     # via sqlfluff
 platformdirs==4.2.2
@@ -55,7 +65,9 @@ pygments==2.18.0
 pytest==8.3.3
     # via sqlfluff
 pyyaml==6.0.2
-    # via sqlfluff
+    # via
+    #   jupytext
+    #   sqlfluff
 referencing==0.35.1
     # via
     #   jsonschema
@@ -66,7 +78,7 @@ rpds-py==0.20.0
     # via
     #   jsonschema
     #   referencing
-sqlfluff==3.3.0
+sqlfluff==4.0.4
     # via -r requirements.in
 tblib==3.0.0
     # via sqlfluff

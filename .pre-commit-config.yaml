@@ -7,8 +7,6 @@ repos:
     hooks:
       - id: ruff-check
       - id: ruff-format
-        # https://github.com/astral-sh/ruff/issues/8370
-        args: [--exclude, "*.ipynb"]
   - repo: https://github.com/astral-sh/uv-pre-commit
     rev: 0.9.21
     hooks:
@@ -19,14 +17,11 @@ repos:
         name: pip-compile requirements_dev.in
         args: [requirements_dev.in, -o, requirements_dev.txt]
         files: ^requirements(_dev)?\.(in|txt)$
-  - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.9.1
-    hooks:
-      - id: nbqa-black
   - repo: local
     hooks:
       - id: local
         name: local
         language: python
         entry: ./manage.py
-        additional_dependencies: [click, jsonschema, nbmerge, nbformat, sqlfluff]
+        files: ^component_.*\.(md|py)$
+        additional_dependencies: [click, jupytext, nbformat, sqlfluff]
