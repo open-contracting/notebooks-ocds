@@ -4,8 +4,7 @@
 
 fields_list = fields_table.iloc[:, 0].tolist()
 
-indicators_dict = get_indicators_dictionary(fields_list)
-result = usability_checks(fields_list, indicators_dict)
+result = usability_checks(fields_list)
 
 # ### Export and visualize results
 

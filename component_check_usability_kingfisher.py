@@ -4,9 +4,8 @@
 
 fields_list = fields_table.iloc[:, 0].tolist()
 
-indicators_dict = get_indicators_dictionary(fields_list)
-result = usability_checks(fields_list, indicators_dict)
-result["coverage"] = get_coverage(indicators_dict)
+result = usability_checks(fields_list)
+result["coverage"] = get_coverage()
 
 # ### Export and visualize results
 
@@ -27,7 +26,7 @@ result_final
 #
 # This table shows the most frequent fields used to calculate indicators and if they are published.  You can use this table to highlight to the publisher the key data gaps.
 
-fields_count = most_common_fields_to_calculate_indicators(indicators_dict, fields_table)
+fields_count = most_common_fields_to_calculate_indicators(fields_table)
 fields_count
 
 # #### Save tables to spreadsheet
