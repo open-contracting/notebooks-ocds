@@ -32,8 +32,6 @@ Look out for the following issues and report them to the publisher:
 * Empty strings and objects
 * Discrepancies in the package metadata between different releases
 
-+++
-
 Display the package metadata for each collection:
 
 ```{code-cell}
@@ -75,8 +73,6 @@ Use this section to check that release tags reflect the data included in each re
 Read the descriptions in the [codelist](https://standard.open-contracting.org/latest/en/schema/codelists/#release-tagf) to understand which sections can be provided for each tag.
 
 Remember that releases can repeat information from previous releases.
-
-+++
 
 Count the number of times a section is published, for each release tag.
 
@@ -136,11 +132,7 @@ release_tag_section_summary
 
 #### Release date
 
-+++
-
 Use this section to check that all releases do not share the same date.
-
-+++
 
 For each collection and release type, generate a [frequency table](https://en.wikipedia.org/wiki/Frequency_distribution) for release dates and report the top 5 most frequent dates:
 
@@ -167,13 +159,9 @@ for collection_id in collection_ids:
 
 #### Language
 
-+++
-
 > The default language of the data, from the open language codelist. A BCP47 language tag is allowed, if there is a user need for the additional information.
 
 Use this section to check that the code declared in `language` reflects the language used in free-text fields in the data.
-
-+++
 
 List the language codes used, with an example release for each language.
 
@@ -196,8 +184,6 @@ ORDER BY
 
 ### Change history
 
-+++
-
 OCDS supports the publication of a change history, using [releases and records](https://standard.open-contracting.org/latest/en/primer/releases_and_records/).
 
 Fully implemented, releases and records can be used to publish the following for each contracting process:
@@ -216,15 +202,11 @@ Use this section to understand the approach used by the publisher.
 
 #### Multiple releases per contracting process
 
-+++
-
 Use this section to:
 
 * check if there are multiple releases per contracting process
 * check the distribution of releases per contracting process
 * examine examples of contracting processes with multiple releases
-
-+++
 
 Calculate statistics on the minimum, maximum, average and standard deviation of releases per contracting process.
 
@@ -394,15 +376,11 @@ To ease review, uncomment the following cell to convert the release package to a
 
 #### Static release ID
 
-+++
-
 The release identifier must be updated when the information about a contracting process changes.
 
 A common error is to set the release ID to the same value as the `ocid`, to set it to a subset of the `ocid`, and to neglect to update it.
 
 Use this section to check that the release ID differs from the `ocid`.
-
-+++
 
 List the releases where `id` and `ocid` have the same value:
 
@@ -612,8 +590,6 @@ Use this section to check for placeholder values.
 
 Manually review the example release to identify placeholder values, e.g. 'n/a', 'test', '1970-01-01T00:00:00Z' etc.
 
-+++
-
 Get an example release:
 
 ```{code-cell}
@@ -651,8 +627,6 @@ render_json(example_releases["release_package"][0])
 
 #### Organization identifiers
 
-+++
-
 Publishers should collect and publish [organization identifiers](https://standard.open-contracting.org/latest/en/schema/identifiers/#organization-ids).
 
 Use this section to check for invalid or incorrect organization identifiers. (Pelican checks schemes, not identifiers.)
@@ -661,8 +635,6 @@ For each organization identifier:
 
 1. Look up the `scheme` in [org-id.guide](http://org-id.guide/) and follow the guidance to look up the organization identifiers in the register.
 1. Check that the identifier exists in the register.
-
-+++
 
 Select a random sample of 3 identifiers for each organization identifier scheme:
 
@@ -688,8 +660,6 @@ organization_identifiers.groupby(["collection_id", "release_type", "scheme"]).sa
 ```
 
 ### Item classifications
-
-+++
 
 Use this section to check whether the data includes item classifications.
 
@@ -803,16 +773,9 @@ item_identifiers.groupby(["collection_id", "release_type", "stage", "scheme"]).s
 
 #### Document metadata
 
-+++
-
 Use this section to check that document metadata is accurate.
 
 Retrieve the document from the `url` and check that each metadata field accurate reflects the actual document.
-
-
-
-
-+++
 
 Get a random document:
 
@@ -1046,7 +1009,6 @@ GROUP BY roles
 ORDER BY names_with_multiple_ids DESC;
 ```
 
-
 Full list of parties with the same `parties/name` but different `parties/identifier`
 
 ```{code-cell}
@@ -1068,19 +1030,13 @@ HAVING count(DISTINCT identifier) > 1;
 
 Coverage is covered by Pelican. This section segments field coverage for priority fields (Pelican does not segment by, e.g., party role).
 
-+++
-
 Use this section to check whether the data includes key fields.
 
 +++
 
 #### Organization identifiers
 
-+++
-
 Use this section to check whether the data includes organization identifiers for buyers, procuring entities, suppliers and tenderers.
-
-+++
 
 Calculate the coverage of `parties/identifier/id` and `parties/identifier/scheme`, grouped by `parties/role`:
 
@@ -1137,15 +1093,11 @@ GROUP BY
 
 ### OCID modeling
 
-+++
-
 Use this section to check if the OCID is being modeled as expected
 
 +++
 
 #### Number of tenders per ocid
-
-+++
 
 Use this section to check there is always only one tender per ocid.
 

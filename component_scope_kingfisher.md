@@ -1,9 +1,5 @@
 ## Check scope
 
-+++
-
-
-
 Use this section to check:
 
 * how many releases, records and compiled releases your data contains
@@ -15,8 +11,6 @@ If you are preparing an [Ad-hoc structure and format feedback](https://docs.goog
 +++
 
 ### Release and record counts
-
-+++
 
 Collections in Kingfisher Process contain either [releases](https://standard.open-contracting.org/latest/en/schema/reference/), [records](https://standard.open-contracting.org/latest/en/schema/records_reference/) or [compiled releases](https://standard.open-contracting.org/latest/en/schema/records_reference/#compiled-release). Kingfisher Process creates compiled release collections from release or record collections.
 
@@ -41,19 +35,13 @@ WHERE
 
 ### Contracting process stages
 
-+++
-
 Use this section to check that the data covers the expected stages of the contracting process.
 
 +++
 
 #### Release tags
 
-+++
-
 [Release tags](https://standard.open-contracting.org/latest/en/schema/codelists/#release-tag) indicate the stage of a contracting process to which a release is related.
-
-+++
 
 Count the number of releases, for each release tag:
 
@@ -76,11 +64,7 @@ ORDER BY
 
 #### Objects per stage
 
-+++
-
 In OCDS, data is organized into objects, for each stage of a contracting process. Each compiled release has: at most one `Planning` object, at most one `Tender` object, any number of `Award` objects, and any number of `Contract` objects. Each `Contract` object has at most one `Implementation` object. As such, the number of `Award` objects can exceed the number of unique OCIDs, but the number of `Tender` objects can't.
-
-+++
 
 Plot a count of objects per stage:
 
@@ -137,12 +121,7 @@ plot_objects_per_stage(objects_per_stage)
 
 ### Date ranges
 
-+++
-
-
 Use this section to check that the data covers the expected date range.
-
-+++
 
 Calculate the earliest and latest `date`, `awards/date` and `contracts/dateSigned`:
 
@@ -195,8 +174,6 @@ ORDER BY
 
 Use this section to check that releases are distributed as expected.
 
-+++
-
 Plot the count of releases per month:
 
 ```{code-cell}
@@ -230,11 +207,7 @@ plot_releases_by_month(release_dates)
 
 ### Extensions
 
-+++
-
 Use this section to check which extensions the data uses.
-
-+++
 
 List the extensions declared in the package metadata:
 

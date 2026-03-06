@@ -2,15 +2,11 @@
 
 Kingfisher Collect reformats data sources as release packages or record packages. Check the `data_type` class attribute of the [spider](https://github.com/open-contracting/kingfisher-collect/tree/main/kingfisher_scrapy/spiders). If it is not 'release_package' or 'record_package', recommend to the publisher to package their data.
 
-+++
-
 Kingfisher Process checks data against the OCDS schema using [lib-cove-ocds](https://github.com/open-contracting/lib-cove-ocds), same as the [OCDS Data Review Tool](https://review.standard.open-contracting.org). For release collections, Kingfisher Process stores check results in the `release_check` table. For record collections, Kingfisher Process stores check results in the `record_check` table.
 
 +++
 
 ### Confirm that checks are complete
-
-+++
 
 If a crawl is scheduled using Kingfisher Collect, by default, Kingfisher Process performs structural checks. Checking data is the slowest step. For large collections, it is recommended to skip the `check` step or to collect only a sample. Otherwise, there can be a backlog of data to check.
 
@@ -70,8 +66,6 @@ GROUP BY
 ```
 
 ### Error summary
-
-+++
 
 Summarize the errors from the `release_check` and `record_check` tables.
 
@@ -177,8 +171,6 @@ structure_and_format_error_summary
 ```
 
 ### Error details
-
-+++
 
 List all errors from the `release_check` and `record_check` tables.
 

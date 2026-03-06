@@ -1,14 +1,10 @@
 ## Calculate general statistics
 
-+++
-
 Use this section to have an overview of the dataset in terms of fields published, stages covered and key summary statistics.  You can add any additional queries as needed.
 
 +++
 
-###Fields published
-
-+++
+### Fields published
 
 Calculate the fields published
 
