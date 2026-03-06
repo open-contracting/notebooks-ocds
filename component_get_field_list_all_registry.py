@@ -4,14 +4,11 @@
 
 # ### Aggregate the lists of fields across all publications
 
-# +
 final_dataset = pd.DataFrame()
-
 for publication in get_publications():
     data = format_coverage(publication.get("coverage", {}))
     data["publisher"] = publication["source_id"]
     final_dataset = pd.concat([final_dataset, data])
-# -
 
 final_dataset
 

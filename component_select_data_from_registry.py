@@ -4,7 +4,6 @@
 # @title Select the publication to download { display-mode: "form" }
 
 publication_select_box = get_publication_select_box()
-
 publication_select_box
 
 # +

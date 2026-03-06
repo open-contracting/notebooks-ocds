@@ -15,13 +15,8 @@ from ocdskingfishercolab import (
 
 # Enter your PostgreSQL credentials and connect to the Kingfisher Process database:
 
-# +
 user = input("Username:")
 password = getpass.getpass("Password:")
-
-# Don't show connection string after execute.
-# %config SqlMagic.displaycon = False
-
 connection_string = (
     "postgresql://"
     + user
@@ -29,8 +24,9 @@ connection_string = (
     + password
     + "@postgres.kingfisher.open-contracting.org/kingfisher_process?sslmode=require"
 )
+# Don't show connection string after execute.
+# %config SqlMagic.displaycon = False
 # %sql $connection_string
-# -
 
 # ### Choose collections and schema
 #
