@@ -30,7 +30,6 @@ Kingfisher Process adds notes (the `note` column) at different levels (the `code
 
 📗 **You can check the full list of note types and what they mean in the Kingfisher Process's [documentation](https://kingfisher-process.readthedocs.io/en/latest/database.html#collection-note-table)**📗
 
-
 List the notes for each of your collections:
 
 ```{code-cell}

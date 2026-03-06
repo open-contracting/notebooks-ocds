@@ -1,7 +1,5 @@
 ## Perform manual conformance checks
 
-+++
-
 [Conforming publications](https://standard.open-contracting.org/latest/en/schema/conformance_and_extensions/#publication-conformance):
 
 * Use a [registered OCID prefix](https://standard.open-contracting.org/latest/en/schema/identifiers/#contracting-process-identifier-ocid).
@@ -14,7 +12,6 @@ Use this section to:
 * Check if the OCDS Data Review Tool is able to report results on data.
 * Identify fields in local extensions and additional fields and codes that should be mapped to fields and codes in the OCDS schema and extensions.
 * Identify deprecated fields, in order to recommend a change to the publisher's OCDS implementation.
-
 
 You can use the following resources to find fields and codes with similar semantics:
 
@@ -83,11 +80,7 @@ ocid_prefix_record_check
 
 ### Local extensions
 
-+++
-
 For each field and code in extensions authored by the publisher, in addition to the above checks, consider whether to [review the extension in detail](https://docs.google.com/document/d/1CS_TMubqoYaucT8JXPTgLS-mF4eMIifX-6mD0xpWg9M/edit).
-
-+++
 
 List the extensions declared in the package metadata.
 
@@ -117,15 +110,11 @@ ORDER BY
 
 ### Additional fields
 
-+++
-
 [lib-cove-ocds](https://github.com/open-contracting/lib-cove-ocds) reports additional fields in the following scenarios:
 
 * Fields from undeclared extensions.
 * Fields with language variations, e.g. `title_es`. You do not need to report language variations to the publisher, but you should check that the field [conforms to the rules for language variations](https://standard.open-contracting.org/latest/en/schema/reference/#language).
 * OCDS 1.0 data using extension fields. You should report the fields to the publisher and recommend that they upgrade to OCDS 1.1.
-
-+++
 
 List additional fields.
 
@@ -286,8 +275,6 @@ render_json(additional_field_examples["release_package"][0])
 
 ### Additional open codes
 
-+++
-
 List additional codes in the context of an open codelist.
 
 Using additional codes in the context of a closed codelist is an error, and is reported in the *Check for structure and format errors* section.
@@ -338,13 +325,9 @@ ORDER BY
 
 ### Deprecated fields
 
-+++
-
 Before a field or codelist is removed from the standard, it is first marked as [deprecated](https://standard.open-contracting.org/latest/en/governance/deprecation/#deprecation).
 
 Use this section to check for deprecated fields.
-
-+++
 
 List deprecated fields:
 
