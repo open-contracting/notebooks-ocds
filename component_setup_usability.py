@@ -628,66 +628,77 @@ def usability_checks(fields_list):
 
 
 def check_usability_indicators(lang, result):
-    gc = authenticate_gspread()
-
+    # Use case guide: Indicators linked to OCDS #public
     if lang.value == "English":
-        # Use case guide: Indicators linked to OCDS #public
         spreadsheet_key = "1j-Y0ktZiOyhZzi-2GSabBCnzx6fF5lv8h1KYwi_Q9GM"
-    else:
-        # [ES] of Use case guide: Indicators linked to OCDS #public
+    else:  # [ES]
         spreadsheet_key = "1l_p_e1iNUUuR5AObTJ8EY9VrcCLTAq3dnG_Fj73UH9w"
 
-    worksheet = gc.open_by_key(spreadsheet_key).sheet1
-
-    # get_all_values gives a list of rows.
-    rows = worksheet.get_all_values()
-    # Convert to a DataFrame and render.
-
-    indicators = pd.DataFrame(rows)
-    indicators = indicators.rename(columns=indicators.iloc[0]).drop(indicators.index[0])
+    rows = authenticate_gspread().open_by_key(spreadsheet_key).sheet1.get_all_values()
+    indicators = pd.DataFrame(rows).pipe(lambda df: df.rename(columns=df.iloc[0]).drop(df.index[0]))
 
     if lang.value == "English":
-        indicatorsdf = indicators.iloc[:, [0, 3, 4, 9]]
-        result_final = result.merge(indicatorsdf, on="U_id")
-    else:
-        indicatorsdf = indicators.iloc[:, [0, 3, 4, 5, 9]]
-        result_final = indicatorsdf.merge(result, on="U_id").drop(["indicator"], axis=1)
-        result_final = result_final.rename(
+        return result.merge(indicators.iloc[:, [0, 3, 4, 9]], on="U_id")
+
+    return (
+        indicators.iloc[:, [0, 3, 4, 5, 9]]
+        .merge(result, on="U_id")
+        .drop(columns="indicator")
+        .rename(
             columns={
                 "fields needed": "Campos necesarios",
                 "calculation": "¿Se puede calcular?",
                 "missing fields": "Campos faltantes",
                 "coverage": "Cobertura",
-            },
+            }
         )
-        result_final = result_final.replace(
-            {"¿Se puede calcular?": {"possible to calculate": "sí", "missing fields": "campos faltantes"}}
-        )
-    return result_final
+        .replace({"¿Se puede calcular?": {"possible to calculate": "sí", "missing fields": "campos faltantes"}})
+    )
 
 
 def is_relevant(field_list):
-    final_result = []
-    for key, value in RELEVANT_RULES.items():
-        rule_result = {"rule": key, "possible_to_calculate": "No", "available_fields": [], "missing_fields": []}
-        for field in value:
-            if isinstance(field, str):
-                if field in field_list:
-                    rule_result["possible_to_calculate"] = "Yes"
-                    rule_result["available_fields"].append(field)
-                else:
-                    rule_result["missing_fields"].append(field)
-            else:
-                missing = [item for item in field if item not in field_list]
-                rule_result["available_fields"].extend(item for item in field if item in field_list)
-                rule_result["missing_fields"].extend(missing)
-                if not missing:
-                    rule_result["possible_to_calculate"] = "Yes"
-        final_result.append(rule_result)
+    """
+    Check if the dataset has the basic fields to answer: who bought what, from whom, for how much, when, and how.
 
-    final_result = pd.DataFrame(final_result)
-    relevant = (final_result["possible_to_calculate"] == "Yes").all()
-    return relevant, final_result
+    Each rule in RELEVANT_RULES is satisfied if ANY of its options is present:
+    - String options: the field must be in field_list
+    - List options: all fields in the list must be in field_list
+    """
+    results = []
+    for rule_name, options in RELEVANT_RULES.items():
+        available = []
+        missing = []
+        possible = False
+
+        for option in options:
+            if isinstance(option, str):
+                if option in field_list:
+                    available.append(option)
+                    possible = True
+                else:
+                    missing.append(option)
+            else:
+                all_present = True
+                for opt in option:
+                    if opt in field_list:
+                        available.append(opt)
+                    else:
+                        missing.append(opt)
+                        all_present = False
+                if all_present:
+                    possible = True
+
+        results.append(
+            {
+                "rule": rule_name,
+                "possible_to_calculate": "Yes" if possible else "No",
+                "available_fields": available,
+                "missing_fields": missing,
+            }
+        )
+
+    df = pd.DataFrame(results)
+    return (df["possible_to_calculate"] == "Yes").all(), df
 
 
 def get_coverage():
@@ -715,6 +726,6 @@ def most_common_fields_to_calculate_indicators(fields_table):
 
 
 def get_usability_language_select_box():
-    style = {"description_width": "initial"}
-    languages = ["Spanish", "English"]
-    return widgets.Dropdown(options=languages, description="language", style=style)
+    return widgets.Dropdown(
+        options=["Spanish", "English"], description="language", style={"description_width": "initial"}
+    )
