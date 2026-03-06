@@ -2,13 +2,16 @@
 name = "notebooks-ocds"
 version = "0.0.0"
 
-[tool.black]
-line-length = 119
+[tool.jupytext]
+formats = "py:light"
 
 [tool.ruff]
 line-length = 119
 target-version = "py310"
 extend-include = ["*.ipynb"]
+
+[tool.ruff.format]
+exclude = ["template_*.ipynb"]
 
 [tool.ruff.lint]
 select = ["ALL"]
@@ -22,9 +25,13 @@ ignore = [
 ignore-variadic-names = true
 
 [tool.ruff.lint.per-file-ignores]
-"component_*" = ["F821"]
-"template_*" = ["E501", "F401"]
-"*.ipynb" = ["ARG001"]  # $file_name
+"component_*" = ["B018"]  # useless-expression (implicit print)
+"{component,template}_*" = [
+    "E501",  # long comment
+    "F401",  # unused-import (set_dark_mode ...)
+    "F821",  # undefined-name (<< assignments)
+    "T201",  # print
+]
 
 [tool.sqlfluff.core]
 dialect = "postgres"
@@ -42,8 +49,6 @@ exclude_rules = [
     "CV08", # convention.left_join
     "RF02", # references.qualification
     "RF04", # references.keywords
-    # https://github.com/sqlfluff/sqlfluff/issues/4623#issuecomment-2401209085 >3.2.4
-    "AL05",
 ]
 
 [tool.sqlfluff.templater.placeholder]

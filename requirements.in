@@ -1,5 +1,4 @@
 click
-jsonschema
-nbmerge
+jupytext
 nbformat
 sqlfluff

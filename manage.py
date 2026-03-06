@@ -1,12 +1,11 @@
 #!/usr/bin/env python
-import json
+import zlib
 from pathlib import Path
 
 import click
-import jsonschema
+import jupytext
 import nbformat
 import sqlfluff
-from nbmerge import merge_notebooks
 from sqlfluff.core import FluffConfig
 
 # A dict of notebooks and their components, identified by filename, excluding '.ipynb'
@@ -124,49 +123,45 @@ BASEDIR = Path(__file__).resolve().parent
 FLUFF_CONFIG = FluffConfig.from_path(BASEDIR)
 
 
-class InvalidNotebookError(click.ClickException):
-    def __init__(self, filename):
-        super().__init__(f"{filename} is invalid")
-
-
-def json_dump(path, notebook):
-    with path.open("w") as f:
-        # Use indent=2 like Google Colab for small diffs.
-        json.dump(notebook, f, ensure_ascii=False, indent=2)
-        f.write("\n")
-
-
-def json_load(path):
-    with path.open() as f:
-        try:
-            return json.load(f)
-        except json.JSONDecodeError as e:
-            raise InvalidNotebookError(path) from e
+def get_component_path(name):
+    for extension in (".py", ".md"):
+        path = BASEDIR / f"{name}{extension}"
+        if path.exists():
+            return path
+    raise FileNotFoundError(name)
 
 
 @click.command()
 @click.argument("filename", nargs=-1, type=click.Path(exists=True, dir_okay=False, path_type=Path))
 def pre_commit(filename):
-    """Format SQL cells in Jupyter Notebooks and merge components to build notebooks."""
+    """Format SQL cells in component notebooks and merge components to build template notebooks."""
     has_warnings = False
 
-    filenames = [path for path in filename if path.name.startswith("component_")]
+    changed = {path.stem for path in filename if path.name.startswith("component_")}
 
-    for path in filenames:
-        notebook = json_load(path)
+    templates = []
+    needed = set()
+    for slug, component_names in NOTEBOOKS.items():
+        if any(name in changed for name in component_names):
+            templates.append(slug)
+            needed.update(component_names)
 
-        for cell in notebook["cells"]:
-            if cell["cell_type"] != "code":
+    components = {}
+    for name in needed:
+        notebook = jupytext.read(get_component_path(name))
+
+        for cell in notebook.cells:
+            if cell.cell_type != "code":
                 continue
 
-            source = cell["source"]
+            source = cell.source.splitlines(keepends=True)
 
             # In our notebooks, this is always on its own line: %%sql(?!( \w+ <<)?\\n",)
             if "%%sql" not in source[0]:
                 continue
 
             fix = sqlfluff.fix("".join(source[1:]), config=FLUFF_CONFIG)
-            cell["source"] = [source[0], *fix.splitlines(keepends=True)]
+            cell.source = [source[0], *fix.splitlines(keepends=True)]
 
             warnings = sqlfluff.lint(fix, config=FLUFF_CONFIG)
             has_warnings |= bool(warnings)
@@ -178,24 +173,21 @@ def pre_commit(filename):
                     end = warning["end_file_pos"]
                     click.echo(f"{fix[:start]}{click.style(fix[start:end], fg='red')}{fix[end:]}")
 
-        json_dump(path, notebook)
+        components[name] = notebook
 
-    for slug, components in NOTEBOOKS.items():
-        if any(path.stem in components for path in filenames):
-            template_path = Path(f"{slug}.ipynb")
+    for slug in templates:
+        merged = nbformat.v4.new_notebook()
+        merged.metadata["colab"] = {"toc_visible": True}  # default False
+        for name in NOTEBOOKS[slug]:
+            merged.cells.extend(components[name].cells)
 
-            with template_path.open("w", encoding="utf8") as f:
-                try:
-                    notebook = merge_notebooks(BASEDIR, [f"{c}.ipynb" for c in components], verbose=False)
-                    notebook["metadata"]["colab"]["name"] = slug
-                except jsonschema.exceptions.ValidationError as e:
-                    raise InvalidNotebookError(f"{slug}.ipynb") from e
-                else:
-                    nbformat.write(notebook, f)
+        # Assign deterministic cell IDs based on content hash.
+        for i, cell in enumerate(merged.cells):
+            source = cell.source if isinstance(cell.source, str) else "".join(cell.source)
+            cell.id = format(zlib.crc32(f"{i}:{source}".encode()) & 0xFFFFFFFF, "08x")
 
-            # nbformat.write() uses indent=1. Rewrite with indent=2 like Google Colab.
-            # https://github.com/jupyter/nbformat/blob/ba2c6f5/nbformat/v4/nbjson.py#L51
-            json_dump(template_path, json_load(template_path))
+        with (BASEDIR / f"{slug}.ipynb").open("w") as f:
+            nbformat.write(merged, f)
 
     if has_warnings:
         raise click.Abort
