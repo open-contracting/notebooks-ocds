@@ -33,7 +33,7 @@ You only need to run either the *Release prefixes* or *Record prefixes* section,
 
 Update the ocid prefix in the appropriate cell. Prefixes can be found at [the list of registered prefixes](https://docs.google.com/spreadsheets/d/1E5ZVhc8VhGOakCq4GegvkyFYT974QQb-sSjvOfaxH7s/pubhtml?gid=506986894&single=true&widget=true).
 
-#### **Release prefixes**
+#### Release prefixes
 
 Notify the publisher of any incorrect prefixes.
 
@@ -55,7 +55,7 @@ WHERE
 ocid_prefix_release_check
 ```
 
-#### **Record prefixes**
+#### Record prefixes
 
 Notify the publisher of any incorrect prefixes.
 
