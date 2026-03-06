@@ -8,8 +8,6 @@ Use this section to check:
 
 If you are preparing an [Ad-hoc structure and format feedback](https://docs.google.com/document/d/1_k7eA2rI-k5EH8VESkVAB73wa_qrpplL-7dKgMLTGZc/edit#heading=h.i7tpu8c49dcv), you might skip this section.
 
-+++
-
 ### Release and record counts
 
 Collections in Kingfisher Process contain either [releases](https://standard.open-contracting.org/latest/en/schema/reference/), [records](https://standard.open-contracting.org/latest/en/schema/records_reference/) or [compiled releases](https://standard.open-contracting.org/latest/en/schema/records_reference/#compiled-release). Kingfisher Process creates compiled release collections from release or record collections.
@@ -20,8 +18,7 @@ Count the number of releases, records and compiled releases, for each collection
 
 **Note:** These columns are not yet populated in version 2 of Kingfisher Process. Comment on [this issue](https://github.com/open-contracting/kingfisher-process/issues/370) to prioritize it.
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     id AS collection_id,
     cached_releases_count AS releases_count,
@@ -37,16 +34,13 @@ WHERE
 
 Use this section to check that the data covers the expected stages of the contracting process.
 
-+++
-
 #### Release tags
 
 [Release tags](https://standard.open-contracting.org/latest/en/schema/codelists/#release-tag) indicate the stage of a contracting process to which a release is related.
 
 Count the number of releases, for each release tag:
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     collection_id,
     release_type,
@@ -68,8 +62,7 @@ In OCDS, data is organized into objects, for each stage of a contracting process
 
 Plot a count of objects per stage:
 
-```{code-cell}
-%%sql objects_per_stage <<
+```sql magic_args="objects_per_stage <<"
 SELECT
     CASE
         WHEN paths.path = 'contracts/implementation'
@@ -115,7 +108,7 @@ LEFT JOIN (
 ) AS field_counts USING (path)
 ```
 
-```{code-cell}
+```python
 plot_objects_per_stage(objects_per_stage)
 ```
 
@@ -125,8 +118,7 @@ Use this section to check that the data covers the expected date range.
 
 Calculate the earliest and latest `date`, `awards/date` and `contracts/dateSigned`:
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     collection_id,
     release_type,
@@ -176,8 +168,7 @@ Use this section to check that releases are distributed as expected.
 
 Plot the count of releases per month:
 
-```{code-cell}
-%%sql release_dates <<
+```sql magic_args="release_dates <<"
 SELECT
     collection_id::text,
     release_type,
@@ -195,7 +186,7 @@ ORDER BY
     date ASC;
 ```
 
-```{code-cell}
+```python
 # Resample by month
 release_dates["date"] = release_dates["date"].dt.strftime("%Y-%m")
 release_dates = (
@@ -211,8 +202,7 @@ Use this section to check which extensions the data uses.
 
 List the extensions declared in the package metadata:
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     collection_id,
     release_type,

@@ -4,8 +4,6 @@ Kingfisher Collect reformats data sources as release packages or record packages
 
 Kingfisher Process checks data against the OCDS schema using [lib-cove-ocds](https://github.com/open-contracting/lib-cove-ocds), same as the [OCDS Data Review Tool](https://review.standard.open-contracting.org). For release collections, Kingfisher Process stores check results in the `release_check` table. For record collections, Kingfisher Process stores check results in the `record_check` table.
 
-+++
-
 ### Confirm that checks are complete
 
 If a crawl is scheduled using Kingfisher Collect, by default, Kingfisher Process performs structural checks. Checking data is the slowest step. For large collections, it is recommended to skip the `check` step or to collect only a sample. Otherwise, there can be a backlog of data to check.
@@ -14,8 +12,7 @@ Use this query to determine whether checks are complete for your collection(s).
 
 If checks are in progress, you should wait for the checks to finish before running the queries in this section.
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     collection_id,
     'release' AS collection_type,
@@ -69,8 +66,7 @@ GROUP BY
 
 Summarize the errors from the `release_check` and `record_check` tables.
 
-```{code-cell}
-%%sql structure_and_format_error_summary <<
+```sql magic_args="structure_and_format_error_summary <<"
 WITH errors AS (
     SELECT
         collection_id,
@@ -166,7 +162,7 @@ GROUP BY
     example_values;
 ```
 
-```{code-cell}
+```python
 structure_and_format_error_summary
 ```
 
@@ -174,8 +170,7 @@ structure_and_format_error_summary
 
 List all errors from the `release_check` and `record_check` tables.
 
-```{code-cell}
-%%sql structure_and_format_errors <<
+```sql magic_args="structure_and_format_errors <<"
 SELECT
     collection_id,
     'release' AS collection_type,
@@ -213,7 +208,7 @@ WHERE
     collection_id IN :collection_ids
 ```
 
-```{code-cell}
+```python
 structure_and_format_errors
 ```
 
@@ -221,8 +216,7 @@ structure_and_format_errors
 
 Using additional codes in the context of a closed codelist is an error
 
-```{code-cell}
-%%sql
+```sql
 WITH check_results AS (
     SELECT
         *,

@@ -4,15 +4,11 @@ Kingfisher Collect and Kingfisher Process log messages that might indicate OCDS 
 
 Confirm any errors or warnings by manually checking the OCDS publication.
 
-+++
-
 ### Kingfisher Collect
 
 See [how to review the Kingfisher Collect crawl's log file](https://kingfisher-collect.readthedocs.io/en/latest/logs.html).
 
 **Note:** There is an open [pull request](https://github.com/open-contracting/notebooks-ocds/pull/44) to automate this. If interested, please comment on the pull request to prioritize it.
-
-+++
 
 ### Kingfisher Process
 
@@ -32,8 +28,7 @@ Kingfisher Process adds notes (the `note` column) at different levels (the `code
 
 List the notes for each of your collections:
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     collection_id,
     code,

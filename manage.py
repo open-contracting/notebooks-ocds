@@ -121,6 +121,7 @@ NOTEBOOKS = {
 
 BASEDIR = Path(__file__).resolve().parent
 FLUFF_CONFIG = FluffConfig.from_path(BASEDIR)
+MAIN_LANGUAGE_HEADER = "---\njupyter:\n  jupytext:\n    main_language: python\n---\n"
 
 
 def get_component_path(name):
@@ -148,7 +149,11 @@ def pre_commit(filename):
 
     components = {}
     for name in needed:
-        notebook = jupytext.read(get_component_path(name))
+        path = get_component_path(name)
+        content = path.read_text()
+        if path.suffix == ".md":
+            content = f"{MAIN_LANGUAGE_HEADER}{content}"
+        notebook = jupytext.reads(content, fmt={"extension": path.suffix, "split_at_heading": True})
 
         for cell in notebook.cells:
             if cell.cell_type != "code":
