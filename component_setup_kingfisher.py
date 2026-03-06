@@ -33,7 +33,7 @@ connection_string = (
 # *Use this section to choose the collections and schema that you want to query.*
 
 # #### Set the collection(s)
-
+#
 # Update `collection_ids` with the `id`(s) of the [Kingfisher Process collection(s)](https://kingfisher-process.readthedocs.io/en/latest/data-model.html#collections):
 
 collection_ids = (2358, 2359)
@@ -43,7 +43,7 @@ collection_ids = (2358, 2359)
 list_collections()
 
 # #### Set the schema
-
+#
 # Update `schema_name` with the name of the [Kingfisher Summarize schema](https://kingfisher-summarize.readthedocs.io/en/latest/index.html#how-it-works).
 
 schema_name = "view_data_collection_2358_2359"

@@ -1,5 +1,5 @@
 # ## Usability analysis setup
-
+#
 # Use this section to setup the functions needed to perform a usability analysis of the dataset, to identify if a publisher has the necessary fields to calculate 71 procurement indicators related to market opportunity (market description, competition, supplier performance), value for money, internal efficiency, public integrity and service delivery.  For an OCDS publisher, it also calculates the proportion of unique procedures for which it is possible to calculate the indicator (coverage).
 #
 # The usability checks includes all the indicators listed on [OCP's use case guide](https://docs.google.com/spreadsheets/d/1j-Y0ktZiOyhZzi-2GSabBCnzx6fF5lv8h1KYwi_Q9GM/edit#gid=1183427361) and the [Indicators to diagnose the performance of a procurement market document](https://docs.google.com/document/d/1vSJk9-qWSTQEx9ZZc7BUhQZMHvTRcyDYVS2sl8HB__k/edit#heading=h.nrnq1ajwwpqe).

@@ -24,6 +24,7 @@ lapsed_publications_table = pd.DataFrame(lapsed_publications)
 lapsed_publications_table
 
 # ### Check non-relevant publications
+#
 # Check which active publications pass and not pass the "Relevant" criterion.
 
 results = []
