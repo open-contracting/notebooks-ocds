@@ -25,8 +25,6 @@ If you cannot find a suitable mapping for an additional field or code, [open a G
 
 **Note:** This section depends on the `check` step of Kingfisher Process having completed. See *Check for structure and format errors >Confirm that checks are complete*. If the checks are not complete or the OCDS Data Review Tool is not able to report results on data, **the publisher don't pass that conformance criterion**
 
-+++
-
 ### OCID prefix
 
 Check that the data uses the OCID prefix that was issued to this specific publisher.
@@ -35,19 +33,16 @@ You only need to run either the *Release prefixes* or *Record prefixes* section,
 
 Update the ocid prefix in the appropriate cell. Prefixes can be found at [the list of registered prefixes](https://docs.google.com/spreadsheets/d/1E5ZVhc8VhGOakCq4GegvkyFYT974QQb-sSjvOfaxH7s/pubhtml?gid=506986894&single=true&widget=true).
 
-+++
-
 #### **Release prefixes**
 
 Notify the publisher of any incorrect prefixes.
 
-```{code-cell}
+```python
 # Do not remove the final % character
 ocid_prefix = "%"
 ```
 
-```{code-cell}
-%%sql ocid_prefix_release_check <<
+```sql magic_args="ocid_prefix_release_check <<"
 SELECT ocid
 FROM
     release_summary
@@ -56,7 +51,7 @@ WHERE
     AND ocid NOT LIKE :ocid_prefix
 ```
 
-```{code-cell}
+```python
 ocid_prefix_release_check
 ```
 
@@ -64,8 +59,7 @@ ocid_prefix_release_check
 
 Notify the publisher of any incorrect prefixes.
 
-```{code-cell}
-%%sql ocid_prefix_record_check <<
+```sql magic_args="ocid_prefix_record_check <<"
 SELECT ocid
 FROM
     record_summary
@@ -74,7 +68,7 @@ WHERE
     AND ocid NOT LIKE :ocid_prefix
 ```
 
-```{code-cell}
+```python
 ocid_prefix_record_check
 ```
 
@@ -86,8 +80,7 @@ List the extensions declared in the package metadata.
 
 **Note:** This query should be kept in sync with the query in *Check scope > Extensions*.
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     collection_id,
     release_type,
@@ -120,12 +113,11 @@ List additional fields.
 
 By default, results are reported for a sample of 10% of releases. For small collections, you can set `sample_size` to `1` to return results for the full collection. For large collections, you can reduce the sample size.
 
-```{code-cell}
+```python
 sample_size = 0.1
 ```
 
-```{code-cell}
-%%sql
+```sql
 WITH check_results AS (
     SELECT
         *,
@@ -213,8 +205,7 @@ ORDER BY
 
 Generate a release package containing an example release for each additional field:
 
-```{code-cell}
-%%sql additional_field_examples <<
+```sql magic_args="additional_field_examples <<"
 WITH additional_field_releases AS (
     SELECT
         ocid,
@@ -269,7 +260,7 @@ FROM
     examples
 ```
 
-```{code-cell}
+```python
 render_json(additional_field_examples["release_package"][0])
 ```
 
@@ -279,8 +270,7 @@ List additional codes in the context of an open codelist.
 
 Using additional codes in the context of a closed codelist is an error, and is reported in the *Check for structure and format errors* section.
 
-```{code-cell}
-%%sql
+```sql
 WITH check_results AS (
     SELECT
         *,
@@ -331,8 +321,7 @@ Use this section to check for deprecated fields.
 
 List deprecated fields:
 
-```{code-cell}
-%%sql
+```sql
 SELECT DISTINCT ON (collection_id, path, deprecated_version, explanation)
     collection_id,
     regexp_replace(trim('"' FROM paths::text), '\/[0-9]+', '', 'g')

@@ -14,11 +14,7 @@ Use this section to perform quality checks that require manual review, including
 * Identifier scheme preference
 * Segmented field coverage
 
-+++
-
 ### Metadata
-
-+++
 
 #### Package metadata
 
@@ -34,8 +30,7 @@ Look out for the following issues and report them to the publisher:
 
 Display the package metadata for each collection:
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     collection_id,
     release_type,
@@ -78,8 +73,7 @@ Count the number of times a section is published, for each release tag.
 
 Note that this check only counts whether the section exists, not whether it contains any fields or objects, so the results may include empty objects (e.g. `planning`) and arrays (e.g. `awards`).
 
-```{code-cell}
-%%sql release_tag_section_summary <<
+```sql magic_args="release_tag_section_summary <<"
 WITH contract_implementation AS (
     SELECT
         cs.collection_id,
@@ -126,7 +120,7 @@ FROM
 LEFT JOIN contract_implementation USING (collection_id, release_type, tag);
 ```
 
-```{code-cell}
+```python
 release_tag_section_summary
 ```
 
@@ -136,7 +130,7 @@ Use this section to check that all releases do not share the same date.
 
 For each collection and release type, generate a [frequency table](https://en.wikipedia.org/wiki/Frequency_distribution) for release dates and report the top 5 most frequent dates:
 
-```{code-cell}
+```python
 query = """
 SELECT
     date,
@@ -165,8 +159,7 @@ Use this section to check that the code declared in `language` reflects the lang
 
 List the language codes used, with an example release for each language.
 
-```{code-cell}
-%%sql
+```sql
 SELECT DISTINCT ON (
     collection_id, release_type,
     language)
@@ -198,8 +191,6 @@ However, many publishers use the ['easy releases'](https://standard.open-contrac
 
 Use this section to understand the approach used by the publisher.
 
-+++
-
 #### Multiple releases per contracting process
 
 Use this section to:
@@ -210,7 +201,7 @@ Use this section to:
 
 Calculate statistics on the minimum, maximum, average and standard deviation of releases per contracting process.
 
-```{code-cell}
+```python
 query = """
 WITH release_counts AS (
     SELECT
@@ -240,8 +231,7 @@ for collection_id in collection_ids:
 
 Count the number of contracting processes, for each observed number of releases:
 
-```{code-cell}
-%%sql release_count_summary <<
+```sql magic_args="release_count_summary <<"
 WITH release_counts AS (
     SELECT
         collection_id,
@@ -272,14 +262,13 @@ GROUP BY
     release_count;
 ```
 
-```{code-cell}
+```python
 release_count_summary
 ```
 
 Plot the distribution of releases per contracting process:
 
-```{code-cell}
-%%sql release_counts <<
+```sql magic_args="release_counts <<"
 WITH release_counts AS (
     SELECT
         collection_id,
@@ -310,7 +299,7 @@ GROUP BY
     release_count;
 ```
 
-```{code-cell}
+```python
 plot_release_count(release_counts)
 ```
 
@@ -323,8 +312,7 @@ Specific things to check include:
 
 Also check for differences in which fields are provided for each release and for differences in the values of fields.
 
-```{code-cell}
-%%sql multiple_release_examples <<
+```sql magic_args="multiple_release_examples <<"
 WITH ranked_ocids AS (
     SELECT
         collection_id,
@@ -363,13 +351,13 @@ WHERE
     );
 ```
 
-```{code-cell}
+```python
 render_json(multiple_release_examples["release_package"][0])
 ```
 
 To ease review, uncomment the following cell to convert the release package to a Google Sheet:
 
-```{code-cell}
+```python
 # Replace 'SPREADSHEET_NAME', as appropriate.
 # save_dataframe_to_spreadsheet(multiple_release_examples, 'SPREADSHEET_NAME_multiple_releases')
 ```
@@ -384,8 +372,7 @@ Use this section to check that the release ID differs from the `ocid`.
 
 List the releases where `id` and `ocid` have the same value:
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     collection_id,
     release_type,
@@ -403,8 +390,7 @@ WHERE
 
 #### Duplicate release ID
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     ocid,
     release_id,
@@ -422,8 +408,7 @@ HAVING
 
 Export to Google Sheets the 5 release IDs with the most duplicates, and review them to determine whether the full release is duplicated or only the release ID.
 
-```{code-cell}
-%%sql duplicate_release_ids <<
+```sql magic_args="duplicate_release_ids <<"
 WITH release_ids AS (
     SELECT
         collection_id,
@@ -465,11 +450,11 @@ WHERE
     );
 ```
 
-```{code-cell}
+```python
 render_json(duplicate_release_ids["release_package"][0])
 ```
 
-```{code-cell}
+```python
 # Replace 'SPREADSHEET_NAME', as appropriate.
 # save_dataframe_to_spreadsheet(duplicate_release_ids, 'SPREADSHEET_NAME_duplicate_release_ids')
 ```
@@ -482,8 +467,6 @@ In an effort to publish as many field as possible, publishers sometimes ignore s
 
 Use this section to identify instances of overfill.
 
-+++
-
 #### Awards and contracts
 
 Use this section to check if there are any differences between the following fields in the award and contract sections:
@@ -494,8 +477,7 @@ Use this section to check if there are any differences between the following fie
 * `awards/contractPeriod` and `contracts/period`
 * `award/documents` and `contracts/documents`
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     contracts_summary.collection_id,
     contracts_summary.release_type,
@@ -550,8 +532,7 @@ Items are attached to the tender, award and contract sections of a release, so t
 
 Use this section to check for differences between the items attached to the tender, award and contract sections.
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     tender_summary.collection_id,
     tender_summary.release_type,
@@ -592,8 +573,7 @@ Manually review the example release to identify placeholder values, e.g. 'n/a', 
 
 Get an example release:
 
-```{code-cell}
-%%sql example_releases <<
+```sql magic_args="example_releases <<"
 WITH examples AS (
     SELECT DISTINCT ON (
         collection_id,
@@ -617,13 +597,11 @@ FROM
     examples
 ```
 
-```{code-cell}
+```python
 render_json(example_releases["release_package"][0])
 ```
 
 ### Ground truth
-
-+++
 
 #### Organization identifiers
 
@@ -638,8 +616,7 @@ For each organization identifier:
 
 Select a random sample of 3 identifiers for each organization identifier scheme:
 
-```{code-cell}
-%%sql organization_identifiers <<
+```sql magic_args="organization_identifiers <<"
 SELECT
     collection_id,
     release_type,
@@ -655,7 +632,7 @@ WHERE
     collection_id IN :collection_ids;
 ```
 
-```{code-cell}
+```python
 organization_identifiers.groupby(["collection_id", "release_type", "scheme"]).sample(n=3)
 ```
 
@@ -663,8 +640,7 @@ organization_identifiers.groupby(["collection_id", "release_type", "scheme"]).sa
 
 Use this section to check whether the data includes item classifications.
 
-```{code-cell}
-%%sql
+```sql
 WITH items AS (
     SELECT
         collection_id,
@@ -721,8 +697,7 @@ ORDER BY stage;
 
 Select a random sample of 3 identifiers for each item identifier scheme:
 
-```{code-cell}
-%%sql item_identifiers <<
+```sql magic_args="item_identifiers <<"
 WITH items AS (
     SELECT
         collection_id,
@@ -767,7 +742,7 @@ FROM
 WHERE id IS NOT NULL;
 ```
 
-```{code-cell}
+```python
 item_identifiers.groupby(["collection_id", "release_type", "stage", "scheme"]).sample(n=3)
 ```
 
@@ -779,8 +754,7 @@ Retrieve the document from the `url` and check that each metadata field accurate
 
 Get a random document:
 
-```{code-cell}
-%%sql
+```sql
 WITH documents AS (
     SELECT
         collection_id,
@@ -878,12 +852,11 @@ For each organization identifier:
 1. Look up the `scheme` in [org-id.guide](http://org-id.guide/) and follow the guidance to look up the organization identifiers in the register.
 1. Check that the identifier exists in the register.
 
-```{code-cell}
+```python
 country = "Paraguay"
 ```
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     collection_id,
     release_type,
@@ -929,16 +902,13 @@ ORDER BY
 
 This section evaluates whether the parties section incorporates organizations with the same name but different identifiers, and whether there are organizations with the same ID but different names.
 
-+++
-
 #### Same ID with different names
 
 Use this section to check that the party name remains consistent with its id across contracting processes.
 
 Check the number of unique `parties/name` per `parties/identifier` (`parties/identifier/scheme` and `parties/identifier/id` pair) and `parties/role`.
 
-```{code-cell}
-%%sql
+```sql
 WITH id_per_name AS (
     SELECT
         identifier,
@@ -963,8 +933,7 @@ ORDER BY ids_with_multiple_names DESC;
 
 Full list of parties with the same `parties/identifier` but different `parties/name`
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     identifier,
     string_agg(DISTINCT name, '; ') AS names,
@@ -985,8 +954,7 @@ Use this section to check that the party id remains consistent with its name acr
 
 Check the number of unique `parties/identifer` (`parties/identifier/scheme` and `parties/identifier/id` pair) per `parties/name` and `parties/role`.
 
-```{code-cell}
-%%sql
+```sql
 WITH id_per_name AS (
     SELECT
         name,
@@ -1011,8 +979,7 @@ ORDER BY names_with_multiple_ids DESC;
 
 Full list of parties with the same `parties/name` but different `parties/identifier`
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     name,
     string_agg(DISTINCT identifier, ', ') AS identifiers,
@@ -1032,16 +999,13 @@ Coverage is covered by Pelican. This section segments field coverage for priorit
 
 Use this section to check whether the data includes key fields.
 
-+++
-
 #### Organization identifiers
 
 Use this section to check whether the data includes organization identifiers for buyers, procuring entities, suppliers and tenderers.
 
 Calculate the coverage of `parties/identifier/id` and `parties/identifier/scheme`, grouped by `parties/role`:
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     collection_id,
     release_type,
@@ -1095,16 +1059,13 @@ GROUP BY
 
 Use this section to check if the OCID is being modeled as expected
 
-+++
-
 #### Number of tenders per ocid
 
 Use this section to check there is always only one tender per ocid.
 
 If the data contains planning data and multiple tenders per ocid, it might indicate that the ocid is being assigned in the planning stage, and the planning can have more than one tender, for example, due to unsuccessful tenders.
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     ocid,
     count(DISTINCT data -> 'tender' ->> 'id') AS cnt

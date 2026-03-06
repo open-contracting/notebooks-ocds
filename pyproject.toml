@@ -3,7 +3,8 @@ name = "notebooks-ocds"
 version = "0.0.0"
 
 [tool.jupytext]
-formats = "py:light"
+formats = "md,py:light"
+split_at_heading = true
 
 [tool.ruff]
 line-length = 119

@@ -2,14 +2,11 @@
 
 Use this section to have an overview of the dataset in terms of fields published, stages covered and key summary statistics.  You can add any additional queries as needed.
 
-+++
-
 ### Fields published
 
 Calculate the fields published
 
-```{code-cell}
-%%sql fields_table <<
+```sql magic_args="fields_table <<"
 SELECT
     path,
     distinct_releases
@@ -19,21 +16,20 @@ WHERE
     release_type = 'compiled_release'
 ```
 
-```{code-cell}
+```python
 fields_table
 ```
 
 Save fields table in spreadsheet:
 
-```{code-cell}
+```python
 spreadsheet_name = input("Enter the name of your spreadsheet:")
 save_dataframe_to_sheet(spreadsheet_name, fields_table, "fields")
 ```
 
 ### Stages covered
 
-```{code-cell}
-%%sql stages <<
+```sql magic_args="stages <<"
 WITH field_counts AS (
     SELECT *
     FROM
@@ -80,18 +76,17 @@ FROM (
 LEFT JOIN field_counts USING (path)
 ```
 
-```{code-cell}
+```python
 stages
 ```
 
-```{code-cell}
+```python
 plot_objects_per_stage(stages)
 ```
 
 ### Number of tenders and awards by date
 
-```{code-cell}
-%%sql dates <<
+```sql magic_args="dates <<"
 WITH tenders AS (
     SELECT
         extract(YEAR FROM tenderperiod_startdate) AS year,
@@ -131,18 +126,17 @@ FROM
 FULL JOIN awards AS a ON t.year = a.year
 ```
 
-```{code-cell}
+```python
 dates
 ```
 
-```{code-cell}
+```python
 plot_objects_per_year(dates)
 ```
 
 ### Procurement methods used
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     procurementmethod,
     count(DISTINCT ocid),
@@ -157,8 +151,7 @@ ORDER BY
     proportion DESC
 ```
 
-```{code-cell}
-%%sql
+```sql
 SELECT
     tender ->> 'procurementMethodDetails' AS method,
     count(DISTINCT ocid),
@@ -175,8 +168,7 @@ ORDER BY
 
 ### Number of procedures by buyer
 
-```{code-cell}
-%%sql buyers <<
+```sql magic_args="buyers <<"
 SELECT
     identifier AS party_id,
     party -> 'name' AS name,
@@ -193,10 +185,10 @@ ORDER BY
     total_tenders DESC
 ```
 
-```{code-cell}
+```python
 buyers.head(10)
 ```
 
-```{code-cell}
+```python
 plot_top_buyers(buyers.head(10))
 ```
