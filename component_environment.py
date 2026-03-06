@@ -1,9 +1,8 @@
 # ## Setup
 #
 # *You must run the cells in this section each time you connect to a new runtime. For example, when you return to the notebook after an idle timeout, when the runtime crashes, or when you restart or factory reset the runtime.*
-
-# Install requirements (*Note: ocdskingfishercolab installs google-colab, which expects specific versions of pandas and numpy*):
 #
+# Install requirements (*Note: ocdskingfishercolab installs google-colab, which expects specific versions of pandas and numpy*):
 
 # ! pip install --upgrade pip > pip.log
 # ! pip install --upgrade ocdskingfishercolab ipywidgets psycopg2-binary >> pip.log

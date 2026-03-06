@@ -1,4 +1,5 @@
 # ## Charts Setup
+#
 # *You must run the cells in this section each time you connect to a new runtime. For example, when you return to the notebook after an idle timeout, when the runtime crashes, or when you restart or factory reset the runtime.*
 
 # ! pip install altair pyarrow==14.0.0 >> pip.log

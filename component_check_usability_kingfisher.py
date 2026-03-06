@@ -1,5 +1,5 @@
 # ## Usability analysis
-
+#
 # Generate a list of the fields published:
 
 fields_list = fields_table.iloc[:, 0].tolist()
@@ -24,7 +24,7 @@ result_final = check_usability_indicators(lang, result)
 result_final
 
 # #### Most common fields for indicators
-
+#
 # This table shows the most frequent fields used to calculate indicators and if they are published.  You can use this table to highlight to the publisher the key data gaps.
 
 fields_count = most_common_fields_to_calculate_indicators(indicators_dict, fields_table)

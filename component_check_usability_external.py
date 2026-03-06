@@ -1,5 +1,5 @@
 # ## Usability analysis
-
+#
 # Generate a list of the fields published:
 
 fields_list = fields_table.iloc[:, 0].tolist()
