@@ -2,7 +2,7 @@
 #
 # Generate a list of the fields published:
 
-fields_list = fields_table.iloc[:, 0].tolist()
+fields_list = set(fields_table["path"])
 
 result = usability_checks(fields_list)
 

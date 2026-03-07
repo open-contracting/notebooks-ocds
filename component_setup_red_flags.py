@@ -679,10 +679,9 @@ def get_coverage(fields_list):
     ]
 
 
-def most_common_fields_to_calculate_indicators(fields_table):
+def most_common_fields_to_calculate_indicators(fields_list):
     """Count the most common fields used across all red flag indicators using DSL rules."""
-    fields_list = fields_table["path"].tolist()
-    fields_count = (
+    return (
         pd.DataFrame.from_dict(
             Counter(field for _name, rule in RED_FLAGS.values() for field in _get_required_fields(rule, fields_list)),
             orient="index",
@@ -691,6 +690,5 @@ def most_common_fields_to_calculate_indicators(fields_table):
         .rename(columns={"index": "field", 0: "number of indicators"})
         .sort_values("number of indicators", ascending=False)
         .reset_index(drop=True)
+        .assign(published=lambda df: np.where(df["field"].isin(fields_list), "yes", "no"))
     )
-    fields_count["published"] = np.where(fields_count["field"].isin(fields_list), "yes", "no")
-    return fields_count

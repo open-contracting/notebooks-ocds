@@ -12,7 +12,7 @@
 #     release_type = 'compiled_release'
 # -
 
-fields_list = fields_table.iloc[:, 0].tolist()
+fields_list = set(fields_table["path"])
 
 result = redflags_checks(fields_list)
 result["coverage"] = get_coverage(fields_list)
@@ -31,7 +31,7 @@ result_final
 #
 # This table shows the most frequent fields used to calculate indicators and if they are published.  You can use this table to highlight to the publisher the key data gaps.
 
-common_fields = most_common_fields_to_calculate_indicators(fields_table)
+common_fields = most_common_fields_to_calculate_indicators(fields_list)
 common_fields
 
 # #### Save tables to spreadsheet

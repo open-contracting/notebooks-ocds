@@ -2,7 +2,7 @@
 #
 # Generate a list of the fields published:
 
-fields_list = fields_table.iloc[:, 0].tolist()
+fields_list = set(fields_table["path"])
 
 result = redflags_checks(fields_list)
 
@@ -24,7 +24,7 @@ table
 
 # #### Most common fields to indicators
 
-common_fields = most_common_fields_to_calculate_indicators(fields_table)
+common_fields = most_common_fields_to_calculate_indicators(fields_list)
 common_fields
 
 # #### Save the table to a spreadsheet

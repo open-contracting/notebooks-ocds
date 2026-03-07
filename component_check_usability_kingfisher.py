@@ -2,7 +2,7 @@
 #
 # Generate a list of the fields published:
 
-fields_list = fields_table.iloc[:, 0].tolist()
+fields_list = set(fields_table["path"])
 
 result = usability_checks(fields_list)
 result["coverage"] = get_coverage(fields_list)
@@ -26,7 +26,7 @@ result_final
 #
 # This table shows the most frequent fields used to calculate indicators and if they are published.  You can use this table to highlight to the publisher the key data gaps.
 
-fields_count = most_common_fields_to_calculate_indicators(fields_table)
+fields_count = most_common_fields_to_calculate_indicators(fields_list)
 fields_count
 
 # #### Save tables to spreadsheet
