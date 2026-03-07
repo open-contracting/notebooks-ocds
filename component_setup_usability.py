@@ -634,7 +634,7 @@ def check_usability_indicators(lang, result):
     else:  # [ES]
         spreadsheet_key = "1l_p_e1iNUUuR5AObTJ8EY9VrcCLTAq3dnG_Fj73UH9w"
 
-    rows = authenticate_gspread().open_by_key(spreadsheet_key).sheet1.get_all_values()
+    rows = authenticate_gspread().open_by_key(spreadsheet_key).get_worksheet(0).get_all_values()
     indicators = pd.DataFrame(rows).pipe(lambda df: df.rename(columns=df.iloc[0]).drop(df.index[0]))
 
     if lang.value == "English":
