@@ -4,8 +4,7 @@
 
 fields_list = fields_table.iloc[:, 0].tolist()
 
-indicators_dic = get_red_flags_dictionary(fields_list)
-result = redflags_checks(fields_list, indicators_dic)
+result = redflags_checks(fields_list)
 
 # ### Export results
 
@@ -25,7 +24,7 @@ table
 
 # #### Most common fields to indicators
 
-common_fields = most_common_fields_to_calculate_indicators(indicators_dic, fields_table)
+common_fields = most_common_fields_to_calculate_indicators(fields_table)
 common_fields
 
 # #### Save the table to a spreadsheet

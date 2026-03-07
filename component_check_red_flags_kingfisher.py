@@ -14,9 +14,8 @@
 
 fields_list = fields_table.iloc[:, 0].tolist()
 
-indicators_dict = get_red_flags_dictionary(fields_list)
-result = redflags_checks(fields_list, indicators_dict, check_coverage=True)
-result["coverage"] = get_coverage(indicators_dict)
+result = redflags_checks(fields_list)
+result["coverage"] = get_coverage()
 
 # ### Export results
 
@@ -32,7 +31,7 @@ result_final
 #
 # This table shows the most frequent fields used to calculate indicators and if they are published.  You can use this table to highlight to the publisher the key data gaps.
 
-common_fields = most_common_fields_to_calculate_indicators(indicators_dict, fields_table)
+common_fields = most_common_fields_to_calculate_indicators(fields_table)
 common_fields
 
 # #### Save tables to spreadsheet
