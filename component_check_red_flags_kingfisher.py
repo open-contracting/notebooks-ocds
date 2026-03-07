@@ -15,7 +15,7 @@
 fields_list = fields_table.iloc[:, 0].tolist()
 
 result = redflags_checks(fields_list)
-result["coverage"] = get_coverage()
+result["coverage"] = get_coverage(fields_list)
 
 # ### Export results
 

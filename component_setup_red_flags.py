@@ -580,32 +580,30 @@ RED_FLAGS = {
 }
 
 
-def _evaluate_rule(rule, fields_list):
+def _find_best_any_option(options, fields_list):
     """
-    Evaluate a DSL rule against a list of available fields.
+    Find the option from an "any" rule with the fewest missing fields.
 
-    Rules can be:
-    - A string: the field must be present in fields_list
-    - {"all": [...]}: all sub-rules must be satisfied (logical AND)
-    - {"any": [...]}: at least one sub-rule must be satisfied (logical OR)
-
-    Returns True if the rule is satisfied, False otherwise.
+    Returns (best_option, missing_fields) tuple.
     """
-    if isinstance(rule, str):
-        return rule in fields_list
-    if isinstance(rule, dict):
-        if "all" in rule:
-            return all(_evaluate_rule(sub_rule, fields_list) for sub_rule in rule["all"])
-        if "any" in rule:
-            return any(_evaluate_rule(sub_rule, fields_list) for sub_rule in rule["any"])
-    return False
+    best_option = None
+    best_missing = None
+
+    for option in options:
+        missing = _get_missing_fields(option, fields_list)
+        if not missing:
+            return option, []
+        if best_option is None or len(missing) < len(best_missing):
+            best_option, best_missing = option, missing
+
+    return best_option, best_missing
 
 
-def _get_required_fields(rule):
+def _get_required_fields(rule, fields_list):
     """
-    Extract all field names from a DSL rule for display purposes.
+    Extract field names from a DSL rule for display purposes.
 
-    For "any" rules, shows the first option's fields as the representative requirement.
+    For "any" rules, picks the option with the fewest missing fields.
     """
     if isinstance(rule, str):
         return [rule]
@@ -613,11 +611,11 @@ def _get_required_fields(rule):
         if "all" in rule:
             fields = []
             for sub_rule in rule["all"]:
-                fields.extend(_get_required_fields(sub_rule))
+                fields.extend(_get_required_fields(sub_rule, fields_list))
             return fields
-        if rule.get("any"):
-            # Return the first option as the representative
-            return _get_required_fields(rule["any"][0])
+        if "any" in rule:
+            best_option, _ = _find_best_any_option(rule["any"], fields_list)
+            return _get_required_fields(best_option, fields_list)
     return []
 
 
@@ -625,10 +623,10 @@ def _get_missing_fields(rule, fields_list):
     """
     Get the missing fields for a DSL rule.
 
-    For "any" rules, returns missing fields from the option that has the fewest missing fields.
+    For "any" rules, returns missing fields from the option with the fewest missing fields.
     """
     if isinstance(rule, str):
-        return [rule] if rule not in fields_list else []
+        return [] if rule in fields_list else [rule]
     if isinstance(rule, dict):
         if "all" in rule:
             missing = []
@@ -636,15 +634,8 @@ def _get_missing_fields(rule, fields_list):
                 missing.extend(_get_missing_fields(sub_rule, fields_list))
             return missing
         if "any" in rule:
-            # Find the option with the fewest missing fields
-            best_missing = None
-            for sub_rule in rule["any"]:
-                sub_missing = _get_missing_fields(sub_rule, fields_list)
-                if not sub_missing:
-                    return []  # Found a satisfied option
-                if best_missing is None or len(sub_missing) < len(best_missing):
-                    best_missing = sub_missing
-            return best_missing or []
+            _, best_missing = _find_best_any_option(rule["any"], fields_list)
+            return best_missing
     return []
 
 
@@ -659,9 +650,11 @@ def redflags_checks(fields_list):
             {
                 "red_flag": name,
                 "R_id": r_id,
-                "fields needed": ", ".join(_get_required_fields(rule)),
-                "calculation": "possible to calculate" if _evaluate_rule(rule, fields_list) else "missing fields",
-                "missing fields": ", ".join(_get_missing_fields(rule, fields_list)),
+                "fields needed": ", ".join(_get_required_fields(rule, fields_list)),
+                "calculation": "possible to calculate"
+                if not (missing := _get_missing_fields(rule, fields_list))
+                else "missing fields",
+                "missing fields": ", ".join(missing),
             }
             for r_id, (name, rule) in RED_FLAGS.items()
         ]
@@ -676,19 +669,22 @@ def check_red_flags_indicators(result):
     return result.merge(indicators.iloc[:, [0, 5, 6, 7]], on="R_id")
 
 
-def get_coverage():
+def get_coverage(fields_list):
     """Calculate coverage for each red flag indicator using DSL rules."""
     return [
-        pd.to_numeric(calculate_coverage(_get_required_fields(rule), "release_summary")["total_percentage"][0])
+        pd.to_numeric(
+            calculate_coverage(_get_required_fields(rule, fields_list), "release_summary")["total_percentage"][0]
+        )
         for _name, rule in RED_FLAGS.values()
     ]
 
 
 def most_common_fields_to_calculate_indicators(fields_table):
     """Count the most common fields used across all red flag indicators using DSL rules."""
+    fields_list = fields_table["path"].tolist()
     fields_count = (
         pd.DataFrame.from_dict(
-            Counter(field for _name, rule in RED_FLAGS.values() for field in _get_required_fields(rule)),
+            Counter(field for _name, rule in RED_FLAGS.values() for field in _get_required_fields(rule, fields_list)),
             orient="index",
         )
         .reset_index()
@@ -696,5 +692,5 @@ def most_common_fields_to_calculate_indicators(fields_table):
         .sort_values("number of indicators", ascending=False)
         .reset_index(drop=True)
     )
-    fields_count["published"] = np.where(fields_count["field"].isin(fields_table["path"]), "yes", "no")
+    fields_count["published"] = np.where(fields_count["field"].isin(fields_list), "yes", "no")
     return fields_count
