@@ -89,7 +89,7 @@ pluggy==1.5.0
     #   -r requirements.txt
     #   diff-cover
     #   pytest
-pygments==2.18.0
+pygments==2.20.0
     # via
     #   -r requirements.txt
     #   diff-cover
