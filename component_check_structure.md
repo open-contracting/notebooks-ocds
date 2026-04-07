@@ -152,7 +152,7 @@ SELECT
     example_values
 FROM
     errors
-INNER JOIN examples USING (collection_id, error_type, error)
+INNER JOIN examples USING (collection_id, error_type, field, error)
 GROUP BY
     collection_id,
     error_type,
