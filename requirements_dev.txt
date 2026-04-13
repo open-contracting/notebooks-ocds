@@ -93,7 +93,8 @@ pygments==2.20.0
     # via
     #   -r requirements.txt
     #   diff-cover
-pytest==8.3.3
+    #   pytest
+pytest==9.0.3
     # via
     #   -r requirements.txt
     #   sqlfluff
