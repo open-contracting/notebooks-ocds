@@ -3,14 +3,15 @@
 # Generate a list of the fields published:
 
 fields_list = set(fields_table["path"])
-
-result = usability_checks(fields_list)
+indicators = load_indicators(prefix="U")
+result = indicator_checks(fields_list, indicators)
+result = result.rename(columns={"id": "U_id"})
 
 # ### Export and visualize results
 
 # #### Choose language of the export
 
-lang = get_usability_language_select_box()
+lang = widgets.Dropdown(options=["Spanish", "English"], description="language", style={"description_width": "initial"})
 lang
 
 # #### Load use case indicators spreadsheet

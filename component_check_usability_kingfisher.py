@@ -3,15 +3,16 @@
 # Generate a list of the fields published:
 
 fields_list = set(fields_table["path"])
-
-result = usability_checks(fields_list)
-result["coverage"] = get_coverage(fields_list)
+indicators = load_indicators(prefix="U")
+result = indicator_checks(fields_list, indicators)
+result = result.rename(columns={"id": "U_id"})
+result["coverage"] = get_coverage(fields_list, indicators)
 
 # ### Export and visualize results
 
 # #### Choose language of the export
 
-lang = get_usability_language_select_box()
+lang = widgets.Dropdown(options=["Spanish", "English"], description="language", style={"description_width": "initial"})
 lang
 
 # #### Load use case indicators spreadsheet
@@ -26,7 +27,7 @@ result_final
 #
 # This table shows the most frequent fields used to calculate indicators and if they are published.  You can use this table to highlight to the publisher the key data gaps.
 
-fields_count = most_common_fields_to_calculate_indicators(fields_list)
+fields_count = most_common_fields_to_calculate_indicators(fields_list, indicators)
 fields_count
 
 # #### Save tables to spreadsheet

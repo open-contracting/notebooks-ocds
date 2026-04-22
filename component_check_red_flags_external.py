@@ -3,8 +3,9 @@
 # Generate a list of the fields published:
 
 fields_list = set(fields_table["path"])
-
-result = redflags_checks(fields_list)
+indicators = load_indicators(prefix="R")
+result = indicator_checks(fields_list, indicators)
+result = result.rename(columns={"id": "R_id", "indicator": "red_flag"})
 
 # ### Export results
 
@@ -24,7 +25,7 @@ table
 
 # #### Most common fields to indicators
 
-common_fields = most_common_fields_to_calculate_indicators(fields_list)
+common_fields = most_common_fields_to_calculate_indicators(fields_list, indicators)
 common_fields
 
 # #### Save the table to a spreadsheet
