@@ -76,3 +76,6 @@ preferred_type_casting_style = "shorthand"
 
 [tool.sqlfluff.rules.convention.not_equal]
 preferred_not_equal_style = "ansi"
+
+[tool.uv.pip]
+exclude-newer = "1 week"
