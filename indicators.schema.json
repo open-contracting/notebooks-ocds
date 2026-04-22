@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "indicators.schema.json",
+  "title": "Indicators",
+  "description": "Schema for OCDS usability and red flags indicators with shared rules",
+  "type": "object",
+  "required": ["indicators"],
+  "additionalProperties": false,
+  "properties": {
+    "rules": {
+      "type": "object",
+      "description": "Reusable rule definitions that can be referenced via $ref",
+      "additionalProperties": {
+        "$ref": "#/$defs/rule"
+      }
+    },
+    "indicators": {
+      "type": "object",
+      "description": "Indicator definitions keyed by ID (U### for usability, R### for red flags)",
+      "propertyNames": {
+        "pattern": "^[UR][0-9]{3}$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["name", "rule"],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Human-readable name of the indicator"
+          },
+          "rule": {
+            "$ref": "#/$defs/rule"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "rule": {
+      "description": "A rule specifying required fields using all/any logic",
+      "oneOf": [
+        {
+          "type": "string",
+          "description": "A field path (e.g., 'tender/id')"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["all"],
+          "properties": {
+            "all": {
+              "type": "array",
+              "description": "All sub-rules must be satisfied (logical AND)",
+              "items": {
+                "$ref": "#/$defs/rule"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["any"],
+          "properties": {
+            "any": {
+              "type": "array",
+              "description": "At least one sub-rule must be satisfied (logical OR)",
+              "items": {
+                "$ref": "#/$defs/rule"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["$ref"],
+          "properties": {
+            "$ref": {
+              "type": "string",
+              "description": "Reference to a rule defined in the rules object"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

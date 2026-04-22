@@ -1,0 +1,1089 @@
+{
+  "rules": {
+    "USABILITY_BUYER_RULE": {
+      "any": [
+        {"all": ["buyer/name", "buyer/id"]},
+        {"all": ["tender/procuringEntity/name", "tender/procuringEntity/id"]},
+        {"all": ["parties/identifier/name", "parties/identifier/id", "parties/roles"]}
+      ]
+    },
+    "REDFLAGS_BUYER_RULE": {
+      "any": [
+        {"all": ["buyer/name", "buyer/id"]},
+        {"all": ["tender/procuringEntity/name", "tender/procuringEntity/id"]},
+        {"all": ["parties/name", "parties/id", "parties/roles"]}
+      ]
+    },
+    "TENDERERS_RULE": {
+      "any": [
+        "tender/tenderers/id",
+        "bids/details/tenderers/id"
+      ]
+    },
+    "ITEM_CLASSIFICATIONS_RULE": {
+      "any": [
+        {"all": ["tender/items/classification/id", "tender/items/classification/scheme"]},
+        {"all": ["awards/items/classification/id", "awards/items/classification/scheme"]},
+        {"all": ["contracts/items/classification/id", "contracts/items/classification/scheme"]}
+      ]
+    },
+    "AWARDS_WITH_VALUES_RULE": {
+      "any": [
+        {"all": ["contracts/id", "contracts/status", "contracts/value/amount", "contracts/value/currency"]},
+        {"all": ["awards/id", "awards/status", "awards/value/amount", "awards/value/currency"]}
+      ]
+    },
+    "USABILITY_TENDERERS_COUNT_RULE": {
+      "any": [
+        "tender/numberOfTenderers",
+        "tender/tenderers/id",
+        "bids/details/tenderers/id"
+      ]
+    },
+    "REDFLAGS_TENDERERS_COUNT_RULE": {
+      "any": [
+        "tender/numberOfTenderers",
+        "tender/tenderers/id",
+        "bids/details/tenderers/id",
+        "bids/statistics/value"
+      ]
+    },
+    "AWARDS_WITH_ITEMS_RULE": {
+      "any": [
+        {
+          "all": [
+            "awards/status",
+            "awards/value/amount",
+            "awards/value/currency",
+            "awards/items/classification/id",
+            "awards/items/classification/scheme"
+          ]
+        },
+        {
+          "all": [
+            "contracts/status",
+            "contracts/value/amount",
+            "contracts/value/currency",
+            "contracts/items/classification/id",
+            "contracts/items/classification/scheme"
+          ]
+        }
+      ]
+    },
+    "TENDER_VALUE_RULE": {
+      "any": [
+        {"all": ["planning/budget/amount/amount", "planning/budget/amount/currency"]},
+        {"all": ["tender/value/amount", "tender/value/currency"]}
+      ]
+    },
+    "AWARDS_OR_CONTRACTS_RULE": {
+      "any": [
+        {"all": ["awards/status", "awards/date", "awards/value/amount", "awards/value/currency"]},
+        {"all": ["contracts/status", "contracts/dateSigned", "contracts/value/amount", "contracts/value/currency"]}
+      ]
+    },
+    "WINNING_BID_RULE": {
+      "any": [
+        {"all": ["awards/relatedBid"]},
+        {"all": ["bids/details/tenderers/id", "awards/suppliers/id"]}
+      ]
+    },
+    "BIDDERS_INFO_RULE": {
+      "any": [
+        "parties/contactPoint/telephone",
+        "parties/address/streetAddress",
+        "parties/address/postalCode"
+      ]
+    }
+  },
+  "indicators": {
+    "U001": {
+      "name": "Total number of procedures",
+      "rule": {"all": ["ocid"]}
+    },
+    "U002": {
+      "name": "Total number of procuring entities",
+      "rule": {"all": ["ocid", {"$ref": "USABILITY_BUYER_RULE"}]}
+    },
+    "U003": {
+      "name": "Total number of unique bidders",
+      "rule": {"all": ["ocid", {"$ref": "TENDERERS_RULE"}]}
+    },
+    "U004": {
+      "name": "Total number of awarded suppliers",
+      "rule": {"all": ["awards/id", "awards/suppliers/id", "awards/suppliers/name", "awards/status"]}
+    },
+    "U005": {
+      "name": "Total number of procedures by year or month",
+      "rule": {"all": ["ocid", "date"]}
+    },
+    "U006": {
+      "name": "Total value awarded",
+      "rule": {"all": ["ocid", "awards/status", "awards/value/amount", "awards/value/currency"]}
+    },
+    "U007": {
+      "name": "Share of procedures by status",
+      "rule": {"all": ["ocid", "tender/status"]}
+    },
+    "U008": {
+      "name": "Number of procedures by item type",
+      "rule": {"all": ["ocid", {"$ref": "ITEM_CLASSIFICATIONS_RULE"}]}
+    },
+    "U009": {
+      "name": "Proportion of procedures by procurement category",
+      "rule": {"all": ["ocid", "tender/mainProcurementCategory"]}
+    },
+    "U010": {
+      "name": "Percent of tenders by procedure type",
+      "rule": {"all": ["ocid", "tender/procurementMethod"]}
+    },
+    "U011": {
+      "name": "Percent of tenders awarded by means of competitive procedures",
+      "rule": {"all": ["ocid", "tender/procurementMethod", "awards/status"]}
+    },
+    "U012": {
+      "name": "Percent of contracts awarded under each procedure type",
+      "rule": {
+        "all": [
+          "ocid",
+          "tender/procurementMethod",
+          {"any": [{"all": ["contracts/id", "contracts/status"]}, {"all": ["awards/id", "awards/status"]}]}
+        ]
+      }
+    },
+    "U013": {
+      "name": "Total contracted value awarded under each procedure type",
+      "rule": {"all": ["ocid", "tender/procurementMethod", {"$ref": "AWARDS_WITH_VALUES_RULE"}]}
+    },
+    "U014": {
+      "name": "Total awarded value of tenders awarded by means of competitive procedures",
+      "rule": {"all": ["ocid", "tender/procurementMethod", {"$ref": "AWARDS_WITH_VALUES_RULE"}]}
+    },
+    "U015": {
+      "name": "Proportion of single bid tenders",
+      "rule": {"all": ["ocid", "tender/procurementMethod", {"$ref": "USABILITY_TENDERERS_COUNT_RULE"}]}
+    },
+    "U016": {
+      "name": "Proportion of value awarded in single bid tenders vs competitive tenders",
+      "rule": {
+        "all": [
+          "ocid",
+          "tender/procurementMethod",
+          "awards/status",
+          "awards/value/amount",
+          "awards/value/currency",
+          {"$ref": "USABILITY_TENDERERS_COUNT_RULE"}
+        ]
+      }
+    },
+    "U017": {
+      "name": "Mean number of bidders per tender",
+      "rule": {"all": ["ocid", "tender/procurementMethod", {"$ref": "USABILITY_TENDERERS_COUNT_RULE"}]}
+    },
+    "U018": {
+      "name": "Median number of bidders per tender",
+      "rule": {"all": ["ocid", "tender/procurementMethod", {"$ref": "USABILITY_TENDERERS_COUNT_RULE"}]}
+    },
+    "U019": {
+      "name": "Mean number of bidders by item type",
+      "rule": {"all": ["ocid", "tender/procurementMethod", {"$ref": "USABILITY_TENDERERS_COUNT_RULE"}, {"$ref": "ITEM_CLASSIFICATIONS_RULE"}]}
+    },
+    "U020": {
+      "name": "Number of suppliers by item type",
+      "rule": {"all": ["awards/id", "awards/suppliers/id", "awards/suppliers/name", {"$ref": "ITEM_CLASSIFICATIONS_RULE"}]}
+    },
+    "U021": {
+      "name": "Number of new bidders in a system",
+      "rule": {"all": ["tender/id", "tender/tenderers/id", "tender/tenderPeriod/startDate"]}
+    },
+    "U022": {
+      "name": "Percent of new bidders to all bidders",
+      "rule": {"all": ["tender/id", "tender/tenderers/id", "tender/tenderPeriod/startDate"]}
+    },
+    "U023": {
+      "name": "Percent of tenders with at least three participants deemed qualified",
+      "rule": {"all": ["ocid", "bids/details/tenderers/id", "bids/details/id", "bids/details/status"]}
+    },
+    "U024": {
+      "name": "Mean percent of bids which are disqualified",
+      "rule": {"all": ["tender/id", "bids/details/id", "bids/details/status"]}
+    },
+    "U025": {
+      "name": "Percent of contracts awarded to top 10 suppliers with largest contracted totals",
+      "rule": {"all": ["awards/id", "awards/suppliers/id", "awards/suppliers/name", {"$ref": "AWARDS_WITH_VALUES_RULE"}]}
+    },
+    "U026": {
+      "name": "Mean number of unique suppliers per buyer",
+      "rule": {"all": ["ocid", "awards/suppliers/id", "awards/suppliers/name", {"$ref": "USABILITY_BUYER_RULE"}]}
+    },
+    "U027": {
+      "name": "Number of new awarded suppliers",
+      "rule": {"all": ["awards/id", "awards/suppliers/id", "awards/suppliers/name", "awards/date"]}
+    },
+    "U028": {
+      "name": "Percent of awards awarded to new suppliers",
+      "rule": {"all": ["awards/id", "awards/suppliers/id", "awards/suppliers/name", "awards/date"]}
+    },
+    "U029": {
+      "name": "Total awarded value awarded to new suppliers",
+      "rule": {
+        "all": [
+          "awards/id",
+          "awards/suppliers/id",
+          "awards/suppliers/name",
+          "awards/date",
+          "awards/value/amount",
+          "awards/value/currency"
+        ]
+      }
+    },
+    "U030": {
+      "name": "Percent of new suppliers to all suppliers",
+      "rule": {"all": ["awards/id", "awards/suppliers/id", "awards/suppliers/name", "awards/date"]}
+    },
+    "U031": {
+      "name": "Percent of growth of new awarded suppliers in a system",
+      "rule": {"all": ["awards/id", "awards/suppliers/id", "awards/suppliers/name", "awards/date"]}
+    },
+    "U032": {
+      "name": "Percent of total awarded value awarded to recurring suppliers",
+      "rule": {
+        "all": [
+          "awards/id",
+          "awards/suppliers/id",
+          "awards/suppliers/name",
+          "awards/date",
+          "awards/value/amount",
+          "awards/value/currency"
+        ]
+      }
+    },
+    "U033": {
+      "name": "Mean number of bids necessary to win",
+      "rule": {"all": ["ocid", "tender/tenderers/id", "awards/suppliers/id", "awards/suppliers/name"]}
+    },
+    "U034": {
+      "name": "Market concentration, market share of the largest company in the market",
+      "rule": {"all": ["awards/suppliers/id", "awards/suppliers/name", {"$ref": "AWARDS_WITH_ITEMS_RULE"}]}
+    },
+    "U035": {
+      "name": "Proportion of contracts awarded by supplier by non competitive procedures",
+      "rule": {"all": ["ocid", "tender/procurementMethod", "awards/status", "awards/suppliers/id", "awards/suppliers/name"]}
+    },
+    "U036": {
+      "name": "Region of the supplier",
+      "rule": {"all": ["parties/roles", "parties/identifier/id", "parties/address/region"]}
+    },
+    "U037": {
+      "name": "Number of bids submitted by supplier",
+      "rule": {"all": ["awards/suppliers/id", {"$ref": "TENDERERS_RULE"}]}
+    },
+    "U038": {
+      "name": "Success rate of bidders",
+      "rule": {"all": ["ocid", "tender/tenderers/id", "awards/suppliers/id", "awards/suppliers/name"]}
+    },
+    "U039": {
+      "name": "Number of unique items classifications awarded by supplier",
+      "rule": {"all": ["awards/id", "awards/suppliers/id", "awards/suppliers/name", {"$ref": "ITEM_CLASSIFICATIONS_RULE"}]}
+    },
+    "U040": {
+      "name": "Total value awarded by supplier",
+      "rule": {"all": ["awards/suppliers/id", "awards/suppliers/name", {"$ref": "AWARDS_WITH_VALUES_RULE"}]}
+    },
+    "U041": {
+      "name": "Share of total value awarded by supplier",
+      "rule": {"all": ["awards/suppliers/id", "awards/suppliers/name", {"$ref": "AWARDS_WITH_VALUES_RULE"}]}
+    },
+    "U042": {
+      "name": "Total number of contracts awarded by supplier",
+      "rule": {
+        "all": [
+          "awards/id",
+          "awards/suppliers/id",
+          "awards/suppliers/name",
+          {"any": ["awards/status", "contracts/status"]}
+        ]
+      }
+    },
+    "U043": {
+      "name": "Number of procuring entities by supplier",
+      "rule": {"all": ["ocid", "awards/suppliers/id", "awards/suppliers/name", {"$ref": "USABILITY_BUYER_RULE"}]}
+    },
+    "U044": {
+      "name": "Share of single bid awards by supplier",
+      "rule": {
+        "all": [
+          "ocid",
+          "awards/suppliers/id",
+          "awards/suppliers/name",
+          "awards/status",
+          "tender/procurementMethod",
+          {"$ref": "USABILITY_TENDERERS_COUNT_RULE"}
+        ]
+      }
+    },
+    "U045": {
+      "name": "Percent of tenders with linked procurement plans",
+      "rule": {"all": ["tender/id", "tender/documents/documentType"]}
+    },
+    "U046": {
+      "name": "Percent of contracts which publish information on debarments",
+      "rule": {"all": ["contracts/id", "contracts/implementation/documents/documentType"]}
+    },
+    "U047": {
+      "name": "The percent of tenders for which the tender documentation was added after publication of the announcement",
+      "rule": {"all": ["tender/id", "tender/documents/documentType", "tender/documents/datePublished"]}
+    },
+    "U048": {
+      "name": "Mean number of contract amendments per buyer",
+      "rule": {"all": ["ocid", "contracts/id", "contracts/amendments", {"$ref": "USABILITY_BUYER_RULE"}]}
+    },
+    "U049": {
+      "name": "Percent of tenders which have been closed for more than 30 days, but whose basic awards information is not published",
+      "rule": {
+        "all": [
+          "tender/id",
+          "tender/tenderPeriod/endDate",
+          "awards/id",
+          "awards/date",
+          "awards/status",
+          "awards/value/amount",
+          "awards/suppliers/id",
+          "awards/suppliers/name"
+        ]
+      }
+    },
+    "U050": {
+      "name": "Percent of awards which are older than 30 days, but whose contract is not published",
+      "rule": {
+        "all": [
+          "awards/id",
+          "awards/date",
+          "contracts/awardID",
+          "contracts/status",
+          "contracts/dateSigned",
+          "contracts/documents/documentType"
+        ]
+      }
+    },
+    "U051": {
+      "name": "Percent of tenders that do not specify place of delivery",
+      "rule": {"all": ["ocid", "tender/items/deliveryLocation", "tender/items/deliveryAddress"]}
+    },
+    "U052": {
+      "name": "Percent of tenders that do not specify date of delivery",
+      "rule": {
+        "all": [
+          "tender/milestones/id",
+          "tender/milestones/type",
+          "tender/milestones/description",
+          "tender/milestones/dueDate"
+        ]
+      }
+    },
+    "U053": {
+      "name": "Percent of tenders with short titles for example fewer than 10 characters in the title",
+      "rule": {"all": ["tender/id", "tender/title"]}
+    },
+    "U054": {
+      "name": "Percent of tenders with short descriptions for instance fewer than 30 characters in the description",
+      "rule": {"all": ["tender/id", "tender/description"]}
+    },
+    "U055": {
+      "name": "Percent of tenders that do not include detailed item codes or item descriptions",
+      "rule": {"all": ["tender/id", "tender/items/classification/id", "tender/items/classification/scheme"]}
+    },
+    "U056": {
+      "name": "Percent of contracts that do not have amendments",
+      "rule": {"all": ["contracts/id", "contracts/amendments"]}
+    },
+    "U057": {
+      "name": "Percent of contracts which publish contract implementation details financial",
+      "rule": {
+        "all": [
+          "contracts/implementation/transactions/id",
+          "contracts/implementation/transactions/value/amount",
+          "contracts/implementation/transactions/value/currency"
+        ]
+      }
+    },
+    "U058": {
+      "name": "Percent of contracts which publish contract implementation details physical",
+      "rule": {
+        "all": [
+          "contracts/implementation/milestones/type",
+          "contracts/implementation/milestones/id",
+          "contracts/implementation/milestones/dueDate",
+          "contracts/implementation/milestones/status"
+        ]
+      }
+    },
+    "U059": {
+      "name": "Average duration of tendering period days",
+      "rule": {"all": ["ocid", "tender/tenderPeriod/startDate", "tender/tenderPeriod/endDate"]}
+    },
+    "U060": {
+      "name": "Average duration of decision period days",
+      "rule": {"all": ["ocid", "tender/tenderPeriod/endDate", "awards/date"]}
+    },
+    "U061": {
+      "name": "Average days from award date to start of implementation",
+      "rule": {
+        "all": [
+          "awards/id",
+          "awards/date",
+          {"any": ["contracts/period/startDate", "awards/contractPeriod/startDate"]}
+        ]
+      }
+    },
+    "U062": {
+      "name": "Days between award date and tender start date",
+      "rule": {"all": ["ocid", "tender/tenderPeriod/startDate", "awards/date"]}
+    },
+    "U063": {
+      "name": "Percent of canceled tenders to awarded tenders",
+      "rule": {"all": ["ocid", "tender/status", "awards/status"]}
+    },
+    "U064": {
+      "name": "Percent of contracts which are canceled",
+      "rule": {"all": ["contracts/id", "contracts/status"]}
+    },
+    "U065": {
+      "name": "Price variation of same item across all awards",
+      "rule": {
+        "all": [
+          {"$ref": "AWARDS_WITH_ITEMS_RULE"},
+          {
+            "any": [
+              {"all": ["awards/items/quantity", "awards/items/unit"]},
+              {"all": ["contracts/items/quantity", "contracts/items/unit"]}
+            ]
+          }
+        ]
+      }
+    },
+    "U066": {
+      "name": "Percent of contracts that exceed budget",
+      "rule": {"all": ["ocid", "contracts/status", "contracts/value/amount", "contracts/value/currency", {"$ref": "TENDER_VALUE_RULE"}]}
+    },
+    "U067": {
+      "name": "Mean percent overrun of contracts that exceed budget",
+      "rule": {"all": ["ocid", "contracts/status", "contracts/value/amount", "contracts/value/currency", {"$ref": "TENDER_VALUE_RULE"}]}
+    },
+    "U068": {
+      "name": "Total percent savings difference between budget and contract value",
+      "rule": {
+        "all": [
+          "ocid",
+          "planning/budget/amount/amount",
+          "planning/budget/amount/currency",
+          "contracts/value/amount",
+          "contracts/value/currency"
+        ]
+      }
+    },
+    "U069": {
+      "name": "Total percent savings difference between tender value estimate and contract value",
+      "rule": {
+        "all": [
+          "ocid",
+          "tender/value/amount",
+          "tender/value/currency",
+          "contracts/value/amount",
+          "contracts/value/currency"
+        ]
+      }
+    },
+    "U070": {
+      "name": "Percent of contracts completed on time",
+      "rule": {"all": ["contracts/id", "contracts/period/endDate", "contracts/status"]}
+    },
+    "U071": {
+      "name": "Share of contracts whose milestones are completed on time",
+      "rule": {
+        "all": [
+          "contracts/id",
+          "contracts/implementation/milestones/dueDate",
+          "contracts/implementation/milestones/dateMet"
+        ]
+      }
+    },
+    "R001": {
+      "name": "Planning documents not available",
+      "rule": {"all": ["planning/documents/documentType"]}
+    },
+    "R002": {
+      "name": "Manipulation of procurement thresholds",
+      "rule": {
+        "all": [
+          "tender/value/amount",
+          "tender/value/currency",
+          "tender/procurementMethod",
+          "tender/tenderPeriod/startDate",
+          {"$ref": "REDFLAGS_BUYER_RULE"}
+        ]
+      }
+    },
+    "R003": {
+      "name": "The submission period is too short",
+      "rule": {"all": ["tender/tenderPeriod/startDate", "tender/tenderPeriod/endDate", "tender/procurementMethod"]}
+    },
+    "R004": {
+      "name": "Failure to adequately advertise the request for bids",
+      "rule": {"all": ["tender/documents/documentType", "tender/documents/datePublished", "tender/tenderPeriod/startDate"]}
+    },
+    "R005": {
+      "name": "Key tender information and documents are not available",
+      "rule": {
+        "all": [
+          "tender/documents/documentType",
+          "tender/documents/datePublished",
+          "tender/tenderPeriod/startDate",
+          "tender/tenderPeriod/endDate"
+        ]
+      }
+    },
+    "R006": {
+      "name": "Unreasonable prequalification requirements",
+      "rule": {"all": ["tender/eligibilityCriteria"]}
+    },
+    "R007": {
+      "name": "Unreasonable technical specifications",
+      "rule": {
+        "all": [
+          "tender/documents/documentType",
+          "tender/procurementMethod",
+          "tender/items/classification/id",
+          "tender/items/classification/scheme",
+          {"$ref": "REDFLAGS_BUYER_RULE"},
+          "tender/value/amount"
+        ]
+      }
+    },
+    "R008": {
+      "name": "Unreasonable participation fees",
+      "rule": {
+        "all": [
+          "tender/participationFees/value/amount",
+          "tender/participationFees/value/currency",
+          "tender/value/amount"
+        ]
+      }
+    },
+    "R009": {
+      "name": "Buyer increases the cost of the bidding documents",
+      "rule": {"all": ["tender/participationFees/value/amount", "tender/participationFees/value/currency", "date"]}
+    },
+    "R010": {
+      "name": "Unjustified use of non competitive procedure",
+      "rule": {"all": ["tender/procurementMethod", "tender/procurementMethodDetails", "tender/procurementMethodRationale"]}
+    },
+    "R011": {
+      "name": "Splitting purchases to avoid procurement thresholds",
+      "rule": {
+        "all": [
+          "tender/procurementMethod",
+          {"$ref": "ITEM_CLASSIFICATIONS_RULE"},
+          "tender/value/amount",
+          "tender/value/currency",
+          "tender/tenderPeriod/startDate",
+          {"$ref": "REDFLAGS_BUYER_RULE"}
+        ]
+      }
+    },
+    "R012": {
+      "name": "Direct awards in contravention of the provisions of the procurement plan",
+      "rule": {"all": ["tender/procurementMethod", "tender/procurementMethodDetails", "planning/documents/documentType"]}
+    },
+    "R013": {
+      "name": "High use of non competitive methods",
+      "rule": {"all": ["tender/procurementMethod", {"$ref": "REDFLAGS_BUYER_RULE"}]}
+    },
+    "R014": {
+      "name": "Short time between tender advertising and bid opening",
+      "rule": {"all": ["tender/tenderPeriod/startDate", "tender/bidOpening/date", "tender/procurementMethod"]}
+    },
+    "R015": {
+      "name": "Long time between bid opening and bid evaluation",
+      "rule": {"all": ["tender/bidOpening/date", "tender/awardPeriod/startDate", "tender/procurementMethod"]}
+    },
+    "R016": {
+      "name": "Tender value is higher or lower than average for this item category",
+      "rule": {
+        "all": [
+          "tender/value/amount",
+          "tender/value/currency",
+          {"$ref": "ITEM_CLASSIFICATIONS_RULE"},
+          "tender/procurementMethod"
+        ]
+      }
+    },
+    "R017": {
+      "name": "Unreasonably low or high line item",
+      "rule": {
+        "all": [
+          {"$ref": "ITEM_CLASSIFICATIONS_RULE"},
+          {
+            "any": [
+              {"all": ["tender/items/unit/value/amount", "tender/items/unit/value/currency"]},
+              {"all": ["awards/items/unit/value/amount", "awards/items/unit/value/currency"]},
+              {"all": ["contracts/items/unit/value/amount", "contracts/items/unit/value/currency"]}
+            ]
+          }
+        ]
+      }
+    },
+    "R018": {
+      "name": "Single bid received",
+      "rule": {"all": ["tender/procurementMethod", {"$ref": "REDFLAGS_TENDERERS_COUNT_RULE"}]}
+    },
+    "R019": {
+      "name": "Low number of bidders for item and procuring entity",
+      "rule": {"all": ["tender/procurementMethod", {"$ref": "ITEM_CLASSIFICATIONS_RULE"}, {"$ref": "REDFLAGS_BUYER_RULE"}, {"$ref": "REDFLAGS_TENDERERS_COUNT_RULE"}]}
+    },
+    "R020": {
+      "name": "Tender has a complaint",
+      "rule": {"all": ["complaints/id"]}
+    },
+    "R021": {
+      "name": "High use of discretionary evaluation criteria",
+      "rule": {"all": ["tender/awardCriteria", {"$ref": "REDFLAGS_BUYER_RULE"}]}
+    },
+    "R022": {
+      "name": "Wide disparity in bid prices",
+      "rule": {
+        "all": [
+          "bids/details/id",
+          "bids/details/value/amount",
+          "bids/details/value/currency",
+          "bids/details/status"
+        ]
+      }
+    },
+    "R023": {
+      "name": "Fixed multiple bid prices",
+      "rule": {
+        "all": [
+          "bids/details/id",
+          "bids/details/value/amount",
+          "bids/details/value/currency",
+          "bids/details/status"
+        ]
+      }
+    },
+    "R024": {
+      "name": "Price close to winning bid",
+      "rule": {
+        "all": [
+          "bids/details/id",
+          "bids/details/value/amount",
+          "bids/details/value/currency",
+          "bids/details/status",
+          {"$ref": "WINNING_BID_RULE"}
+        ]
+      }
+    },
+    "R025": {
+      "name": "Excessive unsuccessful bids",
+      "rule": {"all": ["awards/suppliers/id", "bids/details/status", {"$ref": "TENDERERS_RULE"}]}
+    },
+    "R026": {
+      "name": "Prevalence of consortia",
+      "rule": {
+        "all": [
+          "awards/suppliers/id",
+          "awards/suppliers/name",
+          "awards/status",
+          "awards/date",
+          {"$ref": "ITEM_CLASSIFICATIONS_RULE"}
+        ]
+      }
+    },
+    "R027": {
+      "name": "Missing bidders",
+      "rule": {
+        "all": [
+          "tender/procurementMethod",
+          {"$ref": "ITEM_CLASSIFICATIONS_RULE"},
+          {"$ref": "TENDERERS_RULE"},
+          {"any": ["tender/tenderPeriod/startDate", "awards/date"]}
+        ]
+      }
+    },
+    "R028": {
+      "name": "Identical bid prices",
+      "rule": {
+        "all": [
+          "bids/details/id",
+          "bids/details/value/amount",
+          "bids/details/value/currency",
+          "bids/details/tenderers/id"
+        ]
+      }
+    },
+    "R029": {
+      "name": "Bid prices deviate from Benford's Law",
+      "rule": {
+        "all": [
+          {
+            "any": [
+              "tender/value/amount",
+              "bids/details/value/amount",
+              "awards/value/amount",
+              "contracts/value/amount"
+            ]
+          },
+          {"$ref": "ITEM_CLASSIFICATIONS_RULE"}
+        ]
+      }
+    },
+    "R030": {
+      "name": "Late bid won",
+      "rule": {
+        "all": [
+          "bids/details/id",
+          "bids/details/date",
+          "bids/details/status",
+          "tender/tenderPeriod/endDate",
+          {"$ref": "WINNING_BID_RULE"}
+        ]
+      }
+    },
+    "R031": {
+      "name": "Winning bid price very close or higher than estimated price",
+      "rule": {
+        "all": [
+          "bids/details/id",
+          "bids/details/value/amount",
+          "bids/details/value/currency",
+          "bids/details/status",
+          "tender/value/amount",
+          "tender/value/currency",
+          {"$ref": "WINNING_BID_RULE"}
+        ]
+      }
+    },
+    "R032": {
+      "name": "Bidders share same beneficial owner",
+      "rule": {"all": ["parties/roles", "parties/id", "parties/beneficialOwners/name", "parties/beneficialOwners/id"]}
+    },
+    "R033": {
+      "name": "Bidders share same major shareholder",
+      "rule": {
+        "all": [
+          "parties/roles",
+          "parties/id",
+          "parties/shareholders/shareholder/id",
+          "parties/shareholders/shareholding"
+        ]
+      }
+    },
+    "R034": {
+      "name": "Bids submitted in same order",
+      "rule": {
+        "all": [
+          "bids/details/id",
+          "bids/details/date",
+          "bids/details/tenderers/id",
+          "bids/details/tenderers/name",
+          "bids/details/status"
+        ]
+      }
+    },
+    "R035": {
+      "name": "All except winning bid disqualified",
+      "rule": {"all": ["bids/details/id", "bids/details/status", "awards/status", {"$ref": "WINNING_BID_RULE"}]}
+    },
+    "R036": {
+      "name": "Lowest bid disqualified",
+      "rule": {
+        "all": [
+          "tender/awardCriteria",
+          "bids/details/id",
+          "bids/details/value/amount",
+          "bids/details/value/currency",
+          "bids/details/status"
+        ]
+      }
+    },
+    "R037": {
+      "name": "Poorly supported disqualifications",
+      "rule": {
+        "all": [
+          "tender/awardCriteria",
+          "bids/details/id",
+          "bids/details/value/amount",
+          "bids/details/value/currency",
+          "bids/details/status",
+          "bids/details/documents"
+        ]
+      }
+    },
+    "R038": {
+      "name": "Excessive disqualified bids",
+      "rule": {"all": ["bids/details/id", "bids/details/status", {"$ref": "TENDERERS_RULE"}, {"$ref": "REDFLAGS_BUYER_RULE"}]}
+    },
+    "R039": {
+      "name": "Unanswered bidder questions",
+      "rule": {
+        "all": [
+          "tender/enquiries/date",
+          "tender/enquiries/dateAnswered",
+          "tender/enquiries/answer",
+          "tender/status"
+        ]
+      }
+    },
+    "R040": {
+      "name": "High share of buyers contracts",
+      "rule": {"all": [{"$ref": "REDFLAGS_BUYER_RULE"}, "awards/status", "awards/date", "awards/suppliers/id", "awards/suppliers/name"]}
+    },
+    "R041": {
+      "name": "Physical similarities in documents by different bidders",
+      "rule": {"all": ["bids/details/id", "bids/details/tenderers/id", "bids/documents/documentType"]}
+    },
+    "R042": {
+      "name": "Bidder has abnormal address or phone number",
+      "rule": {"all": [{"$ref": "BIDDERS_INFO_RULE"}]}
+    },
+    "R043": {
+      "name": "Bidder has same contact information as project official",
+      "rule": {
+        "all": [
+          "parties/roles",
+          "parties/id",
+          {
+            "any": [
+              "parties/contactPoint/telephone",
+              "parties/contactPoint/email",
+              "parties/contactPoint/name"
+            ]
+          }
+        ]
+      }
+    },
+    "R044": {
+      "name": "Business similarities between bidders",
+      "rule": {"all": ["parties/roles", "parties/id", {"$ref": "BIDDERS_INFO_RULE"}]}
+    },
+    "R045": {
+      "name": "Bidder is not listed in business registries",
+      "rule": {"all": ["parties/roles", "parties/id"]}
+    },
+    "R046": {
+      "name": "Bidder is debarred or on sanctions list",
+      "rule": {"all": ["parties/roles", "parties/id"]}
+    },
+    "R047": {
+      "name": "Supplier is not traceable on the web",
+      "rule": {"all": ["awards/suppliers/name", "awards/suppliers/id", "parties/contactPoint/url"]}
+    },
+    "R048": {
+      "name": "Heterogeneous supplier",
+      "rule": {"all": [{"$ref": "ITEM_CLASSIFICATIONS_RULE"}, "awards/suppliers/id", "awards/suppliers/name"]}
+    },
+    "R049": {
+      "name": "Direct awards below threshold",
+      "rule": {
+        "all": [
+          "awards/suppliers/id",
+          "awards/suppliers/name",
+          "awards/date",
+          "tender/procurementMethod",
+          {"$ref": "REDFLAGS_BUYER_RULE"}
+        ]
+      }
+    },
+    "R050": {
+      "name": "High market share",
+      "rule": {
+        "all": [
+          "awards/suppliers/id",
+          "awards/suppliers/name",
+          {"$ref": "REDFLAGS_BUYER_RULE"},
+          "awards/value/amount",
+          "awards/value/currency",
+          {"$ref": "ITEM_CLASSIFICATIONS_RULE"},
+          "awards/date",
+          "awards/status"
+        ]
+      }
+    },
+    "R051": {
+      "name": "High market concentration",
+      "rule": {"all": ["awards/suppliers/id", "awards/suppliers/name", {"$ref": "AWARDS_OR_CONTRACTS_RULE"}, {"$ref": "ITEM_CLASSIFICATIONS_RULE"}]}
+    },
+    "R052": {
+      "name": "Small initial purchase from supplier followed by much larger purchases",
+      "rule": {
+        "all": [
+          "awards/suppliers/id",
+          "awards/suppliers/name",
+          "tender/procurementMethod",
+          {"$ref": "REDFLAGS_BUYER_RULE"},
+          {"$ref": "AWARDS_OR_CONTRACTS_RULE"}
+        ]
+      }
+    },
+    "R053": {
+      "name": "Co-bidding pairs have same recurrent winner",
+      "rule": {"all": ["bids/details/id", "bids/details/status", {"$ref": "WINNING_BID_RULE"}]}
+    },
+    "R054": {
+      "name": "Direct award followed by change orders that exceed the competitive threshold",
+      "rule": {
+        "all": [
+          "tender/procurementMethod",
+          "awards/value/amount",
+          "awards/value/currency",
+          "contracts/value/amount",
+          "contracts/value/currency",
+          "contracts/amendments/description"
+        ]
+      }
+    },
+    "R055": {
+      "name": "Multiple direct awards above or just below competitive threshold",
+      "rule": {
+        "all": [
+          "tender/procurementMethod",
+          "awards/suppliers/id",
+          "awards/suppliers/name",
+          {"$ref": "AWARDS_OR_CONTRACTS_RULE"},
+          {"$ref": "REDFLAGS_BUYER_RULE"}
+        ]
+      }
+    },
+    "R056": {
+      "name": "Winning bid does not meet the award criteria",
+      "rule": {"all": ["tender/awardCriteria", "bids/details/status", "bids/details/documents", {"$ref": "WINNING_BID_RULE"}]}
+    },
+    "R057": {
+      "name": "Bid rotation",
+      "rule": {
+        "all": [
+          "bids/details/tenderers/id",
+          "bids/details/tenderers/name",
+          "awards/suppliers/id",
+          "awards/suppliers/name",
+          "bids/details/value/amount",
+          "bids/details/value/currency",
+          {"$ref": "ITEM_CLASSIFICATIONS_RULE"}
+        ]
+      }
+    },
+    "R058": {
+      "name": "Heavily discounted bid",
+      "rule": {
+        "all": [
+          "bids/details/id",
+          "bids/details/value/amount",
+          "bids/details/value/currency",
+          "bids/details/status",
+          {"$ref": "WINNING_BID_RULE"}
+        ]
+      }
+    },
+    "R059": {
+      "name": "Large difference between the award value and final contract amount",
+      "rule": {
+        "all": [
+          "awards/id",
+          "awards/status",
+          "awards/value/amount",
+          "awards/value/currency",
+          "contracts/awardID",
+          "contracts/value/amount",
+          "contracts/value/currency",
+          "contracts/status"
+        ]
+      }
+    },
+    "R060": {
+      "name": "Long time between award date and contract signature date",
+      "rule": {"all": ["awards/date", "contracts/dateSigned", "tender/procurementMethod"]}
+    },
+    "R061": {
+      "name": "Decision period extremely short",
+      "rule": {"all": ["tender/tenderPeriod/endDate", "awards/date", "tender/procurementMethod"]}
+    },
+    "R062": {
+      "name": "Decision period extremely long",
+      "rule": {"all": ["tender/tenderPeriod/endDate", "awards/date", "tender/procurementMethod"]}
+    },
+    "R063": {
+      "name": "Contract is not published",
+      "rule": {"all": ["contracts/documents/documentType"]}
+    },
+    "R064": {
+      "name": "Contract has modifications",
+      "rule": {"all": ["contracts/status", "contracts/amendments/description"]}
+    },
+    "R065": {
+      "name": "Contract amendments to reduce line items",
+      "rule": {"all": ["contracts/status", "contracts/amendments/description", "contracts/amendments/rationale"]}
+    },
+    "R066": {
+      "name": "Contract amendments to increase line items",
+      "rule": {"all": ["contracts/status", "contracts/amendments/description", "contracts/amendments/rationale"]}
+    },
+    "R067": {
+      "name": "Delivery failure",
+      "rule": {
+        "all": [
+          "contracts/implementation/milestones/type",
+          "contracts/implementation/milestones/dueDate",
+          "contracts/implementation/milestones/dateMet"
+        ]
+      }
+    },
+    "R068": {
+      "name": "Contract transactions exceed contract amount",
+      "rule": {
+        "all": [
+          "contracts/value/amount",
+          "contracts/value/currency",
+          {
+            "any": [
+              {"all": ["contracts/implementation/finalValue/amount", "contracts/implementation/finalValue/currency"]},
+              {"all": ["contracts/implementation/transactions/value/amount", "contracts/implementation/transactions/value/currency"]}
+            ]
+          }
+        ]
+      }
+    },
+    "R069": {
+      "name": "Contract amendments to increase price",
+      "rule": {"all": ["contracts/status", "contracts/amendments/description", "contracts/amendments/rationale"]}
+    },
+    "R070": {
+      "name": "Losing bidders are hired as subcontractors",
+      "rule": {
+        "all": [
+          "contracts/relatedProcesses",
+          "contracts/relatedProcesses/relationship",
+          "awards/suppliers/id",
+          {"$ref": "TENDERERS_RULE"}
+        ]
+      }
+    },
+    "R071": {
+      "name": "A contractor subcontracts all or most of the work received",
+      "rule": {"all": ["awards/hasSubcontracting", "awards/subcontracting/minimumPercentage"]}
+    },
+    "R072": {
+      "name": "High prevalence of subcontracts",
+      "rule": {"all": ["awards/hasSubcontracting", {"$ref": "REDFLAGS_BUYER_RULE"}]}
+    },
+    "R073": {
+      "name": "Discrepancies between work completed and contract specifications",
+      "rule": {
+        "all": [
+          "contracts/status",
+          "contracts/documents/documentType",
+          "contracts/implementation/documents/documentType"
+        ]
+      }
+    }
+  }
+}
