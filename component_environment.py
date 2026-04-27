@@ -30,14 +30,15 @@ from ocdskingfishercolab import (
     calculate_coverage,
     download_dataframe_as_csv,
     format_thousands,
+    indicator_checks,
+    load_indicators,
+    most_common_fields_to_calculate_indicators,
     render_json,
     save_dataframe_to_sheet,
     save_dataframe_to_spreadsheet,
     set_dark_mode,
     set_light_mode,
 )
-
-from indicators import indicator_checks, load_indicators, most_common_fields_to_calculate_indicators
 
 # Load https://pypi.org/project/ipython-sql/
 # %load_ext sql
