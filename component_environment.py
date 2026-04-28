@@ -2,10 +2,10 @@
 #
 # *You must run the cells in this section each time you connect to a new runtime. For example, when you return to the notebook after an idle timeout, when the runtime crashes, or when you restart or factory reset the runtime.*
 #
-# Install requirements (*Note: ocdskingfishercolab installs google-colab, which expects specific versions of pandas and numpy*):
+# Install requirements:
 
 # ! pip install --upgrade pip > pip.log
-# ! pip install --upgrade ocdskingfishercolab ipywidgets psycopg2-binary >> pip.log
+# ! pip install --upgrade ocdskingfishercolab psycopg2-binary >> pip.log
 
 # +
 # @title Import packages and load extensions { display-mode: "form" }
@@ -28,11 +28,21 @@ from ipywidgets import widgets
 from ocdskingfishercolab import (
     authenticate_gspread,
     calculate_coverage,
+    check_usability_indicators,
     download_dataframe_as_csv,
+    format_coverage,
     format_thousands,
+    get_publication_select_box,
+    get_publications,
     indicator_checks,
     load_indicators,
     most_common_fields_to_calculate_indicators,
+    plot_objects_per_stage,
+    plot_objects_per_year,
+    plot_release_count,
+    plot_releases_by_month,
+    plot_top_buyers,
+    plot_usability_indicators,
     render_json,
     save_dataframe_to_sheet,
     save_dataframe_to_spreadsheet,
