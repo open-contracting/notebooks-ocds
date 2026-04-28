@@ -5,7 +5,7 @@
 # Install requirements:
 
 # ! pip install --upgrade pip > pip.log
-# ! pip install --upgrade ocdskingfishercolab psycopg2-binary >> pip.log
+# ! pip install --upgrade git+https://github.com/open-contracting/kingfisher-colab@95-setup-functions psycopg2-binary >> pip.log
 
 # +
 # @title Import packages and load extensions { display-mode: "form" }
