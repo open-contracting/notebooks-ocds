@@ -27,28 +27,30 @@ from google.colab.files import download
 from ipywidgets import widgets
 from ocdskingfishercolab import (
     authenticate_gspread,
-    calculate_coverage,
-    check_usability_indicators,
     download_dataframe_as_csv,
-    format_coverage,
     format_thousands,
-    get_publication_select_box,
-    get_publications,
-    indicator_checks,
-    load_indicators,
-    most_common_fields_to_calculate_indicators,
-    plot_objects_per_stage,
-    plot_objects_per_year,
-    plot_release_count,
-    plot_releases_by_month,
-    plot_top_buyers,
-    plot_usability_indicators,
     render_json,
     save_dataframe_to_sheet,
     save_dataframe_to_spreadsheet,
     set_dark_mode,
     set_light_mode,
 )
+from ocdskingfishercolab.charts import (
+    plot_objects_per_stage,
+    plot_objects_per_year,
+    plot_release_count,
+    plot_releases_by_month,
+    plot_top_buyers,
+    plot_usability_indicators,
+)
+from ocdskingfishercolab.indicators.indicators import (
+    calculate_coverage,
+    indicator_checks,
+    load_indicators,
+    most_common_fields_to_calculate_indicators,
+)
+from ocdskingfishercolab.registry import format_coverage, get_publication_select_box, get_publications
+from ocdskingfishercolab.usability import check_red_flags_indicators, check_usability_indicators, is_relevant
 
 # Load https://pypi.org/project/ipython-sql/
 # %load_ext sql
