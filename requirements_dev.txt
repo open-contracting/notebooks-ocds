@@ -26,10 +26,6 @@ fastjsonschema==2.20.0
     # via
     #   -r requirements.txt
     #   nbformat
-iniconfig==2.0.0
-    # via
-    #   -r requirements.txt
-    #   pytest
 jinja2==3.1.6
     # via
     #   -r requirements.txt
@@ -74,7 +70,6 @@ packaging==24.1
     # via
     #   -r requirements.txt
     #   jupytext
-    #   pytest
 pathspec==0.12.1
     # via
     #   -r requirements.txt
@@ -88,16 +83,10 @@ pluggy==1.5.0
     # via
     #   -r requirements.txt
     #   diff-cover
-    #   pytest
 pygments==2.20.0
     # via
     #   -r requirements.txt
     #   diff-cover
-    #   pytest
-pytest==9.0.3
-    # via
-    #   -r requirements.txt
-    #   sqlfluff
 pyyaml==6.0.2
     # via
     #   -r requirements.txt
@@ -117,7 +106,7 @@ rpds-py==0.20.0
     #   -r requirements.txt
     #   jsonschema
     #   referencing
-sqlfluff==4.0.4
+sqlfluff==4.2.0
     # via -r requirements.txt
 tblib==3.0.0
     # via

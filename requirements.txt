@@ -18,8 +18,6 @@ diff-cover==9.2.0
     # via sqlfluff
 fastjsonschema==2.20.0
     # via nbformat
-iniconfig==2.0.0
-    # via pytest
 jinja2==3.1.6
     # via
     #   diff-cover
@@ -47,9 +45,7 @@ nbformat==5.10.4
     #   -r requirements.in
     #   jupytext
 packaging==24.1
-    # via
-    #   jupytext
-    #   pytest
+    # via jupytext
 pathspec==0.12.1
     # via sqlfluff
 platformdirs==4.2.2
@@ -57,15 +53,9 @@ platformdirs==4.2.2
     #   jupyter-core
     #   sqlfluff
 pluggy==1.5.0
-    # via
-    #   diff-cover
-    #   pytest
+    # via diff-cover
 pygments==2.20.0
-    # via
-    #   diff-cover
-    #   pytest
-pytest==9.0.3
-    # via sqlfluff
+    # via diff-cover
 pyyaml==6.0.2
     # via
     #   jupytext
@@ -80,7 +70,7 @@ rpds-py==0.20.0
     # via
     #   jsonschema
     #   referencing
-sqlfluff==4.0.4
+sqlfluff==4.2.0
     # via -r requirements.in
 tblib==3.0.0
     # via sqlfluff
