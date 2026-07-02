@@ -5,7 +5,7 @@
 # Install requirements (*Note: ocdskingfishercolab installs google-colab, which expects specific versions of pandas and numpy*):
 
 # ! pip install --upgrade pip > pip.log
-# ! pip install --upgrade ocdskingfishercolab ipywidgets psycopg2-binary >> pip.log
+# ! pip install --upgrade ocdskingfishercolab ipywidgets 'psycopg[binary]' >> pip.log
 
 # +
 # @title Import packages and load extensions { display-mode: "form" }
