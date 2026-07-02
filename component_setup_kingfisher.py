@@ -18,7 +18,7 @@ from ocdskingfishercolab import (
 user = input("Username:")
 password = getpass.getpass("Password:")
 connection_string = (
-    "postgresql://"
+    "postgresql+psycopg://"
     + user
     + ":"
     + password
