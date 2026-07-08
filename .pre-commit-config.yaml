@@ -21,7 +21,7 @@ repos:
     hooks:
       - id: local
         name: local
-        language: python
         entry: ./manage.py
+        language: python
         files: ^component_.*\.(md|py)$
         additional_dependencies: [click, jupytext, nbformat, sqlfluff]
