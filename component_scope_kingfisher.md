@@ -27,7 +27,7 @@ SELECT
 FROM
     collection
 WHERE
-    id IN :collection_ids
+    id = ANY(:collection_ids)
 ```
 
 ### Contracting process stages
@@ -96,7 +96,7 @@ LEFT JOIN (
     FROM
         field_counts
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type = 'compiled_release'
         AND path IN (
             'planning',
@@ -177,7 +177,7 @@ SELECT
 FROM
     release_summary
 WHERE
-    collection_id IN :collection_ids
+    collection_id = ANY(:collection_ids)
 GROUP BY
     collection_id,
     release_type,
@@ -211,7 +211,7 @@ SELECT
 FROM
     release_summary
 WHERE
-    collection_id IN :collection_ids
+    collection_id = ANY(:collection_ids)
     AND package_data IS NOT NULL
 GROUP BY
     collection_id,

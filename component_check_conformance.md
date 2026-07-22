@@ -47,7 +47,7 @@ SELECT ocid
 FROM
     release_summary
 WHERE
-    collection_id IN :collection_ids
+    collection_id = ANY(:collection_ids)
     AND ocid NOT LIKE :ocid_prefix
 ```
 
@@ -64,7 +64,7 @@ SELECT ocid
 FROM
     record_summary
 WHERE
-    collection_id IN :collection_ids
+    collection_id = ANY(:collection_ids)
     AND ocid NOT LIKE :ocid_prefix
 ```
 
@@ -89,7 +89,7 @@ SELECT
 FROM
     release_summary
 WHERE
-    collection_id IN :collection_ids
+    collection_id = ANY(:collection_ids)
     AND package_data IS NOT NULL
 GROUP BY
     collection_id,
@@ -131,7 +131,7 @@ WITH check_results AS (
     FROM
         release_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type <> 'compiled_release'
         AND random() < :sample_size
 ),
@@ -221,7 +221,7 @@ WITH additional_field_releases AS (
         ) AS additional_fields
     INNER JOIN release ON release_check.release_id = release.id
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND random() < :sample_size
 ),
 
@@ -284,7 +284,7 @@ WITH check_results AS (
     FROM
         release_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type <> 'compiled_release'
 )
 
@@ -339,5 +339,5 @@ CROSS JOIN
 CROSS JOIN jsonb_array_elements(deprecated_fields -> 'paths') AS paths
 INNER JOIN release ON release_check.release_id = release.id
 WHERE
-    collection_id IN :collection_ids;
+    collection_id = ANY(:collection_ids);
 ```

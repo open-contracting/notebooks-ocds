@@ -33,7 +33,7 @@ FROM
     release_check
 RIGHT JOIN release ON release_check.release_id = release.id
 WHERE
-    collection_id IN :collection_ids
+    collection_id = ANY(:collection_ids)
 GROUP BY
     collection_id
 UNION
@@ -57,7 +57,7 @@ FROM
     record_check
 RIGHT JOIN record ON record_check.record_id = record.id
 WHERE
-    collection_id IN :collection_ids
+    collection_id = ANY(:collection_ids)
 GROUP BY
     collection_id;
 ```
@@ -93,7 +93,7 @@ WITH errors AS (
         jsonb_array_elements(cove_output -> 'validation_errors') AS errors
     INNER JOIN release AS r ON rc.release_id = r.id
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
     UNION ALL
     SELECT
         collection_id,
@@ -120,7 +120,7 @@ WITH errors AS (
         jsonb_array_elements(cove_output -> 'validation_errors') AS errors
     INNER JOIN record AS r ON rc.record_id = r.id
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
 ),
 
 examples AS (
@@ -187,7 +187,7 @@ FROM
 CROSS JOIN jsonb_array_elements(cove_output -> 'validation_errors') AS errors
 INNER JOIN release AS r ON rc.release_id = r.id
 WHERE
-    collection_id IN :collection_ids
+    collection_id = ANY(:collection_ids)
 UNION ALL
 SELECT
     collection_id,
@@ -205,7 +205,7 @@ FROM
 CROSS JOIN jsonb_array_elements(cove_output -> 'validation_errors') AS errors
 INNER JOIN record AS r ON rc.record_id = r.id
 WHERE
-    collection_id IN :collection_ids
+    collection_id = ANY(:collection_ids)
 ```
 
 ```python
@@ -230,7 +230,7 @@ WITH check_results AS (
     FROM
         release_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type <> 'compiled_release'
 )
 

@@ -45,7 +45,7 @@ SELECT
 FROM
     release_summary
 WHERE
-    collection_id IN :collection_ids
+    collection_id = ANY(:collection_ids)
     AND release_type <> 'compiled_release'
 GROUP BY
     collection_id,
@@ -241,7 +241,7 @@ WITH release_counts AS (
     FROM
         release_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type IN ('release', 'embedded_release')
     GROUP BY
         collection_id,
@@ -278,7 +278,7 @@ WITH release_counts AS (
     FROM
         release_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type IN ('release', 'embedded_release')
     GROUP BY
         collection_id,
@@ -328,7 +328,7 @@ WITH ranked_ocids AS (
     FROM
         release_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type IN ('release', 'embedded_release')
     GROUP BY
         collection_id,
@@ -340,7 +340,7 @@ SELECT jsonb_build_object('releases', jsonb_agg(release)) AS release_package
 FROM
     release_summary
 WHERE
-    collection_id IN :collection_ids
+    collection_id = ANY(:collection_ids)
     AND release_type IN ('release', 'embedded_release')
     AND ocid IN (
         SELECT ocid
@@ -381,7 +381,7 @@ SELECT
 FROM
     release_summary
 WHERE
-    collection_id IN :collection_ids
+    collection_id = ANY(:collection_ids)
     AND (
         ocid = release_id
         OR ocid ILIKE '%%' || release_id || '%%'
@@ -398,7 +398,7 @@ SELECT
 FROM
     release_summary
 WHERE
-    collection_id IN :collection_ids
+    collection_id = ANY(:collection_ids)
 GROUP BY
     ocid,
     release_id
@@ -425,7 +425,7 @@ WITH release_ids AS (
     FROM
         release_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
     GROUP BY
         collection_id,
         ocid,
@@ -439,7 +439,7 @@ SELECT jsonb_build_object('releases', jsonb_agg(release)) AS release_package
 FROM
     release_summary
 WHERE
-    collection_id IN :collection_ids
+    collection_id = ANY(:collection_ids)
     AND release_type IN ('release', 'embedded_release')
     AND ocid IN (
         SELECT ocid
@@ -511,7 +511,7 @@ INNER JOIN awards_summary
         contracts_summary.id = awards_summary.id
         AND contracts_summary.awardid = awards_summary.award_id
 WHERE
-    contracts_summary.collection_id IN :collection_ids
+    contracts_summary.collection_id = ANY(:collection_ids)
     AND contracts_summary.release_type IN ('record', 'compiled_release')
 GROUP BY
     contracts_summary.collection_id,
@@ -556,7 +556,7 @@ LEFT JOIN contracts_summary
         awards_summary.id = contracts_summary.id
         AND awards_summary.award_id = contracts_summary.awardid
 WHERE
-    tender_summary.collection_id IN :collection_ids
+    tender_summary.collection_id = ANY(:collection_ids)
     AND tender_summary.release_type IN ('record', 'compiled_release')
 GROUP BY
     tender_summary.collection_id,
@@ -584,7 +584,7 @@ WITH examples AS (
     FROM
         release_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type IN ('release', 'embedded_release')
     ORDER BY
         collection_id,
@@ -629,7 +629,7 @@ SELECT
 FROM
     parties_summary
 WHERE
-    collection_id IN :collection_ids;
+    collection_id = ANY(:collection_ids);
 ```
 
 ```python
@@ -651,7 +651,7 @@ WITH items AS (
     FROM
         tender_items_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type = 'compiled_release'
     UNION ALL
     SELECT
@@ -663,7 +663,7 @@ WITH items AS (
     FROM
         award_items_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type = 'compiled_release'
     UNION ALL
     SELECT
@@ -675,7 +675,7 @@ WITH items AS (
     FROM
         contract_items_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type = 'compiled_release'
 )
 
@@ -708,7 +708,7 @@ WITH items AS (
     FROM
         tender_items_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type = 'compiled_release'
     UNION ALL
     SELECT
@@ -720,7 +720,7 @@ WITH items AS (
     FROM
         award_items_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type = 'compiled_release'
     UNION ALL
     SELECT
@@ -732,7 +732,7 @@ WITH items AS (
     FROM
         contract_items_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type = 'compiled_release'
 )
 
@@ -765,7 +765,7 @@ WITH documents AS (
     FROM
         planning_documents_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type IN ('record', 'compiled_release')
     UNION
     SELECT
@@ -777,7 +777,7 @@ WITH documents AS (
     FROM
         tender_documents_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type IN ('record', 'compiled_release')
     UNION
     SELECT
@@ -789,7 +789,7 @@ WITH documents AS (
     FROM
         award_documents_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type IN ('record', 'compiled_release')
     UNION
     SELECT
@@ -801,7 +801,7 @@ WITH documents AS (
     FROM
         contract_documents_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type IN ('record', 'compiled_release')
     UNION
     SELECT
@@ -813,7 +813,7 @@ WITH documents AS (
     FROM
         contract_implementation_documents_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type IN ('record', 'compiled_release')
 )
 
@@ -886,7 +886,7 @@ FROM (
             )
     FROM parties_summary
     WHERE
-        collection_id IN :collection_ids
+        collection_id = ANY(:collection_ids)
         AND release_type IN ('record', 'compiled_release')
         AND party -> 'address' ->> 'country' NOT ILIKE :country
 ) AS identifiers
@@ -1047,7 +1047,7 @@ SELECT
 FROM
     parties_summary
 WHERE
-    collection_id IN :collection_ids
+    collection_id = ANY(:collection_ids)
     AND release_type = 'compiled_release'
 GROUP BY
     collection_id,
@@ -1071,7 +1071,7 @@ SELECT
     count(DISTINCT data -> 'tender' ->> 'id') AS cnt
 FROM data
 INNER JOIN release ON data.id = data_id
-WHERE collection_id IN :collection_ids
+WHERE collection_id = ANY(:collection_ids)
 GROUP BY ocid
 ORDER BY cnt DESC;
 ```

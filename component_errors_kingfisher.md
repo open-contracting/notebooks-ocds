@@ -37,5 +37,5 @@ SELECT
 FROM
     collection_note
 WHERE
-    collection_id IN :collection_ids
+    collection_id = ANY(:collection_ids)
 ```
