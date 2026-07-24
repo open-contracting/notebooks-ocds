@@ -8,7 +8,6 @@ split_at_heading = true
 
 [tool.ruff]
 line-length = 119
-target-version = "py310"
 extend-include = ["*.ipynb"]
 
 [tool.ruff.format]
