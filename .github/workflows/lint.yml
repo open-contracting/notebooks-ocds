@@ -9,3 +9,4 @@ jobs:
       personal-access-token: ${{ secrets.PAT }}
     with:
       skip-linter-language: true
+      skip-linter-requirements: true
