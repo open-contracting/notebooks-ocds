@@ -51,9 +51,9 @@ Notebook | Open in Colab | Description
 
 To ease maintenance, the notebooks are made up of reusable components with clear scopes:
 
-- **Environment**: Setup Google Colaboratory in general
+- **Environment**: Setup Google Colab in general
   - `environment`: Install requirements, import packages, load extensions and configure the notebook.
-- **Setup**: Setup Google Colaboratory for a data source
+- **Setup**: Setup Google Colab for a data source
   - `setup_charts`: Install charts requirements, import charts packages and define plot functions.
   - `setup_kingfisher`: Connect to the Kingfisher Process database. Choose the collection(s) and schema to work with.
   - `setup_fieldlist`: Load the field list.
