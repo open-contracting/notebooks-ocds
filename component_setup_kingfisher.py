@@ -36,7 +36,7 @@ connection_string = (
 #
 # Update `collection_ids` with the `id`(s) of the [Kingfisher Process collection(s)](https://kingfisher-process.readthedocs.io/en/latest/data-model.html#collections):
 
-collection_ids = (2358, 2359)
+collection_ids = [2358, 2359]
 
 # If you don't know which collections you need, run the next cell and use the **Filter** button to filter the [collection table](https://kingfisher-process.readthedocs.io/en/latest/database-structure.html#collection-table) to find the collection(s). You can use the `source_id` column to filter on the `name` of the [Kingfisher Collect spider](https://kingfisher-collect.readthedocs.io/en/latest/spiders.html) used to collect the data. Use the value(s) from the `id` column to update the previous cell.
 
